@@ -1,0 +1,34 @@
+\documentclass{standalone}
+\usepackage{tikz}
+
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{decorations.pathreplacing}
+
+\begin{document}
+\begin{tikzpicture}[decoration={markings,
+			    mark=at position 3cm   with {\arrow[line width=2pt]{stealth}},
+			    mark=at position 9cm with {\arrow[line width=2pt]{stealth}},
+			    mark=at position 12cm   with {\arrow[line width=2pt]{stealth}},
+			    mark=at position 19.5cm with {\arrow[line width=2pt]{stealth}}
+		    }]
+			    
+  \draw[thick, ->] (-6,0) -- (6,0) coordinate (xaxis);
+
+  \draw[thick, ->] (0,-3) -- (0,2) coordinate (yaxis);
+
+  \node[above] at (xaxis) {$\Re\{z\}$};
+  \node[right]  at (yaxis) {$\Im\{z\}$};
+
+  \path[draw, red!50, line width=0.9pt, postaction=decorate] 
+        (-4,-2)
+    --  (4, -2)  node[midway, above right, black] {$C_3$} node[below, black] {$R-i\Lambda$}
+    --  (4, 0)  node[midway, left, black] {$C_2$} node[above, black] {$R$} 
+    --  (-4,0)  node[midway, below right, black] {$C_1$} node[above, black] {$-R$} 
+    --  (-4,-2)  node[midway, right, black] {$C_4$}  node[below, black] {$-R-i\Lambda$};
+
+    \draw[decorate, decoration={brace, amplitude=10pt, raise=5pt}, yshift=0pt] (4., -0.1) -- (4., -1.9)
+	    node[black, midway, xshift=0.8cm]{$\Lambda$};
+    \draw[decorate, decoration={brace, amplitude=10pt, mirror, raise=5pt}, yshift=0pt] (-4., -0.1) -- (-4., -1.9)
+	    node[black, midway, xshift=-0.8cm]{$\Lambda$};
+\end{tikzpicture}
+\end{document}

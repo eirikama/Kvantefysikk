@@ -1,0 +1,429 @@
+\documentclass{article}
+
+\usepackage{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepackage{tikz}
+\usetikzlibrary{decorations.markings}
+
+\usepackage{subfig}
+\usepackage[margin=2.cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+
+\newcommand\greybox[1]{
+	\vskip\baselineskip
+	\par\noindent\colorbox{lightgray}{
+		\begin{minipage}{\textwidth}#1\end{minipage}
+	}
+	\vskip\baselineskip
+}
+
+
+\title{Plenary Exercises 3}
+
+
+\begin{document}
+\maketitle
+
+\greybox{
+\underline{\large \textbf{Exercise 1}} \\ 
+Consider the following situation: A particle moving in one dimensional is described
+by the wavefunction
+\begin{align}
+	 \psi(x) = C x e^{\frac{-x^2}{2x_ 0 ^2}}
+\end{align}
+where $C$ and $x_0$ are constants. \\ 
+
+\hspace{0.5cm}\textbf{a)} Normalize the wavefunction $\psi(x)$. \\ 
+
+\hspace{0.5cm}\textbf{b)} Calculate the uncertainty $\Delta x$ in the position of the particle. \\
+
+\hspace{0.5cm}\textbf{c)} Where is the probability of finding the particle the largest? \\ 
+
+\hspace{0.5cm}\textbf{d)} How much more or less probable is it to find the particle at $0.02 x_0$ as compared
+at $0.01x_0$?
+
+}
+
+\hspace{0.5cm}\textbf{a)} \\ 
+
+We start by using the normalization condition to determine $A$. We have that 
+\begin{align}
+	 \int_{-\infty}^{\infty} |\psi(x)|^2 dx =   \int_{-\infty}^{\infty} \psi(x)\psi(x)^* dx = 1  
+\end{align}
+We insert for our wavefunction
+\begin{align}
+	 \int_{-\infty}^{\infty} |C|^2 x^2 e^{(\frac{-x^2}{2x_ 0 ^2} + \frac{-x^2}{2x_ 0 ^2})} dx 
+	&= |C|^2   \int_{-\infty}^{\infty} x^2 e^{\frac{-x^2}{x_ 0 ^2} } dx \\ 
+	&= |C|^2  \frac{\sqrt{\pi} (\frac{1}{x_0^2})^{-\frac{3}{2}}}{2} \\ 
+	&= |C|^2  \frac{\sqrt{\pi}x_0^3}{2}
+\end{align}
+where we have used that we know how to integrate the Gaussian over $\mathbb{R}$ as
+\begin{align}
+	 \int_{-\infty}^{\infty} x^2 e^{-\beta x^2} dx = \frac{1}{2}\sqrt{\pi}\beta^{-\frac{3}{2}}
+\end{align}
+We now get that
+\begin{align}
+	|C| = \frac{\sqrt{2}}{\pi^{\frac{1}{4}}x_0^{\frac{3}{2}}} 
+\end{align}
+
+
+\hspace{0.5cm}\textbf{b)} \\ 
+We know that 
+\begin{align}
+	(\Delta x)^2 = \langle x^2 \rangle -  \langle x \rangle^2 
+\end{align}
+We calculate the expectation values to determine the uncertainty
+\begin{align}
+	 \langle x \rangle = \int_{-\infty}^{\infty} x |\psi(x)|^2 dx = 0
+\end{align}
+since we know that $|\psi(x)|^2$ is an even function, which then means that the integrand is odd 
+and therefore evaluates to zero. Furthermore we have
+\begin{align}
+	 \langle x^2 \rangle = \int_{-\infty}^{\infty} x^2 |\psi(x)|^2 dx &= 
+	  |C|^2 \int_{-\infty}^{\infty} x^4 e^{\frac{-x^2}{x_ 0 ^2} }dx \\
+	&= |C|^2 \frac{3}{4}\sqrt{\pi}x_0^{5} \\
+	&= \frac{2}{\sqrt{\pi}}\frac{1}{x_0^{3}} \frac{3}{4}\sqrt{\pi}x_0^{5} \\
+	&=  \frac{3}{2}x_0^{2} 
+\end{align}
+This then give the uncertainty in the position
+\begin{align}
+	 \Delta x = \sqrt{\langle x^2  \rangle - \langle x \rangle^2} = \frac{3}{2}x_o^3 
+\end{align}
+
+\textbf{c)} \\ 
+We consider the probability distribution for the position of the particle
+\begin{align}
+	 p_x(x) &= x |\psi(x)|^2 \\
+		&= |C|^2 x_0^{\frac{3}{2}}x^2 e^{-\frac{x^2}{x_0^2}}
+\end{align}
+To find the position which is maximally likely to find the particle at we find the maxima of the distribution $p_x(x)$
+by differentiating and finding the roots of the derivative. We differentiate
+\begin{align}
+	 \frac{d }{dx} p_x(x) 
+	&= C \frac{d}{dx} \big( x^2 e^{-\frac{x^2}{x_0^2}} \big) \\
+	&= C \big( 2xe^{-\frac{x^2}{x_0^2}}  - \frac{2x^3}{x_0^2} e^{-\frac{x^2}{x_0^2}}  \big) \\
+\end{align}
+Setting this to zero gives
+\begin{align}
+	C 2xe^{-\frac{x^2}{x_0^2}} &= C\frac{2x^3}{x_0^2}e^{-\frac{x^2}{x_0^2}} \\
+	\Rightarrow \hspace{0.82cm} 2x &= \frac{2x^3}{x_0^2} \\ 
+	\Rightarrow \hspace{1cm} x &= x_0
+\end{align}
+Where we note that the solution $x=0$ must be disregarded since we have that $|\psi(0)|^2 = 0$. \\
+
+\textbf{d)} \\ 
+We consider the ratio of the probability of finding the particle $0.01x_0$ and $0.02x_0$.
+\begin{align}
+	 \frac{p_x(0.02x_0)}{p_x(0.01x_0)} 
+	&= \frac{|C|^2 x_0^{\frac{3}{2}}(0.02x_0)^2 e^{-\frac{(0.02x_0)^2}{x_0^2}}}{|C|^2 x_0^{\frac{3}{2}}(0.01x_0)^2 e^{-\frac{(0.01x_0)^2}{x_0^2}}} \\
+	&= \frac{(0.02)^2 e^{-(0.02)^2}}{(0.01)^2 e^{-(0.01)^2}}\\  
+	&= \frac{(2\times 10^{-2})^2 }{(1\times 10^{-2})^2} e^{-(0.02)^2 + (0.01)^2} \approx 4
+\end{align}
+where we have used that $\exp(-0.02^2 + 0.01^2) \approx 1$. We have thus found that it is four times as likely to find
+particle at $x=0.02x_0$ as at $x=0.01x_0$.
+
+
+
+%%%%%%-----------------------------------------------------------------------------------------------%%%%%%%%
+
+
+
+\greybox{
+\underline{\large \textbf{Exercise 2}} \\ 
+
+An electron moves in an one-dimensional potential 
+\begin{align}
+	 V(x) = 
+	\begin{cases}
+		V_0 \big[ \frac{1 - \cos(\frac{x}{a})}{1 + \cos(\frac{x}{a})}\big] 
+		\;\;\;\;\;\; ,x \in (-\pi a, \pi a) \\
+		\infty \;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;  ,x \notin (-\pi a, \pi a)
+	\end{cases}
+\end{align}
+where
+\begin{align}
+	 \alpha = 1Å = 10^{-10}m
+\end{align}
+The electron is described with the wavefunction
+\begin{align}
+	 \psi(x) =
+	\begin{cases}
+		 C(1 + \cos(\frac{x}{a}) \hspace{1cm} ,x \in (-\pi a, \pi a)  \\ 
+		0 \hspace{3cm} ,x \notin (-\pi a, \pi a)
+	\end{cases}
+\end{align}
+
+\vspace{.5cm}
+
+\hspace{0.5cm}\textbf{a)}
+Draw the shape of $V(x)$. Find values of $V_0$ and $E$ such that $\psi(x)$ is a solution to
+Schrödinger's equation for the potential $V(x)$. Provide the answer in eV. \\
+
+\hspace{0.5cm}\textbf{b)}
+Find the interval in which the electron can move in classical theory, that is where $V(x) \le E$.
+}
+
+
+\textbf{a)} \\ 
+We start by sketching the potential in Fig.~\ref{fig:potential}. We have that the potential is zero at $x=0$ and goes 
+symmetrically towards infinity when $x$ goes towards $\pm a$.
+
+
+\begin{figure*}
+	\centering
+	\input{"Illustrations/p3/potential.tex"}
+	\caption{Sketch of the potential $V(x)$, for $\alpha = 1$.}
+	\label{fig:potential}
+\end{figure*}
+
+We find values of $V$ and $E$ for which the wavefunction $\psi(x)$ is a solution to the Scrödinger equation.
+For reference we have Schrödinger's equation as
+
+\begin{align}
+	 -\frac{\hbar^2}{2m}\frac{d^2}{dx^2}\psi(x) = (E - V(x))\psi(x)
+\end{align}
+We insert for our potential and get
+\begin{align}
+	& -\frac{\hbar^2}{2m}\frac{d^2}{dx^2} C(1 + \cos(\frac{x}{a})  
+	= \big(E -V_0 \big[ \frac{1 - \cos(\frac{x}{a})}{1 + \cos(\frac{x}{a})}\big] \big) C(1 + \cos(\frac{x}{a})  \\
+	& \Rightarrow \hspace{1cm} \frac{\hbar^2}{2ma^2} \cos(\frac{x}{a})
+	= E (1 + \cos(\frac{x}{a})) - V_0 (1 - \cos(\frac{x}{a}))  \\
+	& \Rightarrow \hspace{1cm} (\frac{\hbar^2}{2ma^2} - E - V_0) \cos(\frac{x}{a})  
+	= E - V_0   
+\end{align}
+where we see that Schrödinger's equation is satisfied for all $x$ if
+\begin{align}
+	 E = V_0
+\end{align}
+and 
+\begin{align}
+	 \frac{\hbar^2}{2ma^2} - V_0 - E &= 0 \\
+	\Rightarrow \hspace{1cm} V_0 = E_0 &= \frac{\hbar}{4ma^2} \\
+          &= \frac{(6.63 \times 10^{-34}Js)^2}{4\times (2\pi)^2 \times 9.11\times 10^{-21}kg \times 10^{-20}m^2} \\ 
+	  &= (2\pi)^2 \times 1.2 \times 10^{-17}J \\ 
+	  &= 1.9 eV
+\end{align}
+
+
+\textbf{b)} \\ 
+We know that a classical particle must comply with
+\begin{align}
+	 E \ge V(x) 
+\end{align}
+This gives for our particle, where we know that we have $E=V_0$, the following interval which the particle can move
+within classical theory
+\begin{align}
+	V_0 &\ge V_0  \big[ \frac{1 - \cos(\frac{x}{a})}{1 + \cos(\frac{x}{a})}\big] \\
+	\Rightarrow \hspace{0.6cm} 1 + \cos(\frac{x}{a}) &\ge  1 - \cos(\frac{x}{a}) \\ 
+	\Rightarrow \hspace{1cm} 2 \cos(\frac{x}{a}) &\ge  0  
+\end{align}
+That is we need to have the argument of the cosine function be smaller in absolute value than $\pi / 2$.
+Which gives 
+\begin{align}
+	 |x| < \frac{\pi a}{2}
+\end{align}
+
+
+
+%%%%%------------------------------------------------------------------------------%%%%%%
+
+
+\greybox{
+\underline{\large \textbf{Exercise 3}} \\ 
+we assume a particle is described by the following wavefunction
+\begin{align}
+	 \psi(x) = 
+	\begin{cases}
+		 0 \hspace{2cm} ,x \in (-\infty, -a) \\ 
+		 A(a - |x|)  \hspace{0.6cm} ,x \in (-a, a) \\ 
+		 0 \hspace{2cm} ,x \in (a, \infty) \\ 
+	\end{cases}
+\end{align}
+
+\hspace{0.5cm} \textbf{a)} Determine $A$ by using the normalization condition. \\ 
+
+\hspace{0.5cm} \textbf{b)} What is the probability of finding the particle in the
+region $[0, a/2]$? \\ 
+
+\hspace{0.5cm} \textbf{c)} Calculate $\langle x \rangle$ and $\langle x \rangle^2$ for this 
+state.
+}
+
+\hspace{0.5cm} \textbf{a)} \\ 
+
+We start by using the normalization condition to determine $A$. This gives 
+\begin{align}
+	 1 &= \int_{-\infty}^{\infty} \psi(x)\psi(x)^* \\
+	   &= \int_{-a}^{a} |A|^2 (a - |x|)^2 dx
+\end{align}
+We may now utilize that the integrand is an even function to get
+\begin{align}
+	\int_{-a}^{a} |A|^2 (a - |x|)^2 dx &= 2|A|^2 \int_{0}^{a}  (a - x)^2 dx  \\ 
+					   &= -2|A|^2 \int_{a}^{0}  y^2  dy  \\ 
+					   &= 2|A|^2 \big[ -\frac{1}{3} y^3 \big]_a^0 \\
+					   &= 2|A|^2 \frac{1}{3} a^3 
+\end{align}
+Which gives us 
+\begin{align}
+	 A = \pm \sqrt{\frac{3}{2 a^2}} 
+\end{align}
+
+
+\hspace{0.5cm} \textbf{b)} \\ 
+
+We find the probability of finding the particle within $[0, a / 2]$ by integrating the probability 
+amplitude over the region as
+\begin{align}
+	 \int_{0}^{\frac{a}{2}} |\psi(x)|^2 dx &=  \int_{0}^{\frac{a}{2}} |A|^2 (a - |x|)^2 dx \\ 
+					       &= |A|^2 \int_{0}^{\frac{a}{2}} ( a^2 + x^2 - 2ax ) dx  \\
+					       &= |A|^2 \big[ a^2x + \frac{x^3}{3} - ax^2 \big]_0^{\frac{a}{2}} \\
+					       &= |A|^2 a^3 ( \frac{1}{2} + \frac{1}{24} - \frac{1}{4} ) \\
+					       &= \frac{3}{2a^2} a^3 \frac{7}{24} \\
+					       &= \frac{7}{16} 
+\end{align}
+That is the probability of finding the particle in the region between zero and $\frac{a}{2}$ is roughly $0.5$. \\ 
+
+
+\hspace{0.5cm} \textbf{c)} \\ 
+
+We now find the expectation value of the position as
+\begin{align}
+	 \langle x \rangle &= \int_{-\infty}^{\infty} x |\psi(x)|^2 dx \\ 
+		&= 0
+\end{align}
+where we have made use of that $x$ is an odd function and $|\psi(x)|^2$ is even and thus the integrand 
+is odd and evaluates to zero. 
+
+We find the expectation value of the position squared, where we can make use of that the integrand will be odd to simplify our calculations
+\begin{align}
+	 \langle x \rangle^2 &= \int_{-\infty}^{\infty} x^2 |\psi(x)|^2 dx \\ 
+			     &=  |A|^2 \int_{-a}^{a} x^2 (a - |x|)^2 dx \\ 
+			     &=  2|A|^2 \int_{0}^{a} x^2 (a - x)^2 dx  \\
+			     &=  2|A|^2 \int_{0}^{a} ( x^4 + a^2x^2 - 2ax^3 )  dx  \\
+			     &=  2|A|^2 \big[ \frac{x^5}{5} + \frac{a^2x^3}{3} - \frac{2ax^4}{4} \big]_0^{a}  \\
+			     &=  2|A|^2 ( \frac{a^5}{5} + \frac{a^5}{3} - \frac{a^5}{2} ) \\
+			     &=  2 \frac{3}{2a^3} \frac{a^5}{30} \\ 
+			     &=  \frac{a^2}{10} 
+\end{align}
+
+
+
+\vspace{1cm}
+\textbf{Solving Integral from Lecture} \\
+
+
+We shall now solve the following integral 
+\begin{align}
+	 \psi(x) = \frac{\sqrt{\sigma}}{\sqrt{2\pi^{\frac{3}{2}}}}  
+	\int_{-\infty}^{\infty} e^{-(k-k_0)^2\frac{\sigma^2}{2}}
+	e^{i(kx - \omega t)} dx
+\end{align}
+and we shall do this by first showing that this integral can be rewritten to the form
+\begin{align}
+	 \psi(x) = \frac{\sqrt{\sigma}}{\sqrt{2\pi^{\frac{3}{2}}}} e^{i(k_0 x - \omega_0 t)} 
+	\int_{-\infty}^{\infty} e^{-(k-k_0)^2(\frac{\sigma^2}{2} + \frac{it\hbar}{2m})}
+	e^{i(k-k_0)(x - \frac{k_0\hbar t}{m})} dx
+\end{align}
+We are going to be making use of $\omega = \hbar k^2 / 2m$ and rewrite the exponent
+\begin{align}
+	 & i(k_0 - \omega_0) - (k - k_0)^2(\frac{\sigma^2}{2} + \frac{it\hbar}{2m}) + i(k-k_0)(x - \frac{k_0\hbarr t}{m}) \\
+	= & i(k_0x - \omega_0t) - k^2  \frac{it\hbar}{2m} + 2kk_0 \frac{it\hbar}{2m} - k_0^2 \frac{it\hbar}{2m} - (k-k_0)^2\frac{\sigma^2}{2} + i(k-k_0)x - \frac{ik k_0 \hbar t}{m} + \frac{ik_0^2 \hbar t}{m}	 \\ 
+	= & i(k_0x - \omega_0t) - i\omega t + 2kk_0 \frac{it\hbar}{2m} - i\omega_0 t - (k-k_0)^2\frac{\sigma^2}{2} + i(k-k_0)x - \frac{ik k_0 \hbar t}{m}  + 2i\omega_0 t \\ 
+	= & -(k-k_0)^2\frac{\sigma^2}{2} + i(kx-\omega t) 
+\end{align}
+which is what we would we wanted to show. We now make the following substitutions
+\begin{align}
+	 y &= k - k_0 \\ 
+	a &= \frac{1}{\sqrt{\frac{\sigma^2}{2} + \frac{i\hbar t}{2m}}}  \\ 
+	 b &= x - \frac{k_0 \hbar t}{m}
+\end{align}
+which gives
+\begin{align}
+	 \psi(x,t) = \frac{\sqrt{\sigma} }{\sqrt{2\pi^{\frac{3}{2}}} } e^{i(k_0x - \omega_0t)} 
+	\int_{-\infty}^{\infty} e^{-(\frac{y}{a})^2}e^{iyb}dy
+\end{align}
+We can now use that we know 
+\begin{align}
+	\int_{-\infty}^{\infty} e^{-\frac{y^2}{a^2} + iby} du = \sqrt{\pi} a e^{-(\frac{ab}{2})^2} 
+\end{align}
+when we assume that $a^2> 0$. 
+To show this we need that we know that 
+\begin{align}
+	 \int_{-\infty}^{\infty} e^{-(x - i \Lambda)^2} = \sqrt{\pi} 
+\end{align}
+We can use this result and rewrite the integrand by intropducing new intration variable $y=ax$ and define a new constant $b = \frac{2\Lambda}{a}$. This gives 
+\begin{align}
+	 \int_{-\infty}^{\infty} e^{-x^2 + \Lambda^2 + 2 x i \Lambda} dx 
+	&= e^{\Lambda^2} \int_{-\infty}^{\infty} e^{-x^2  + 2 x i \Lambda} dx \\
+	&= e^{\frac{a b }{2}} a^{-1} \int_{-\infty}^{\infty} e^{-(\frac{y}{a})^2  +  ib y  } dy = \sqrt{\pi} 
+\end{align}
+Inverting this gives what we wanted to show
+\begin{align}
+	\sqrt{\pi} a e^{-(\frac{ab}{2})^2} =  \int_{-\infty}^{\infty} e^{-(\frac{y}{a})^2 + iby} dy 
+\end{align}
+We now use this result by first noting that we have
+\begin{align}
+	 \big(\frac{ab}{2}\big)^2 = \big(\frac{1}{2}\frac{x - \frac{k_0 \hbar t}{m}}{\sqrt{\frac{\sigma ^2}{2} + \frac{i \hbar t}{2m}} }\big)^2
+\end{align}
+which gives us
+\begin{align}
+	 \psi(x,t) &= \frac{\sqrt{\sigma}}{\sqrt{2}\pi^{\frac{3}{2}}} e^{i(k_0x - \omega_0 t)} \sqrt{\pi}
+	\frac{1}{\sqrt{\frac{\sigma ^2}{2} + 
+	\frac{i\hbar t}{2m}} }e^{-\frac{1}{4}\frac{(x-\frac{k_0 t}{m})^2}{\frac{\sigma^2}{2} + \frac{i\hbar t}{2m}} } \\ 
+	&= \frac{\sqrt{\sigma}}{\sqrt{\sigma ^2 + \frac{i\hbar t}{m}} \sqrt{\pi}} 
+	e^{i(k_0x - \omega_0 t)} e^{-\frac{1}{2}\frac{(x-\frac{k_0 t}{m})^2}{\sigma^2 + \frac{i\hbar t}{m}}}
+\end{align}
+Which is our desired expression for the wavefunction. We now calculate its absolute square as
+\begin{align}
+	 |\psi(x,t)|^2 &= \frac{\sigma}{\sqrt{(\sigma^2 + \frac{i\hbar t}{m})(\sigma^2-\frac{i\hbar t}{m})} \sqrt{\pi}} 
+	e^{-\frac{1}{2}\frac{(x-\frac{k_0 t}{m})^2}{\sigma^2 + \frac{i\hbar t}{m}}}  
+	e^{-\frac{1}{2}\frac{(x-\frac{k_0 t}{m})^2}{\sigma^2 - \frac{i\hbar t}{m}}} \\ 
+&= \frac{1}{\sqrt{\sigma^3 + \frac{\hbar t^2}{\sigma^2m^2}} \sqrt{\pi}} 
+	e^{-\frac{(x-\frac{k_0 t}{m})^2}{\sigma^2 + \frac{\hbar^2 t^2}{\sigma^2m^2}}}  
+\end{align}
+We now see that we have 
+\begin{align}
+	 |\psi(x, t=0)|^2 = \frac{1}{\sqrt{\pi} \sigma}e^{-\frac{x^2}{\sigma^2}}
+\end{align}
+Where we see that this is equivalent to the stationary wave packet. Thus it must also hold that the uncertainty will be the same
+\begin{align}
+	 (\Delta x(t=0))^2 = \frac{\hbar}{2}
+\end{align}
+We can certainly calculate the uncertainty for the time-dependant wave packet through standard formulae, but we 
+see that the probability distribution are the same if we make the change of variables
+\begin{align}
+	 \sigma^2 \to  \sigma^2 + \frac{\hbar^2 t^2}{\sigma^2 m^2}
+\end{align}
+This means that the uncertainty must be
+\begin{align}
+	 \Delta x(t) = \frac{1}{\sqrt{2}} \sqrt{\sigma^2 + \frac{\hbar^2t^2}{\sigma^2 m^2}}  
+\end{align}
+For the uncertainty in momentum we have that initially we have 
+\begin{align}
+	 \Delta p(t=0) = \frac{\hbar}{\sqrt{2} \sigma}
+\end{align}
+and if we consider the time dependent wavefunction in momentum space
+\begin{align}
+	 \psi(x) = \frac{\sqrt{\sigma}}{\sqrt{2\pi^{\frac{3}{2}}}}  
+	\int_{-\infty}^{\infty} e^{-(k-k_0)^2\frac{\sigma^2}{2}}
+	e^{i(kx - \omega t)} dx
+\end{align}
+we see that the part of the wave function which represents the width of the wave packet in momentum space is 
+invariant in time. Since the only time dependence is in the phase factor. Therefore it must hold that the time
+dependent uncertainty is the same as at $t=0$ for all times.
+\begin{align}
+	 \Delta p(t) = \frac{\hbar}{\sqrt{2} \sigma}
+\end{align}
+We now have that 
+\begin{align}
+	 \Delta p(t)  \Delta x(t) = \frac{\hbar}{2}\sqrt{1 + \frac{\hbar^2 t^2}{\sigma^{4}m^2}} 
+\end{align}
+
+
+\end{document}
+
+
+

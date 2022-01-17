@@ -1,0 +1,241 @@
+\documentclass{article}
+
+\usepackage{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepackage{tikz}
+\usetikzlibrary{decorations.markings}
+
+\usepackage{subfig}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+
+\newcommand\greybox[1]{
+	\vskip\baselineskip
+	\par\noindent\colorbox{lightgray}{
+		\begin{minipage}{\textwidth}#1\end{minipage}
+	}
+	\vskip\baselineskip
+}
+
+\title{Forelesninger \\
+	Kvantefysikk 2022}
+
+
+\begin{document}
+\maketitle
+
+
+\section{Lys}
+
+\subsection{Lys som bølger}
+
+\subsubsection{Bølger, difraksjon og interferens}
+
+Bølger $f(x,t)$ følger bølgeligninger
+\begin{align}
+	 \frac{\partial^2 f(x,t)}{\partial x^2}  - \frac{1}{v^2} \frac{\partial^2 f(x,t)}{\partial t^2}  = 0
+\end{align}
+hvor $v$ er hastigheten til bølgen.
+Det finnes to lineart uavhengige løsninger til bølgeligningen, nemlig
+\begin{align}
+	 f_c(x,t) &= f_0 \cos(kx - \omega t)\\
+	 f_s(x,t) &= f_0 \sin(kx - \omega t)
+\end{align}
+hvor vi må ha at $v=\omega / k$ for at dette skal være en løsning.
+Vi kan også skrive bølgen mer generelt som
+\begin{align}
+	 f(x,t) &= f_0 \cos(kx - \omega t + \phi)
+\end{align}
+hvor vi innfører en fase $\phi \in (0, 2\pi]$. Vi har da at 
+\begin{align}
+	 f(x,t)|_{\phi=0} &= f_0 \cos(kx - \omega t + 0) = f_c(x,t) \\
+	 f(x,t)|_{\phi=\frac{\pi}{2}} &= f_0 \cos(kx - \omega t + \frac{\pi}{2}) = f_s(x,t)
+\end{align}
+Vi kan også skrive bølgen som en kompleks funksjon 
+\begin{align}
+	 f(x,t) = f_0 e^{i(kx - \omega t)} = f_0 (\cos(kx - \omega t) + i \sin(kx - \omega t))	
+\end{align}
+hvor $i=\sqrt{-1}$ og vi har brukt Euler's formal 
+\begin{align}
+	 e^{i\theta} = \cos(\theta) + i \sin(\theta)
+\end{align}
+
+
+\subsubsection{Young's dobbelspalte forsøk}
+
+\subsubsection{Maxwell's ligninger}
+
+\newpage
+\subsection{Lys som partikler}
+
+\subsubsection{Planck's strålingslov^*}
+Det var gjort mange forsøk på å beregne strålingen for et sort legemet.
+Planck, Rayleigh og Jeans hadde allerede forsøkt.
+Et svart legeme er et objekt som absorberer all stråling som treffer det. Det klassiske eksempelet på et svart legeme er en eske med et lite hull i. 
+
+Rayleigh-Jeans beregnet strålingstettheten til å være
+\begin{align}
+    u(\nu, T) = \frac{8\pi \nu^2}{c^3} k_B T 
+\end{align}
+where they considered standing waves inside of a blackbody and derived the number of standing waves for a given frequency to be $8\pi\nu / c^3$, and they assumed every standing wave mode had the same average energy $\langle E \rangle=k_BT$, which is the found from classical thermodynamics. This formula miserably fails for low wavelengths and is known as the ultraviolet catastrophe.
+
+Planck solved this problem by noting that the assumption that every standing wave mode having the same energy is not sound. He assumed, as a mathematical trick, that every mode has quantized energy as $E_n = nh\nu$.
+
+Remembering from statistical physics that the equilibrium distribution of energy levels of any given mode is
+\begin{align}
+    P_r = \frac{e^{-\beta E(r)}}{Z(\beta)}
+\end{align}
+where $\beta = 1/k_BT$ and $Z(\beta)$ the partition function. We can now find the average energy in each mode as
+\begin{align}
+    \langle E \rangle &= \sum_{n=0}^{\infty} hn\nu \frac{e^{-\beta hn\nu}}{\sum_{n=0}^{\infty} e^{-\beta hm\nu}} \\
+    &=  h\nu \frac{\sum_{n=0}^{\infty} n (e^{-\beta h\nu})^n}{\sum_{n=0}^{\infty} (e^{-\beta h\nu})^m} \\ 
+    &=  h\nu e^{-\beta h\nu} \frac{\sum_{n=1}^{\infty} n (e^{-\beta h\nu})^{n-1}}{\sum_{n=0}^{\infty} (e^{-\beta h\nu})^m} \\ 
+     &=  h\nu e^{-\beta h\nu} \frac{\frac{1}{(1 - e^{-\beta h\nu})^2}}{\frac{1}{1 - e^{-\beta h\nu}}} \\ 
+     &=  h\nu e^{-\beta h\nu} \frac{1}{1 - e^{-\beta h\nu}} \\ 
+     &=   \frac{h\nu}{e^{\beta h\nu} - 1}
+\end{align}
+where we have used some known binomial expansions to evaluate the infinite sums. We now get the energy density of the field as the product of the modes per frequency times the average energy per mode
+\begin{align}
+    u(\nu, T) = \frac{8\pi h \nu^3 }{c^3} \frac{1}{e^{\beta h\nu} - 1}
+\end{align}
+which is the infamous Planck's law.
+
+\subsubsection{Fotoelektrisk effekt}
+Fotoelektrisk effekt er prosessen hvor lys treffer et material, typisk et metall, og  overfører noe av den kinetiske energien sin til elektronene slik at de kan bevege seg vekk fra materialet.
+De løsrivde elektroner kalles fotoelektroner.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.4\textwidth]{Illustrations/photo_el_ill.png}
+\caption{Illustrasjon av fotoelektrisk effekt hvor lys løsriver elektroner fra et material.}
+\label{fig:compton_results}
+\end{figure}
+Hvis man antar at lys er bølger, så vet man at energien til en bølge er proportional med kvadratet av amplituden til bølgen som
+\begin{align}
+	 E \propto f_0^2 
+\end{align}
+og man vet at amplituden er proporsjonal med intensiteten til lyset 
+\begin{align}
+	  f_0^2 \propto I
+\end{align}
+Ergo, ifølge klassisk bølgeteori for lys burde lys med veldig høy intensitet være veldig energetisk.
+Derfor burde lys alltid kunne løsrive noen fotoelektroner fra materialet, hvis vi bare skrur opp lystyrken og gir lyset høy nok intensitet.
+Eksperimenter viste at for lavfrekvent lys som e.g. infrarødt lys eller mikrobølger, kan vi for de fleste metaller aldri få fotoelektrisk effekt uannsett hvor stor intensitet lyset har.
+Mens man for ultraviolett lys ofte observerte fotoelektrisk effekt. 
+Altså det virket som om fotoelektrisk om vi får fotoelektrisk effekt eller ikke, avhenger av frekvensen til lyset og ikke av intensitet (i.e. amplituden).
+
+Einstein foreslo at lys består av lyskvanter, såkalte fotoner, og at energien til disse fotonene er 
+\begin{align}
+	 E = h\nu
+\end{align}
+fom først foreslått av Max Planck som et matematisk triks for å regne ut intensitets-fordelingen til strålingen fra et svart legeme. Her er $\nu$ frekvensen til fotonet og $h$ er Planck's konstant.
+For at et foton skal kunne løsrive et elektron fra metallet, må det gi elektronet nok energi til å overkomme kreftene som binder det i metallet, denne energien er karakteristisk for hvert material og vi kaller den $W$.
+Den maksimale kinteiske energien som et fotoelektron kan ha er derfor 
+\begin{align}
+	 E_k = h\nu - W
+\end{align}
+Siden fotonets energi er inverse proporsjonal med $\nu$ ser vi at det da må være en minste mulige frekvensen fotenet må ha for å løsrive et fotoelektron.
+Denne frekvensen finner vi ved å finne når $E_k=0$. 
+Vi har da 
+\begin{align}
+	 \nu_0 = \frac{W}{h}
+\end{align}
+Milikan gjennomførte et fotoelektrisk eksperiment for Natrium, som er et alkali metall med $W=2.3\text{eV}$.
+Ifølge Einstein's beregninger burde $\nu_0=5.5\times10^{14} \text{Hz}$, som tilsvarer en bølgelengde $\lambda_0=540\text{nm}$, altså grønt lys.
+Det vil si at blått lys vil ha nok energi til å løsrive fotoelektron men ikke rødt lys.
+
+
+%\begin{figure}
+    %\centering
+    %\begin{minipage}{0.49\textwidth}
+        %\centering
+        %\includegraphics[width=0.99\textwidth]{Illustrations/photo_el_ex.png} 
+        %\caption{first figure}
+    %\end{minipage}\hfill
+    %\begin{minipage}{0.49\textwidth}
+        %\centering
+        %\includegraphics[width=0.99\textwidth]{Illustrations/photo_el_graph.png}
+        %\caption{second figure}
+    %\end{minipage}
+%\end{figure}
+
+
+
+\subsubsection{Compton spredning}
+Selv etter at Milikan's resultater samsvarte utmerket Einstein's beregninger for den fotoelektriske effekten,
+var ikke alle overbevist om at lys består av partikler.
+Enda mer overbevisende argumenter for lys er partikler fikk man av Arthur Compton i 1923.
+Compton bestråler grafitt med energetisk kort-bølget Röntgen stråling.
+Klassisk, (antatt lys er bølger) burde Röntgen strålingen bringe elektronene i karbon atomene oscillere med den samme frekvensen som strålingen.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.75\textwidth]{Illustrations/compton_results.png}
+\caption{Resultatene av Compton's sprednings eksperiment. Intensiteten til det målte lyset ved flere forskjellige utfallsvinkler etter at lyset interegerer med karbon atomene.}
+\label{fig:compton_results}
+\end{figure}
+Vi ser i Fig.~\ref{fig:compton_results} selv om inkomende stråling har en intensitets-topp ved  $\lambda$ har strålingen etter interaksjon med grafittet to intensitets-topper, en ved $\lambda$ og en ved $\lambda'$ som er større enn $\lambda$ og avhengig av vinkelen vi måler ved. 
+Denne forskyvningen i bølgelengde som lyset får etter å spres på elektronet kan ikke forklares ut ifra klassisk bølgeteori.
+
+Forklaringen på dette finner vi ved å anta at lys er partikler of låne noen resultater fra Einstein. Vi har at 
+\begin{align} \label{eq:Efot}
+	 E = \frac{hc}{\lambda} 
+\end{align}
+som Einstein utledet i sin forklaring av den fotoelektriske effekten. 
+Fra den spesielle relativitets-teorien har vi at $E = \sqrt{p^2c^2 + m^2c^4}$, som forenkles til $E=pc$ for masseløse partikler, som vi antar fotoner er og for partikler i ro har vi $E=mc^2$.
+Setter vi dette likt utryket for energi i Lign.~(\ref{eq:Efot}) får vi
+\begin{align}
+	 p = \frac{h}{\lambda}
+\end{align} 
+hvor vi nå har et utrykk som gir en sammenheng mellom lysets bølgelengde og bevegelsesmengde.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\textwidth]{Illustrations/compton_atom.png}
+\caption{Illustrasjon av Compton's spredningsforsøk.
+Inkommende Röntgen stråling interagerer med et løst bundet elektron i det ytterste skallet til et karbon-atom.
+Lyset spres på elektronet og elektronet frigjøres fra atomet.}
+\label{fig:compton_atom}
+\end{figure}
+I Compton's eksperiment har vi stasjonære elektroner som kolliderer med fotoner.
+Fotonene kan overføre noe kinetisk energi til elektronene og derfor må bølgelengden til de spredte fotonene være lengre enn for de inkommende.
+Dette er i sterk kontrast til prediksjonen til klassisk mekanikk.
+
+Det er nå en small sak å analysere dette kollisjons-problemet ved hjelp av bevaringslover for energi og bevegelsesmengde. Vi lar $\mathbf{p}$ of $ \mathbf{p}'$ være bevegelsesmengden til det inkommende og utgående fotonet, respektivt, og $ \mathbf{p}_e$.
+Vi har da at 
+\begin{align}
+	\mathbf{p} = \mathbf{p}' + \mathbf{p}_e 
+\end{align}
+Hver komponent av bevegelsesmengde-vektoren må være bevart separat. Vi lar $\theta$ være vinkelen mellom det inkommende og utgående fotonet.
+Vi har da 
+\begin{align}\label{eq:p_e}
+	 p_e^2 &= ( \mathbf{p} - \mathbf{p}') \cdot ( \mathbf{p} - \mathbf{p}') \\
+	 &= p^2 + p'^2 - 2 p p' \cos(\theta)
+\end{align}
+Energi-bevaring gir $E + mc^2 = E' + E_e$ som uttrykt ved bevegelsesmengden gir 
+\begin{align}
+	 pc + mc^2 = p'c + \sqrt{p_e^2 c^2 + m^2 c^4} 
+\end{align}
+Vi bruker Lign.~(\ref{eq:p_e}) for å eliminere $p_e$ og dereter kvadrerer vi og har da
+\begin{align}
+	 pc - p'c + mc^2 &= \sqrt{(p^2 + p'^2 - 2 p p' \cos(\theta))c^2 + m^2 c^4} \\
+\Rightarrow 	-2pp'c^2 + 2 pmc^3 - 2p'mc^3 + p^2c^2 + p^2'c^2 + m^2c^4 &= (p^2 + p'^2 - 2 p p' \cos(\theta))c^2 + m^2 c^4 \\
+\Rightarrow 	-2pp' + 2 pmc - 2p'mc + p^2 + p^2' + m^2c^2 &= p^2 + p'^2 - 2 p p' \cos(\theta) + m^2 c^2 \\
+\Rightarrow 	-pp' + pmc - p'mc  &=  - p p' \cos(\theta)  \\
+\Rightarrow 	pp' (1 - \cos(\theta))  &=  (p - p')mc  
+\end{align}
+Vi kan nå sette inn vårt uttrykk for bevegelsesmengde som funksjon av bølgelengde og finne Compton's formel
+\begin{align}
+	\frac{h^2}{\lambda\lambda'} (1 - \cos(\theta))  &=  (\frac{h}{\lambda} - \frac{h}{\lambda'})mc  \\
+	 \label{eq:comp_form} \Rightarrow \frac{h}{mc} (1 - \cos(\theta))  &=  \lambda' - \lambda 
+\end{align}
+Hvor vi har et utrykk for endringen i bølgelengden som elektronet får etter at det spres elektronet. 
+Dette forklarer at vi har en intensitets-topp i Fig.~[\ref{fig:compton_results}] med forskyvd bølgelengde.
+Den andre intensitets-toppen sentrert rundt bølgelengden til det inkommende lyset kommer av at lyset også kan interegere med karbon-kjernen også, og siden kjernen er mye mer massive en elektronet er bølgelengde-forskyvningen i denne prosessen forskvinnende liten.
+Vi ser fra Lign.~(\ref{eq:comp_form}) at faktoren  $h/mc$ gjør at $\lambda'-\lambda$ veldig liten.
+Dette er også grunnen til at denne effekten ikke var observert tidligere, siden for et elektron er $h/mc \approx0.0024nm$ som er ekstremt lite sammenlignet med bølgelengdene i det synlige spektret $400-700nm$, og derfor er effekten vanskelig å observere i synlig lys eksperimenter. Men for Röntgen stråling er har fotonene kortere bølgelengde og effekten kan observeres.  
+
+
+\subsection{Bølge-partikkel dualitet}
+
+\end{document}

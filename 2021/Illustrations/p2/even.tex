@@ -1,0 +1,25 @@
+\documentclass[border=2mm]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\begin{document}
+\begin{tikzpicture}
+  \begin{axis}%
+    [grid=both,
+     minor tick num=5,
+     xlabel=$x$,
+     ylabel=$y$,
+     grid style={line width=.1pt, draw=gray!10},
+     major grid style={line width=.2pt,draw=gray!50},
+     axis lines=middle,
+     restrict y to domain=-1.6:2.,
+     enlargelimits={abs=1.1}
+    ]
+    \addplot[domain=-2:2,samples=50,smooth,red!70] {cos(deg(pi*x))} node[] (cos);
+    \node[above, color=red] at (cos) {$\cos(x)$};
+    \addplot[domain=-2:2,samples=50,smooth,blue!70] {x^2} node[]  (quadratic);
+    \node[above, color=blue] at (quadratic) {$x^2$};
+    \addplot[domain=-1.8:1.8,samples=50,smooth,black] {x*sin(deg(pi*x))} node[] (prod);
+    \node[above right, color=black] at (prod) {$x\sin(x)$};
+  \end{axis}
+\end{tikzpicture}
+\end{document}

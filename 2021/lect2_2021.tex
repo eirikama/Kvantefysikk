@@ -1,0 +1,584 @@
+\documentclass{article}
+
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepackage{tikz}
+\usetikzlibrary{decorations.markings}
+
+\usepackage{subfig}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+
+\newcommand\greybox[1]{
+	\vskip\baselineskip
+	\par\noindent\colorbox{lightgray}{
+		\begin{minipage}{\textwidth}#1\end{minipage}
+	}
+	\vskip\baselineskip
+}
+
+\title{Lecture Quantum Physics \\
+Examples of One-Dimensional Potentials}
+
+
+\begin{document}
+\maketitle
+
+
+\section{Dirac Delta Function Potential}
+We start by considering the Dirac delta function, which can be used as a model potential.
+We recall that the delta function is defined as
+\begin{align}
+	 \delta(x) = \lim_{b \to \infty} \sqrt{\frac{b}{\pi}} e^{-bx^2}
+\end{align}
+i.e. we can think of it as the limit of infinitely thin Gaussian curves.
+It has been normalized such that
+\begin{align}
+	\int_{-\infty}^{\infty} \delta(x)dx = 1 
+\end{align}
+and it satisfies
+\begin{align}
+	 \delta(x) =
+	\begin{cases}
+		 0 \hspace{1cm} x \neq 0 \\
+		 \infty \hspace{0.8cm} x = 0
+	\end{cases}		 
+\end{align}
+The Dirac delta have the very useful property that they pick out one value from a
+function with which it is multiplied and integrated over, i.e. we have
+\begin{align}
+	 \int_{\infty}^{\infty} f(x) \delta(x) dx = f(0)
+\end{align}
+or more generally
+\begin{align}
+	 \int_{\infty}^{\infty} f(x) \delta(x-a) dx = f(a)
+\end{align}
+where $f(x)$ can be any well-behaved function.
+
+We now consider the delta function potential, which we define to be
+\begin{align}
+	 \frac{2m}{\hbar^2}V(x) = -\frac{\alpha}{a}\delta(x)
+\end{align}
+where $a$ has units of length and $\alpha$ is unitless and determines the strength of the potential.
+We note that the Dirac delta function has units of $1/[L]$, which can be seen from the
+normalization condition demanding that $\delta(x) dx$ is unit less, and knowing that $dx$ has units of length.
+We have that since $\hbar$ has units of $[M] [L]^2 [T]^{-1}$. Knowing that energy has units of $[M][L]^2[T]^{-2}$
+we get that $\frac{2m}{\hbar}V(x)$ has units of $1/[L]^2$.
+
+We now consider the boundary conditions of the wave function There are in this case only two regions, namely
+$x<0$ and $x>0$. The Schrödinger equation being a second-order differential equation we would like to demand
+the wavefunction being continuous everywhere.
+We consider the integral from infinitesimally above $x=0$ to infinitesimally above of both the wavefunction
+and its first derivative. We start with the derivative
+\begin{align}
+	 \int_{0^-}^{0^+} \frac{d^2 \psi}{dx^2}
+	&= \big(\frac{d\psi}{dx} \big)_{0^+} -  \big(\frac{d\psi}{dx} \big)_{0^-} \\
+	&= \frac{2m}{\hbar^2} \int_{0^-}^{0^+} [V(x) - E]\psi(x) dx
+\end{align}
+using the Schrödinger equation. We use that the area of integration is infinitesimally
+small and the intgrand is not infinite to obtain
+\begin{align}
+	 \frac{2mE}{\hbar^2} \int_{0^-}^{0^+} \psi(x)dx = 0
+\end{align}
+Furthermore, we have
+\begin{align}
+	 \frac{2m}{\hbar^2} \int_{0^-}^{0^+} V(x) \psi(x) dx =
+	- \frac{\alpha}{a} \int_{0^-}^{0^+} \delta(x) \psi(x) dx = -\frac{\alpha}{a} \psi(0)
+\end{align}
+We therefore have
+\begin{align}
+(\frac{\partial \psi}{\partial x} )_{0^+} - (\frac{\partial \psi}{\partial x} )_{0^-} = -\frac{\alpha}{a}\psi(x)
+\end{align}
+where we see that the first derivative has a discontinuity at zero. We also see why the derivative is generally
+continuous for non-singular potentials.
+
+We now solve Schrödinger's equation for the Dirac delta potential. We have for $x\neq 0$ that
+\begin{align}
+	 \frac{d^2 \psi}{dx^2} = - \frac{2mE}{\hbar^2}\psi
+\end{align}
+We are searching bound states $(E<V_0)$ we have the solution
+\begin{align}
+	 \psi = Ae^{i\kappa x} + B e^{-i\kappa x}
+\end{align}
+where
+\begin{align}
+	 \kappa = \sqrt{\frac{-2mE}{\hbar^2}}
+\end{align}
+As for the square wells we demand the wavefunction to be continuous
+which gives that $A=B$
+\begin{align}
+	 \psi(x) =
+	\begin{cases}
+		 Ae^{i\kappa x} \hspace{1cm} x\le 0 \\
+		Ae^{-i\kappa x} \hspace{1cm} x \ge 0
+	\end{cases}
+\end{align}
+We substitute the wavefunction into our condition for the derivatives' continuity and we find
+\begin{align}
+	 -2\kappa A = - \frac{\alpha}{a} A
+\end{align}
+or equivalently
+\begin{align}
+	 \sqrt{\frac{-2mE}{\hbar^2}} = \frac{\alpha}{2a}
+\end{align}
+This gives the energy of the bound state
+\begin{align}
+	 E = -\frac{\hbar^2\alpha^2}{8ma^2}
+\end{align}
+So we have found that the Dirac delta only take one bound state. This is very reasonable considering its
+shape, and that there are no other shapes which we could conceive of which could be viable wavefunctions
+for this systems, up to an overall phase. This is because we must demand the wavefunction being exponentially
+dampened away from $x=0$.
+
+
+	 
+\section{Molecular Binding}
+
+\subsection{Double Square Well}
+
+Having seen that the finite square well can be a model system for a particle trapped by a simple atom
+such as Hydrogen, we shall now run with this and consider a double finite square well, which we can
+think of as modelling a simple molecule such as an Hydrogen molecule ion $H_2^+$. By studying this simple
+toy system, we can gain insights into why molecules can exist.
+We can see straight away that for bound states the wavefunctions must be oscillatory inside of the wells
+and decrease exponentially away from the wells.
+
+This is quite a bit more involved to solve compared to the square wells, since we have five different regions
+and eight boundary conditions for the wavefunctions and its derivatives. However we can exploit the symmetry of the problem and note that the potential is an even function $V(-x) = V(x)$.
+We also know that the ground state is even and knowing the shape of the solutions inside of the wells we
+can sketch the shape of the ground state and the first excited state.
+
+Classically one might expect that the electron would be trapped in the vicinity of either on or the other
+protons, but here we see that the electron is equally likely to be at both protons, due to the symmetry of
+potential and therefore also of the wavefunctions.
+Furthermore, there is also a non-vanishing probability of finding the electron in the region between
+the protons. It is this sharing of the electron between the wells which make the molecule stable by increasing
+the binding, or actually by making it more energy efficient for the electron to be close to the protons.
+
+
+\subsection{Delta Function Well}
+We shall simplify the potential even further, and instead of the double square well consider the Dirac delta
+function well. We define the following potential
+\begin{align}
+	 \frac{2m}{\hbar^2} V(x) = -\frac{\alpha}{a}[\delta(x-a) - \delta(x+a)]
+\end{align}
+That is, two delta functions which are separated by a distance $2a$.
+The wavefunction must now satisfy
+\begin{align}
+	 \frac{d^2\psi}{dx^2} = -\frac{2mE}{\hbar^2}\psi
+\end{align}
+for the $(E<0)$ bound solutions.
+We again define
+\begin{align}
+	 \kappa = \sqrt{\frac{-2mE}{\hbar^2}}
+\end{align}
+Since $E<0$ we have that $\kappa \in \mathbb{R}_+$. We have the exponential functions solving the
+Schrödinger equations for $V(x) = 0$. We note that for the $E>0$ we would get complex exponentials
+and oscillatory solutions.
+We use that we must demand that the exponentials which diverge for
+$|x|\to \infty$ must be discarded, which gives us
+\begin{align}
+	 \psi(x) =
+	\begin{cases}
+		 Ce^{\kappa x} \hspace{2cm} x<-a \\
+		 A\cosh(\kappa x) \hspace{1.2cm} x \in (-a,a) \\
+		 Ce^{-\kappa x} \hspace{1.9cm} x>a \\
+	\end{cases}
+\end{align}
+where we have
+\begin{align}
+	 \cosh(\kappa x) = \frac{e^{\kappa x} + e^{-\kappa x}}{2}
+\end{align}
+We now apply boundary conditions. We only need to do it explicitly for $x=a$, since the system is symmetric.
+Continuity of the wavefunction gives
+\begin{align}
+	 A\cosh(\kappa x) = C e^{-\kappa x}
+\end{align}
+For the first derivative we once again have a discontinuity
+\begin{align}
+(\frac{\partial \psi}{\partial x} )_{0^+} - (\frac{\partial \psi}{\partial x} )_{0^-}
+					= -\frac{\alpha}{a}\psi(x)
+\end{align}
+We insert the wavefunctions and get
+\begin{align}
+	 -\kappa C e^{-\kappa x} - \kappa A \sinh(\kappa x) = -\frac{\alpha}{a}A\cosh(\kappa x)
+\end{align}
+where
+\begin{align}
+	 \sinh(\kappa x) = \frac{e^{\kappa x} - e^{-\kappa x}}{2}
+\end{align}
+Substituting the continuity equation for the wavefunction itself into the condition for the discontinuity of
+the derivative and dividing by $\cosh(\kappa x)$ we obtain
+\begin{align}
+	 \tanh(\kappa x) = \frac{\alpha}{\kappa a} - 1
+\end{align}
+where
+\begin{align}
+	 tanh(\kappa x) = \frac{sinh(\kappa x)}{\cosh(\kappa x)}
+\end{align}
+We have now found the equation determining the allowed energies, and we see that it is an transcendental
+equation which must be solved graphically in a manner similar to for the finite square well, where we must
+determine where the curve $\frac{\alpha}{\kappa a} - 1$ and $\tanh(\kappa x)$ intersect. Since we know that
+the tangent hyperbolicus functions is always less than one we can say with certainty the crossing will occur
+somewhere such that
+\begin{align}
+	 \frac{\alpha}{\kappa a} - 1 < 1
+\end{align}
+Inserting from the definition of $\kappa$ we now find
+\begin{align}
+	 E < - \frac{\hbar^2\alpha^2}{8ma^2}
+\end{align}
+We now compare this with the single Dirac delta potential and we see that the double delta potential well
+has lower energy. This means that it is energetically preferable for system to organize into a molecule than
+single atoms.
+
+It is not guaranteed that the double wells such as delta wells and the double square wells have excited states.
+We stated previously that the double well will have an excited state, but for the delta well it will depend
+on the strength of the potential $\alpha$ whether or not there are excited states. The hydrogen molecule does
+not have any excited states.
+
+
+
+\section{Scattering}
+Until now we have mostly considered potentials which have, at least some, bound states which
+have discrete energy spectra. We shall now begin studying one-particle systems for which the Schrödinger
+equation takes solutions fir which the particle is not confined to a given region of space.
+For such systems there exists a continuum of allowed energies, since there are no constraining condition
+on the energies. That is, the energies are no longer quantized. We generate physically acceptable solutions
+in such systems by superposition of several solutions to form wave packets, which will be normalizable.
+These solutions will also be dynamic, i.e. be evolving in time, since they consists of superpositions of energy
+eigenstates. \\
+
+We consider as a start the step potential
+\begin{align}
+	 V(x) =
+	\begin{cases}
+		 0 \hspace{1cm} x < 0 \\
+		V_0 \hspace{0.9cm} x > 0
+	\end{cases}
+\end{align}
+Initially we start by assuming the energy is larger than the potential, i.e. $E > V_0$.
+We then have to the left of the step barrier
+\begin{align}
+	 \frac{d^2 \psi}{dx^2} = - \frac{2mE}{\hbar^2}\psi \hspace{1cm} x < 0
+\end{align}
+For notational simplicity we define
+\begin{align}
+	 k = \sqrt{\frac{2mE}{\hbar^2}}
+\end{align}
+and we then have the solutions on the form
+\begin{align}
+	 \psi(x) = Ae^{ikx} + B e^{-ikx} \hspace{1cm} x<0
+\end{align}
+Here we note the importance of using complex exponentials instead of trigonometric functions, since we can then
+associate them with incoming and outgoing waves.
+
+We now consider the right side of the potential barrier, where we have the Schrödinger equation
+\begin{align}
+	 \frac{d^2 \psi}{dx^2} = - \sqrt{\frac{2m(E-V_0)}{\hbar^2}}  \hspace{1cm} x>0
+\end{align}
+where we define
+\begin{align}
+	 k_0 = \sqrt{\frac{2m(E-V_0)}{\hbar^2}} = \sqrt{k^2 - \frac{2mV_0}{\hbar^2}}
+\end{align}
+Since we know $E>V_0$ we have the solutions
+\begin{align}
+	 \psi(x) = Ce^{ik_0x} + D e^{-ik_0x} \hspace{1cm} x>0
+\end{align}
+We now use the requirement that the wavefunction must be continuous and have continuous first derivatives.
+We consider the potential problematic point at $x=0$. Continuity of the wavefunction gives
+\begin{align}
+	 A + B = C+D
+\end{align}
+and the first derivatives
+\begin{align}
+	 ik(A-B) = ik_0(C-D)
+\end{align}
+We now see that we have only two equations for four unknowns. Which means we are free to chose some of the
+constants as we please, or on the basis of physical considerations, since there are many configurations
+of constants which satisfy the equations.
+We therefore choose $D=0$. Which gives
+\begin{align}
+	 \psi(x) = C e^{ik_0x} \hspace{1cm} x>0
+\end{align}
+We may now easily solve the remaining equations by expressing $B$ and $C$ in terms of $A$
+\begin{align}
+	 B &= \frac{k-k_0}{k+k_0}A \\
+	 C &=  \frac{2k}{k+k_0}A
+\end{align}
+Where we note that this solution works for any value of $k$, i.e. for any energy. Thus the energy is continuous
+as there are no constrains which compels it to be quantized.
+In this case we cannot determine the constant $A$ from normalization conditions but since the wavefunction
+doesn't go to zero as $x$ goes to infinity, it is not normalizable.
+We will therefore consider the probability current instead, which describes the probability of reflection and
+transmission and is given as
+\begin{align}
+		j_x =	\frac{\hbar}{2mi} \big( \psi^* \frac{\partial \psi}{\partial x}
+																		-\psi \frac{\partial \psi^*}{\partial x}    \big)
+\end{align}
+We have the wavefunction
+\begin{align}
+	 \psi(x) =
+	\begin{cases}
+		 Ae^{ikx} + Be^{-ikx} \hspace{1cm} x<0 \\
+		 Ce^{ik_0x} \hspace{2.3cm} x>0 \\
+	\end{cases}
+\end{align}
+Which gives the probability current
+\begin{align}
+	 j_x =
+	\begin{cases}
+		 \frac{\hbar k}{m}(|A|^2 - |B|^2) \hspace{1cm} x<0 \\
+		 \frac{\hbar k_0}{m}|C|^2  \hspace{2.2cm} x>0 \\
+	\end{cases}
+\end{align}
+Here the positive term represent current in the positive $x$-direction and the negative in the
+direction towards negative values of $x$. Each term is equal to the probability density multiplied
+by the velocity of propagation $\hbar k / m$ left of the origin and $\hbar k_0 / m$ right of the origin.
+This is also why we chose to set $D=0$, as such a term would imply a probability current coming in from the
+right. This is unphysical when we consider a scattering experiment with particles coming in from the left.
+We now define the reflection coefficient $R$, the probability of reflection, as the ratio of the
+magnitude of reflected and incoming current
+\begin{align}
+	 		R = \frac{j_{ref}}{j_{inc}} = \frac{\frac{\hbar k}{m}|B|^2}{\frac{\hbar k}{m}|A|^2} = \frac{|B|^2}{|A|^2}
+\end{align}
+Similarly, we define the transmission coefficient
+\begin{align}
+	 T = \frac{j_{trans}}{j_{inc}} = \frac{\frac{\hbar k_0}{m}|B|^2}{\frac{\hbar k}{m}|A|^2}
+	= \frac{k_0|B|^2}{k|A|^2}
+\end{align}
+Where we note that the transmission coefficient is taking into account that the particle moves with a different
+velocity for $x>0$ and this is why the transmission coefficient is not just the ratio of $|B|^2$ to $|A|^2$.
+We substitute for the expressions we found previously for $A$ and $B$ and find
+\begin{align}
+	 R = \frac{(k - k_0)^2}{(k + k_0)^2}
+\end{align}
+and
+\begin{align}
+	 T = \frac{4kk_0}{(k+k_0)^2}
+\end{align}
+Where we can find comfort in conforming that
+\begin{align}
+	 R + T = 1
+\end{align}
+These result seem strange from a classical point of view, since a particle approaching the potential step
+would slow down without being reflected. However, from a wave mechanics-point of view this makes sense,
+knowing that a wave propagating on a rope would partly be reflected and partly transmitted if there were
+a discontinuity in density and thus in the speed of reflection.
+
+We stated previously that a way of generating physically viable solutions is to superimpose solutions
+to Schrödinger's equation to a normalizable solution, just as we've already seen for the free particle.
+For $E>V_0$ this superposition can be written as
+\begin{align}
+	 \psi(x, t) =
+	\begin{cases}
+		 \int_{-\infty}^{\infty} \big[A(k)e^{i(kx-\frac{Et}{\hbar})}
+		+ B(k)e^{-i(kx + \frac{Et}{\hbar})} \big] \hspace{1cm} x<0 \\
+		 \int_{-\infty}^{\infty} C(k)e^{i(k_0x - \frac{Et}{\hbar})} dx \hspace{3.6cm} x>0
+	\end{cases}
+\end{align}
+Where each of the terms signify a wave packet travelling in a given direction in both of the regions. We once
+again see why we set $D=0$ even though the equations still would hold for $D\new 0$, but on physical grounds
+we don't want a wave travelling towards the origin from the right, as this doesn't make sense in the scattering
+scenario we are considering. \\
+
+We shall now consider the case where the energy is less than that of the potential step, i.e. $E<V_0$,
+where we have, as before, the same general form of the elementary solutions
+\begin{align}
+	 \psi(x) =
+	\begin{cases}
+		 Ae^{ikx} + Be^{-ikx} \hspace{1cm} x<0 \\
+		 Ce^{\kappa x} + De^{-\kappa x} \hspace{1cm} x>0
+	\end{cases}
+\end{align}
+where we define
+\begin{align}
+	 \kappa = \sqrt{\frac{2m(V_0-E)}{\hbar^2}}
+\end{align}
+Again we set $D=0$, since we want a normalizable function and the corresponding term diverge as
+$|x| \to \infty$. Continuity of the wavefunction and its derivatives now yield
+\begin{align}
+	 A + B = C
+\end{align}
+and
+\begin{align}
+	 ik (A-B) = -\kappa  C
+\end{align}
+We rearrange to get
+\begin{align}
+	 \frac{B}{A} = \frac{k - i\kappa}{k + i\kappa}
+\end{align}
+We then get
+\begin{align}
+	 R \equiv \frac{|B|^2}{|A|^2} = \frac{B^* B}{A^*A}
+	= \big(\frac{k - i\kappa}{k + i\kappa}\big)\big(\frac{k + i\kappa}{k - i\kappa}\big) = 1
+\end{align}
+Thus 100\% of the incident wave is reflected. This might seem counter-intuitive, since the we have a non-zero
+wavefunction to the right of the step. This can however be seen to hold form the probability current where we
+have
+\begin{align}
+	 j_x =
+	\begin{cases}
+		 \frac{\hbar k}{m}(|A|^2 - |B|^2) \hspace{1cm}	x<0 \\
+		 0 \hspace{3.4cm} x>0
+	\end{cases}
+\end{align}
+So we have the transmission coefficient vanishing in this expression, i.e. $T=0$ and we thus also have
+the probability conserved as $R+T=1$ as we want.
+
+
+\section{Tunnelling}
+We shall no consider the case where a particle with energy $E \in (0, V_0)$ is incident on an energy barrier
+defined as
+\begin{align}
+	 V(x) =
+	\begin{cases}
+		 0 \hspace{1cm} x<0 \\
+		 V_0 \hspace{0.9cm} x \in (0, a) \\
+  	 0 \hspace{1cm} x>0
+	\end{cases}
+\end{align}
+We thus consider the case where the potential barrier is larger than the energy, which in classical mechanics
+would imply that the transmission probability would be zero. In quantum mechanics we have a non-zero
+transmission probability and we call this phenomena tunnelling.
+For a particle incident on the barrier from the left the wavefunction is
+\begin{align}
+	 \psi(x) =
+	\begin{cases}
+		 Ae^{ikx} + Be^{-ikx} \hspace{1cm} x < 0 \\
+		 Fe^{\kappa x} + Ge^{-\kappa x} \hspace{1cm} x \in (0, a) \\
+		 Ce^{i k x}  \hspace{2.5cm} x > a \\
+	\end{cases}
+\end{align}
+where we once again defined
+\begin{align}
+	 \kappa = \frac{\sqrt{2m(V_0 - E)}}{\hbar}
+\end{align}
+and
+\begin{align}
+	 k = \frac{\sqrt{2mE}}{\hbar}
+\end{align}
+Boundary conditions from the continuity of the wavefunction gives
+\begin{align}
+	 A + B = F + G \hspace{1.7cm} \text{at }  x = 0
+\end{align}
+and
+\begin{align}
+	 Fe^{\kappa a} + Ge^{-\kappa a} = Ce^{ika} \hspace{ 0.8cm } \text{at } x=a
+\end{align}
+Continuity of the first derivative gives
+\begin{align}
+	 ik(A-B) = \kappa(F-G) \hspace{1.2cm} \text{at } x=0
+\end{align}
+and
+\begin{align}
+	 \kappa (Fe^{\kappa a} - Ge^{-\kappa a}) = ikCe^{ika} \hspace{0.8cm} \text{at } x=a
+\end{align}
+We now determine the transmission coefficient, which we know is defined as $T = |A|^2/ |C|^2$.
+Since we have that
+\begin{align}
+	 T = \frac{j_{trans}}{j_{inc}} = \frac{|C|^2}{|A|^2}
+\end{align}
+We can use our four equations to determine the four unknowns.
+We start by eliminating $B$ from the first and the third and we get
+\begin{align}
+	 2ikA = (ik-\kappa)F + (ik+\kappa)G
+\end{align}
+and eliminating $F$ from the second and forth gives
+\begin{align}
+	 2\kappa FGe^{\kappa a} = (\kappa + ik)Ce^{ik a}
+\end{align}
+and $G$ from the second and forth equations
+\begin{align}
+	 2\kappa Fe^{-\kappa a} = (\kappa -ik)Ce^{ika}
+\end{align}
+
+Substituting the expressions for $F$ and $G$ in the two latter subsidiary equations into the first one gives
+\begin{align}
+	 2ikA = (ik - \kappa)\big[ \frac{\kappa -i k}{2\kappa}Ce^{ika + \kappa a} \big]
+						+ (ik + \kappa) \big[\frac{\kappa + ik}{2\kappa}Ce^{ika - \kappa a}\big]
+\end{align}
+This is equivalent to
+\begin{align}
+	 \frac{A}{C} &= \frac{e^{ika}}{4ik\kappa}\big[(-\kappa^2 + k^2 + 2ik\kappa)e^{\kappa a}
+										+ (\kappa^2 - k^2 + 2ik\kappa)e^{-\kappa a}] \\
+							 &= \frac{e^{ika}}{2ik\kappa}\big[(k^2 - \kappa^2)\sinh(\kappa a) + 2ik\kappa \cosh(\kappa a)]
+\end{align}
+Which then gives
+\begin{align}
+	 \frac{|A|^2}{|C|^2} &= \frac{1}{4k^2\kappa^2}\big[(k^2 - \kappa^2)^2\sinh(\kappa a)^2
+																									+ 4k^2\kappa^2\cosh^2(\kappa a) \big] \\
+											 &= 1 + \frac{(k^2+\kappa^2)^2}{4k^2\kappa^2}\sinh^2(\kappa a)
+\end{align}
+where we have used that
+\begin{align}
+	 \cosh^2(x) - \sinh^2(x) = 1
+\end{align}
+This gives us
+\begin{align}
+	 T = \big[1 + \frac{(k^2+\kappa^2)^2}{4k^2\kappa^2}\sinh^2(\kappa a)\big]^{-1}
+\end{align}
+Tunnelling is a very commonly occurring thing on a microscopic scale so this tunnelling transmission probability
+is often very large for e.g. electrons, but for macroscopic objects the transmission probability is minuscule.
+
+For a thick barrier the expression can be simplified slightly. If $a$ is very small compared to the energy of the
+particle, such that $\kappa a \gg 1$. In this case we have
+\begin{align}
+	 \sinh(\kappa a) = \frac{e^{\kappa a} - e^{-\kappa a}}{2} \approx \frac{1}{2}e^{\kappa a} \gg 1
+\end{align}
+and therefore we have
+\begin{align}
+	 T = \big(\frac{4k\kappa}{k^2 + \kappa^2}\big)^2 e^{-\kappa a}
+\end{align}
+We see here that the transmission is very sensitive to the thickness of the barrier $a$ and the value of $\kappa$
+which depends on $V_0-E$, since there is an exponential dependence on it.
+
+If e.g. for a certain value of $E$ and $V_0$ and with $a=1nm$ we have $e^{-2\kappa a}= 10^{-10}$, which means that
+there may certainly be some tunnelling since there are so many electrons per cubic centimeters (typically $10^{22}$).
+However, if we were to have $a=5nm$ instead of the one nanometer barrier we would have $T=10^{-50}$, which  would
+mean that no electrons will be able to tunnel.
+
+This is how Scanning Tunnelling Microscopes work. They exploit that there is a $2\%$ change in current through the
+tip of the microscope probe when the distance changes by $0.001nm$. The tip is then dragged over the surface to the
+imaged and traces out the contours of the surface and thereby creates a sort of image of it.
+
+\subsection{Field Emission of Electrons: Tunnelling through a Non-Square Barrier}
+For $\kappa a \gg 1$
+\begin{align}
+	 \ln(T) &\approx \ln\big( (\frac{4k\kappa}{k^2 + \kappa^2})^2 \big) - 2\kappa a \\
+					&\approx C - 2\kappa a
+\end{align}
+where $C$ is some constant.
+Where we have used that in the last step the logarithmic term will not change much compared to the one which
+is linear in energy.
+If the barrier varies slowly with position compared with $\kappa^{-1}$ we can approximate it as a
+series of square barriers, which are thick enough for us to make the "thick barrier"-approximation.
+We write the approximation as
+\begin{align}
+	 \ln(T) \approx C -2 \int \sqrt{\frac{2m[V(x) - E]}{\hbar^2}} dx
+\end{align}
+for the whole barrier, where the limits of integration includes the region where $V(x) > E$. This should be
+fairly accurate close to the classical turning points, where $V(x) \approx E$ and thus $\kappa$ is roughly zero.
+
+An application of this is field emission of electrons. We have already discussed the photoelectric effect, where we had
+that the energy needed for ejecting the most energetic electrons is the work function $W$.
+Another way of liberating these electrons is by changing the shape of the potential well and thereby allow the electrons to tunnel out.
+If some negative charge is put on the metal the surface near the metal will have a constant electric field of magnitude
+$\mathcal{E}$ which is proportional to the surface charge density.
+Since the force $e\mathcal{E}$ is presumed to be constant the potential energy in the vicinity of the surface is
+$W - e\mathcal{E}x$, where $x$ is the perpendicular distance from the surface and $W$ is the potential energy at the
+surface. The transmission is then roughly given by
+\begin{align}
+	 T = C e^{-2\sqrt{\frac{2m}{\hbar^2}} \int_{0}^{L} \sqrt{W - e\mathcal{E}x}dx }
+\end{align}
+where $C$ is a constant and $L = W / e\mathcal{E}$ is the distance the most energetic electrons must tunnel before
+reaching a region outside the metal where $E>V$. Performing the integral gives
+\begin{align}
+	 T = C e^{-\frac{4\sqrt{2m} }{3\hbar e\mathcal{E}}W^{\frac{3}{2}}}
+\end{align}
+This is called the Fowler-Nordheim relation. It was one of the first predictions of quantum mechanics.
+
+\end{document}

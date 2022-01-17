@@ -1,0 +1,550 @@
+\documentclass{article}
+
+\usepackage{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepackage{tikz}
+\usetikzlibrary{decorations.markings}
+
+\usepackage{subfig}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+
+\newcommand\greybox[1]{
+	\vskip\baselineskip
+	\par\noindent\colorbox{lightgray}{
+		\begin{minipage}{\textwidth}#1\end{minipage}
+	}
+	\vskip\baselineskip
+}
+
+\title{Lecture Quantum Physics \\ 
+				The Time-independent Schrödinger Equation}
+
+
+\begin{document}
+\maketitle
+
+
+\section{The Time-independent Schrödinger Equation}
+
+
+We are going to be considering the Schrödinger equation 
+\begin{align}
+	\big[-\frac{\hbar^2}{2m} \nabla^2 + V(x, t) \big] \Psi(x, t) 
+	= i\hbar  \frac{\partial}{\partial t} \Psi(x, t)
+\end{align}
+We are going to show that this can be separated into a time dependent and a time-independent 
+part if the potential is time-independent, i.e. if $V(x, t) = V(x)$. We will use a standard 
+approach for solving such differential equations called separation of variables. 
+This is done by making the following Ansatz
+\begin{align}
+	 	\Psi(x,t) = \psi(x)f(t)
+\end{align}
+We insert this into Schrödinger's equation and get
+\begin{align}
+	 \big[-\frac{\hbar^2}{2m} \nabla^2 + V(x)\big] \psi(x) f(t) 
+	= i\hbar  \frac{\partial}{\partial t} \big[ \psi(x)f(t) \big]
+\end{align}
+We can now use that $\nabla^2$ only act on $\psi(x)$ and then divide through by
+$\psi(x)f(t)$ to get all the dependency on $x$ on the left-hand side and the time-dependence on the
+left-hand side of the equality
+\begin{align}
+	 f(t)\big[-\frac{\hbar^2}{2m} \nabla^2 \psi(x) + V(x) \psi(x)\big] 
+	&= i\hbar \psi(x) \frac{\partial}{\partial t} f(t) \\
+	\Rightarrow \hspace{0.7cm}	 \frac{1}{\psi(x)}\big[ \frac{\hbar^2}{2m} \nabla^2 \psi(x) + V(x) \psi(x)\big]  
+	&=  \frac{1}{f(t)} i\hbar \frac{\partial}{\partial t} f(t) \\ 
+\end{align}
+We now have that the two sides of the equation can vary completely independent of each other
+and that can only be satisfied if they are both equal to a constant. That is, we have
+\begin{align}
+	\frac{1}{\psi(x)}\big[ \frac{\hbar^2}{2m} \nabla^2 \psi(x) + V(x) \psi(x)\big]  
+	&= E = \frac{1}{f(t)} i\hbar \frac{\partial}{\partial t} f(t)
+\end{align}
+We now get two differential equations to solve
+\begin{align}
+	 \frac{i\hbar}{f(t)} \frac{\partial f(t)}{\partial x}  &= E \\ 
+	\frac{1}{\psi(x)}\big[ \frac{\hbar^2}{2m} \nabla^2 \psi(x) + V(x) \psi(x)\big]  &= E
+\end{align}
+The equation depending on the time can be solved generally for all time-independent potentials. We have 
+\begin{align}
+	 \frac{\partial f(t)}{\partial t} = -\frac{iE}{\hbar} f(t)
+\end{align}
+We see immediately that we thus have
+\begin{align}
+	 f(t) = f(0) e^{-\frac{iE}{\hbar}t}
+\end{align}
+So, we see that for all time-independent potentials we have the time-dependence of the wavefunction
+is a mere phase factor. Which will therefore often not influence expectation values of
+observables, which simplifies matters significantly. To see this we write the wavefunction
+\begin{align}
+	 \Psi(x, t) = \psi(x) e^{-\frac{iEt}{\hbar}} 
+\end{align}
+where we see that the absolute square of this wavefunction is only functional on position
+\begin{align}
+	 |\Psi(x,t)|^2 = \psi^*(x)e^{\frac{iEt}{\hbar}} \psi(x)e^{-\frac{iEt}{\hbar}} = |\psi(x)|^2
+\end{align}
+Furthermore, we have named the separation constant $E$, and with good cause; it turns out that we can
+associate the separation constant with the energy of the state described by the wavefunction $\Psi(x,t)$.
+It also holds that 
+\begin{align}
+	 E = \hbar \omega
+\end{align}
+which allows us to write the time dependence as $f(t) = \exp(-i\omega t)$.
+
+The equation for the position-dependent part of the wavefunction $\psi(x)$ must be calculated independently 
+for each $V(x)$ under consideration. The wavefunction to the time-independent Schrödinger equation 
+are often called stationary states.
+We shall in the following encounter several such potentials, 
+and calculate their resulting stationary state wavefunctions.
+
+
+\section{Particle in a Box}
+
+
+\subsection{Solving Time-independent Equation}
+
+In this section we are going to encounter the first potential for which we shall solve Schrödinger's
+equation in all its glory. We are going to consider the potential describing a particle in a box,
+where the potential is described as
+\begin{align}
+	 V(x) = 
+	\begin{cases}
+		 0 			\hspace{1cm} ,x \in (0, L) \\ 
+		\infty \hspace{1cm} ,x \notin (0, L)
+	\end{cases}
+\end{align}
+where we have a box of size $L$, inside which the potential is zero and at the edges of the
+potential abruptly grows infinitely large. In a classical setting where we have forces
+$F = -\frac{\partial V}{\partial x}$ and we thus have an infinitely large force acting on the 
+particle at the border of the box, meaning that it is confined to the region inside of the box.
+This is a very interesting example, which is thoroughly 
+simplified but we can still learn many fundamental properties of quantum mechanics from it. \\ 
+
+
+We shall solve the time independent Schrödinger's equation for this potential inside of the box
+\begin{align}
+	 -\frac{\hbar^2}{2m}\frac{d^2\psi}{dx^2} = E\psi
+\end{align}
+since we know that $V=0$ inside of the box. Typically, we introduce the parameter
+\begin{align}
+	 k^2 = \frac{2mE}{\hbar^2}
+\end{align}
+which then yields the following
+\begin{align}
+	 \frac{d^2 \psi}{dx^2} = -k^2 \psi
+\end{align}
+
+The differential equation for the particle inside of the box we immediately recognize as the 
+classical equation for a mass on a spring. We have that the wavefunction must be a function 
+which twice differentiated remains the same up to a constant and a negative sign.
+We know that the trigonometric function where we have that 
+\begin{align}
+	 \frac{d^2}{dx^2} \sin(kx) &= -k^2 \sin(kx) \\
+	 \frac{d^2}{dx^2} \cos(kx) &= -k^2 \cos(kx)
+\end{align}
+Thus the general possible solution to the differential equation for the particle inside the is
+\begin{align}
+	 \psi(x) = A\sin(kx) + B\cos(kx)
+\end{align}
+At this point it is wortwhile to point out that we generally want that a second order differential 
+equation such as this one should have solutions which are continuous and with continuous 
+derivatives. For our particle in a potential box this is not quite satisfied, since we have singularities in
+our potential $V(x)$, which leads to it being impossible for the derivatives to be continuous everywhere. 
+To see this we consider Schrödinger's equation for a general potential 
+\begin{align}
+	 \frac{d^2\psi(x)}{dx^2} = - \frac{2m}{\hbar^2}(E - V(x))\psi(x)
+\end{align}
+where we can now integrate over a some small region, which we now take to be around $x=0$.
+\begin{align}
+	 \int_{0^-}^{0^+}\frac{d^2 \psi(x)}{dx^2} dx = \int_{0^-}^{0^+} - \frac{2m}{\hbar^2}(E - V(x))\psi(x) dx 
+\end{align}
+to which we can apply the fundamental theorem of calculus to, to get
+\begin{align}
+	\frac{d \psi(x)}{dx}\Big|_{0^+}-\frac{d \psi(x)}{dx}\Big|_{0^-}  
+	= - \frac{2m}{\hbar^2}\int_{0^-}^{0^+} (E - V(x))\psi(x) dx 
+\end{align}
+Here we see that the lefthand side needs to be zero for the derivative to be continuous, and for most potentials
+it would. However, for our case since we have the the potential is infinite in the limit coming from the left and 
+zero in the limit coming from the right, it cannot be the case that both $\psi(x)$ and $d\psi(x)/ dx$ are 
+continuous. \\
+
+
+If there were no constraint on the solution for the particle in the box we would have that $k = 2\pi / \lambda$ where 
+$\lambda$ would be the wavelength. This was also the reason for setting $2mE / \hbar^2 = k^2$.
+We have off course that the particle is confined to the box which means that $\psi(x) = 0$ for 
+$x\notin (0,L)$. We now have to apply the appropriate boundary conditions to our solutions. 
+This means we have to path together the solutions outside and inside of the box to ensure that
+the overall wavefunction is continuous. This also ensures that the probability of finding the 
+particle is not allowed to be discontinuous, which is reassuring.
+
+In particular we must have that $\psi(0) = \psi(L) = 0$ which means that 
+\begin{align}
+	 \psi(0) = A\sin(0) + B \cos(0) = B = 0
+\end{align}
+and
+\begin{align}
+	 \psi(L) = A\sin(kx) = 0
+\end{align}
+Where we disregard of the trivial solution $A=0$ since the wavefunction would then be zero 
+everywhere, ie. there is no particle in the box.
+Therefore, we consider the solution with
+\begin{align}
+	 kL = n\pi \hspace{0.5cm} , n \in \mathbb{N_+}
+\end{align}
+Thus the allowed values of
+\begin{align}
+	 k_n = \frac{n \pi}{L}
+\end{align}
+and we have the energies of the system as
+\begin{align}
+	 E_n = \frac{\hbar^2k_n^2}{2m} = \frac{n^2\hbar^2\pi^2}{2mL^2}
+\end{align}
+and the corresponding wavefunctions are
+\begin{align}
+	 \psi_n(x) = A_n \sin(kx)
+\end{align}
+We determine the amplitude $A_n$ through the normalization condition as
+\begin{align}
+	 \int_{-\infty}^{\infty} |\psi(x)|^2 dx &= \int_{0}^{L} |A_n|^2 \sin^2(\frac{n\pix}{L}) dx \\
+											&= |A_n|^2 \int_{-\infty}^{\infty} \frac{1}{2}\big(1 - \cos(\frac{2n\pi x}{L}) \big) dx \\
+											&= |A_n|^2 \big[ x - \frac{L}{2n\pi}\sin(\frac{2n\pi x}{L}) \big]_0^{L} \\ 
+											&= \frac{|A_n|^2 L}{2} \\ 
+											&\overset{!}{=} 1
+\end{align}
+where we have used that since 
+\begin{align}
+	 \sin(\alpha)\sin(\beta) = \frac{1}{2}\cos(\alpha - \beta) - \frac{1}{2}\sin(\alpha + \beta)
+\end{align}
+it holds that 
+\begin{align}
+	 \sin(\alpha)^2 = \frac{1}{2}(1 - \cos(2\alpha))
+\end{align}
+This means that we have $A_n = \sqrt{2 / L}$, and we thus have the wavefunction as 
+\begin{align}
+	 \psi_n(x) = 
+	\begin{cases}
+		 \sqrt{\frac{2}{L}} \sin(\frac{n\pi x}{L}) \hspace{1cm} ,x \in (0, L) \\ 
+		 0  \hspace{3cm} ,x \notin (0, L)  
+	\end{cases}
+\end{align}
+
+
+\subsection{Properties of Particle in Box}
+There are a couple of things to note about the solutions of the particle in the box above whichare very
+illustrative for quantum mechanics as a whole. Firstly, we see that the energies are quantized which is in
+start contrast to classical mechanics where you can have any energies you please. This is a general feature
+of quantum mechanics, where you always have energy states which are quantized, at least for confined systems.
+In the particle in the box-case it was demanding that the wavefunctions must go to zero at the edges of the 
+box which gave rise to the quantization of the wavefunctions and energies, and we shall see later on that
+imposing boundary conditions is instrumental in determining the energy levels. \\ 
+
+Second, we can easily see that the particles wavefunction is reminiscent of the modes of the vibration on a string.
+However, there are significant difference between the quantum particle in a box and vibrational modes no a string.
+For the particle it is appropriate to associate the energy with the frequency as $E = \hbar \omega$, whereas 
+for the waves on a string the energy is dependant on the amplitude. \\ 
+
+Furthermore, it is interesting to note that there is no $E=0$ solution, since also the ground state has to oscillate.
+There cannot be a particle with zero energy, which from a classical point of view should be perfectly possible.
+This could also be argued for with Heisenberg's uncertainty principle; where we have that if the particle had
+zero energy and thus zero momentum, it would also have zero uncertainty in momentum, but Heisenberg's uncertainty
+principle states that if $\Delta p = 0$ it would have had to be the case that $\Delta x = \infty$, but this cannot 
+be the case since the particle must be in  $(0, L)$. Thus $\Delta p$, and thus the energy must be non-zero. \\ 
+
+
+
+\subsection{Time Dependence}
+The allowed energy states are stationary, but that is not the whole picture, since there is no dynamics in a
+state. We shall now illustrate how dynamics can arise in such a system. To this end we start by considering the
+following wavefunction 
+\begin{align}
+	 \psi(x) = \frac{1}{\sqrt{2}}\psi_1(x) + \frac{1}{\sqrt{2}}\psi_2(x)	
+\end{align}
+which is a normalized superposition of the ground state and the first excited state. The dynamics is now generated
+by the appropriate phase factors $\exp(-iE_nt / \hbar)$ for each $\psi_n$, which we found by solving the time-part of Schrödinger's equation. For our above superposition this gives
+\begin{align}
+	 \Psi(x, t) &= \frac{1}{\sqrt{2}} \Psi_1(x,t) + \frac{1}{\sqrt{2}} \Psi_2(x,t) \\ 
+					 &=  \frac{e^{\frac{-iE_1t}{\hbar}}}{\sqrt{2}} \psi_1(x) + \frac{e^{\frac{-iE_2t}{\hbar}}}{\sqrt{2}} \psi_2(x) 
+\end{align}
+This gives the probability amplitude as
+\begin{align}
+	 |\Psi(x, t)|^2 &= \Psi(x,t )^* \Psi(x,t) \\ 
+									&=  \big(\frac{e^{\frac{iE_1t}{\hbar}}}{\sqrt{2}} \psi_1(x)^*
+									+ \frac{e^{\frac{iE_2t}{\hbar}}}{\sqrt{2}} \psi_2(x)^*\big) 
+									\big(\frac{e^{\frac{-iE_1t}{\hbar}}}{\sqrt{2}} \psi_1(x)
+									+ \frac{e^{\frac{-iE_2t}{\hbar}}}{\sqrt{2}} \psi_2(x)\big) \\
+									&=  e^{\frac{iE_1t}{\hbar}}\big(\frac{1}{\sqrt{2}} \psi_1(x)^*
+									+ \frac{e^{\frac{i(E_2-E_1)t}{\hbar}}}{\sqrt{2}} \psi_2(x)^*\big) 
+									e^{\frac{-iE_1t}{\hbar}}\big(\frac{1}{\sqrt{2}} \psi_1(x)
+									+ \frac{e^{\frac{-i(E_2 - E_1)t}{\hbar}}}{\sqrt{2}} \psi_2(x)\big) \\
+									&=  \big(\frac{1}{\sqrt{2}} \psi_1(x)^* 
+									+ \frac{e^{\frac{i(E_2-E_1)t}{\hbar}}}{\sqrt{2}} \psi_2(x)^*\big) 
+									\big(\frac{1}{\sqrt{2}} \psi_1(x)
+									+ \frac{e^{\frac{-i(E_2 - E_1)t}{\hbar}}}{\sqrt{2}} \psi_2(x)\big) \\
+									&=  \frac{1}{2} |\psi_1(x)|^2 + \frac{1}{2} |\psi_2(x)|^2 
+									+ \frac{e^{\frac{i(E_2-E_1)t}{\hbar}}}{2} \psi_2(x)^*\psi_1(x)
+									+ \frac{e^{\frac{-i(E_2 - E_1)t}{\hbar}}}{2} \psi_1^*(x)\psi_2(x) \\ 
+									&=  \frac{1}{2} \psi_1(x)^2 + \frac{1}{2} \psi_2(x)^2 
+									+ \cos(\frac{(E_2-E_1)t}{\hbar}) \psi_1(x)\psi_2(x)
+\end{align}
+Where we have made use of the fact that we in this particular case know that $\psi_n \in \mathbb{R}$ and 
+that we know from Eulers identity $\cos(x) = (e^{ix} + e^{-ix})/2$. We thus see that the probability
+density is harmonic in time. Furthermore, the wavefunctions vary their interference patterns in time 
+and we can see that by comparing the wavefunction at $t=0$ and $t=\pi\hbar/(E_2-E_1)$.
+\begin{align}
+	 \Psi(x, t=0) &= \frac{1}{\sqrt{2}}\psi_1(x) + \frac{1}{\sqrt{2}}\psi_2(x) \\	
+	 \Psi(x, t=\frac{\pi\hbarr}{E_2-E_1}) &= e^{\frac{-iE_1t}{\hbar}}
+	\big( \frac{1}{\sqrt{2}}\psi_1(x) - \frac{1}{\sqrt{2}}\psi_2(x)	\big)
+\end{align}
+When we note that the phase factor cancels out when considering the probability amplitude, we 
+see that dynamics evolves the wavefunction to be different superpositions of stationary states $\psi_1$ and
+$\psi_2$.
+
+
+\subsection{Statistical Interpretation of Quantum Mechanics}
+
+We saw in the previous section an example of a wavefunction which was a linear combination 
+two specific stationary states. We shall now try to generalize this slightly and we consider a 
+completely general superposition of stationary states 
+\begin{align}
+	 \psi(x) = \sum_{n=1}^{\infty} c_n \psi_n(x)
+\end{align}
+and if we consider the general time-dependent wavefunction we have the time-dependence for
+every stationary state as $\Psi_n(x,t) = \psi(x) exp(-iEt / \hbar)$ which gives
+\begin{align}
+	 \Psi(x,t) = \sum_{n=1}^{\infty} c_n \psi(x) e^{-\frac{iEt}{\hbar}}
+\end{align}
+We shall in the following argue for there being a very neat analogy between this expansion of the 
+wavefunction $\psi(x)$	in the set of stationary states $\{\psi_n(x)\}$ and the expansion of a
+vector $\mathbf{V}$ in the unit vectors $ \mathbf{\hat{i}_x}$, $\mathbf{\hat{i}_y}$ 
+and $\mathbf{\hat{i}_z}$, which we assume to be e.g. the Cartesian unit vectors. 
+We then have that any given general 
+$ \mathbf{V} \in \mathbb{R}^3$ can be written as 
+\begin{align}
+	 			\mathbf{V} = \mathbf{ \hat{i}_x} V_x+ \mathbf{ \hat{i}_y} V_y + \mathbf{ \hat{i}_z} V_z 
+\end{align}
+where we know that the unit basis vectors of the Cartesian coordinate system have that 
+\begin{align}
+	 \mathbf{ \hat{i}_n } \cdot 	 \mathbf{ \hat{i}_m } = \delta_{n,m},   \hspace{1cm} n,m \in [x,y,z]
+\end{align}
+That is, we have that $ \mathbf{ \hat{i}_x } \cdot \mathbf{ \hat{i}_x } = \mathbf{ \hat{i}_y } 
+\cdot\mathbf{ \hat{i}_y } =  \mathbf{ \hat{i}_z } \cdot 	 \mathbf{ \hat{i}_z } = 0$
+and  $ \mathbf{ \hat{i}_z } \cdot \mathbf{ \hat{i}_x } = \mathbf{ \hat{i}_y } 
+\cdot\mathbf{ \hat{i}_x } =  \mathbf{ \hat{i}_z } \cdot 	 \mathbf{ \hat{i}_y } = 1$
+Very similar to this we have shown for the stationary states, which we assumed to have been normalized, 
+that it holds 
+\begin{align}
+	 \int_{-\infty}^{\infty} \psi_n(x)^* \psi_n(x) dx = 1
+\end{align}
+since we demand normalized wavefunctions for it to be interpretable as a probability distribution.
+It turns out there is also an orthogonality relation for the stationary states.
+\begin{align}
+	 \int_{-\infty}^{\infty} \psi_n(x)^* \psi_m(x) dx = 0,  \hspace{1cm} (n \neq m)
+\end{align}
+This relation can be shown to be true for the stationary states for the particle in an infinite 
+well which we considered in the previous section, where we assume $n\neq m$ and we then have
+\begin{align}
+	 \int_{-\infty}^{\infty}  \psi_n^*(x) \psi_m(x) dx 
+	&= \frac{2}{L} \int_{0}^{L}  \sin(\frac{n\pi x}{L}) \sin(\frac{m\pi x}{L}) dx \\
+	&= \frac{1}{L} \int_{0}^{L} \big[ \cos(\frac{(n-m)\pi x}{L}) - \cos(\frac{(n+m)\pi x}{L})  \big] dx\\
+	&= \frac{1}{L} \big[\frac{L}{(n-m)\pi} \sin(\frac{(n-m)\pi x}{L}) - 
+											\frac{L}{(n+m)\pi} \sin(\frac{(n+m)\pi x}{L})  \big]_0^L \\
+	&= \frac{\sin((n-m)\pi)}{(n-m)\pi}  - \frac{\sin((n+m)\pi )}{(n+m)\pi}   \\ 
+	&= 0
+\end{align}
+where the final result comes from that we know that $m \pm n \in \mathbb{N}$ and for any integer times $\pi$ the
+sine function evaluates to zero. We have also made use of the trigonometric identity 
+\begin{align}
+	 \frac{1}{2} (\cos(\alpha - \beta)) - \cos(\alpha + \beta)) = \sin(\alpha)\sin(\beta)
+\end{align}
+in the second line above.
+We can succinctly write the orthogonality and normalization condition as the orthonormal it condition
+\begin{align}
+	 \int_{-\infty}^{\infty} \psi_n^*(x) \psi_m(x) = \delta_{n,m}
+\end{align}
+where we have defined the Kroenecker-delta 
+\begin{align}
+	 \delta_{n,m} =
+	\begin{cases}
+		 0, \hspace{1cm} n \neq m \\
+		 1, \hspace{1cm} n  =  m
+	\end{cases}
+\end{align}
+The stationary states have another property in common with the basis vectors  $ \mathbf{\hat{i}_x}$, $\mathbf{\hat{i}_y}$ 
+and $\mathbf{\hat{i}_z}$, and that is completeness. Completeness means that every vector in the given space can be expanded 
+as a linear combination of the complete set  $\{\mathbf{\hat{i}_x}, \mathbf{\hat{i}_y}, \mathbf{\hat{i}_z}\}$,
+as we know we can for every vector in Cartesian 3D space.
+
+The equivalent for this for our stationary states is that every possible allowed wavefunction is expressible as a linear
+combination of the stationary states as 
+\begin{align}
+	 \psi(x) = \sum_{n=1}^{\infty} c_n \psi_n(x)
+\end{align}
+and since this holds for every possible wavefunction, we call the set of stationary states complete. 
+
+This is a little finicky to prove, so we shall simply assume this to hold, and we shall shortly see that this is essential 
+to the theory of quantum mechanics. For our particle in the box-example we have the superposition as
+\begin{align}
+	 \psi(x) = \sum_{n=1}^{\infty} c_n \sqrt{\frac{2}{L}} \sin(\frac{n\pi x}{L})
+\end{align}
+which we might also recognize as a standard Fourier series. \\ 
+
+We shall now consider how we can find the coefficients, given that we know the wavefunction. We start by considering the 
+Cartesian linear combination $ \mathbf{V} = \mathbf{ \hat{i}_x} V_x+ \mathbf{ \hat{i}_y} V_y + \mathbf{ \hat{i}_z} V_z $.
+If we want to find the coefficient of a particular basis vector, we simply take the dot-product between the expansion $ \mathbf{V} $ and the corresponding basis vector as 
+\begin{align}
+	 \mathbf{ \hat{i}_y } \cdot \mathbf{V}  &= 	 \mathbf{ \hat{i}_y } \cdot  \mathbf{ \hat{i}_x} V_x
+	+	\mathbf{ \hat{i}_y } \cdot  \mathbf{ \hat{i}_y} V_y + 	 \mathbf{ \hat{i}_y } \cdot  \mathbf{ \hat{i}_z} V_z = V_y \\
+	 \mathbf{ \hat{i}_x } \cdot \mathbf{V}  &= V_x \\ 
+	 \mathbf{ \hat{i}_z } \cdot \mathbf{V}  &= V_z  
+\end{align}
+where we use the orthogonality of the basis vectors. 
+
+In a very similar manner we can use the orthogonality of the stationary states of a quantum system to find any given 
+wavefunctions expansions coefficients in an orthonormal set of states. The procedure for finding the coefficients 
+$c_n$'s is conceptually the same, but instead of taking the dot-product we multiply by the $\psi^*_n$ corresponding to 
+the coefficient which we wish to determine and integrate. That is to determine any given coefficient $c_n$ in the expansion 
+\begin{align}
+	\psi(x) = \sum_{n=1}^{\infty} c_n \psi_n(x)
+\end{align}
+we calculate 
+\begin{align}
+	 \int_{-\infty}^{\infty} \psi^*_n(x) \psi(x) &= \int_{-\infty}^{\infty} \psi^*_n(x) \sum_{m=1}^{\infty} c_m \psi_m(x) dx \\ 
+	 &= \sum_{m=1}^{\infty}c_m   \int_{-\infty}^{\infty} \psi^*_n(x)  \psi_m(x) dx \\
+	 &= \sum_{m=1}^{\infty}c_m  \delta_{n,m} \\
+	 &= 1
+\end{align}
+The coefficients $\{c_n\}$ play a very important role in quantum mechanics. Assuming $\psi_n(x)$ to be normalized, as well as
+the wavefunction itself, we get 
+\begin{align}
+	 \int_{-\infty}^{\infty} |\psi(x)|^2	dx 
+	&= \int_{-\infty}^{\infty} \big( \sum_{n=1}^{\infty} c_n^* \psi_n^*(x) \big) 
+	\big( \sum_{m=1}^{\infty} c_m \psi_m(x) \big) dx \\ 
+	&=  \big( \sum_{n=1}^{\infty} c_n^* \big) 
+	\big( \sum_{m=1}^{\infty} c_m\big) \int_{-\infty}^{\infty} \psi_n^*(x) \psi_m(x)  dx \\ 
+	&= ( \sum_{n=1}^{\infty} c_n^* \big)\big( \sum_{m=1}^{\infty} c_m\big) \delta_{n,m} \\
+	&=  \sum_{m=1}^{\infty} c_n^*c_n = \sum_{m=1}^{\infty} 	|c_n|^2 \\
+	&\overset{!}{=} 1
+\end{align}
+Where we in the last line used that $\psi(x)$ should be normalized. That is, we have 
+\begin{align}
+	 \sum_{n=!}^{\infty} |c_n|^2 = 1
+\end{align}
+We interpret this result as the absolute square of the coefficients being probabilities and we write 
+\begin{align}
+	 |c_n|^2 = P_n
+\end{align}
+where the probabilities $P_n$ are for finding the particle in state $\psi$ with energy $E_n$ when performing a measurement
+on the system. We have that 
+\begin{align}
+	 \sum_{n=1}^{\infty} P_n = 1
+\end{align}
+as we should for probabilities. That is, the only possible values which we can measure for the energy is one of the $E_n$ 
+associated with the stationary states, and the probability of obtaining each of the $E_n$'s is given by $P_n$.
+We can us this to calculate the expectation value for the energy as 
+\begin{align}
+	\langle E \rangle = \sum_{n=1}^{\infty} |c_n|^2 E_n 
+\end{align}
+where we also need to accept that also the energy is generally not definitely defined in quantum mechanics.
+
+
+\subsection{The Hamiltonian Operator}
+The time-independent Schrödinger equation is often called the energy eigenvalue equation. An eigenvalue equation is 
+an equation in which some operator, or matrix, acts on some function and that should equal that very function times a constant,
+as in 
+\begin{align}
+	 A_{op}\psi_a = a \psi_a
+\end{align}
+where $a$ and $\psi_a$ are the eigenvalues and eigenfunctions to the operator $A_{op}$. Generally, an operator may have 
+infinitely many eigenvalues and eigenfunctions. 
+
+We now need to define what we mean by an operator. We have already encountered a couple of operators implicitly.
+An operator is something which acts on something, meaning that it doesn't always necessarily have much significance on its own.
+Firstly we have seen the position operator 
+\begin{align}
+	 x_{op} = x
+\end{align}
+which merely multiplies the wavefunction by $x$, and thus leading to a different function $x\psi(x)$. 
+
+Furthermore, we have that the momentum operator is given by
+\begin{align}
+	 p_{op} = -i\hbar \frac{\partial}{\partial x} 
+\end{align}
+thus we have that
+\begin{align}
+	 p_{op} \psi(x) = -i\hbar \frac{\partial \psi(x)}{\partial x} 
+\end{align}
+Here we see that the operator on its own doesn't make too much physical sense on its own. 
+We now consider the momentum eigenfunctions, and we recall that $p = h / \lambda$ which means that 
+a wavefunction with a particular momentum is one with an particular wavelength $\lambda$. 
+With this in mind we consider a wavefunction $A\exp(ikx)$ where $k = 2\pi / \lambda$. We consider 
+now the momentum operator acting on this 
+\begin{align}
+	 p_{op} A e^{ikx} = -i\hbar \frac{\partial}{\partial x} A e^{ikx} = \hbar k e^{ikx}
+\end{align}
+from this we see that an eigenfunction of the momentum operator is $\exp(ikx)$ and the eigenvalue is $\hbar k$. 
+
+We can also now use what we discovered about the position and momentum eigenfunctions and see why we call 
+the time-independent Schrödinger equation an eigenvalue equation. We have in nonrelativistic 
+quantum mechanics that the energy operator is the sum of the kinetic and potential energy operators 
+\begin{align}
+	 E_{op} = \frac{p_{op}^2}{2m} + V(x_{op})
+\end{align}
+Where we have the classical expression for the total energy and swap the classical variable $x$ and $p$ for the 
+quantum operators for position $x_{op}$ and momentum $p_{op}$.
+We now arrive at the quantum energy operator, which is called the Hamiltonian, and is given by 
+\begin{align}
+	 H \equiv E_{op} = \frac{1}{2m}\big(-i\hbar \frac{\partial}{\partial x} \big)\big(-i\hbar \frac{\partial}{\partial x} \big)
+	+ V(x) = -\frac{\hbar^2}{2m} \frac{\partial^2}{\partial^2 x} + V(x)
+\end{align}
+Where we now see clearly that the Schrödinger equation is an energy eigenvalue equation 
+\begin{align}
+	 H \psi = E \psi 
+\end{align}
+These energy eigenvalues and eigenfunctions we have already found for the particle in the box, where we indexed 
+the eigenvalues/functions with the subscripts $n$, we had 
+\begin{align}
+	 H \psi_n(x) = E_n \psi_n(x)
+\end{align}
+If we consider the particle in box wavefunction 
+\begin{align}
+	 \psi = c_1 \psi_1 + c_2 \psi_2
+\end{align}
+We argued for that $ \langle E \rangle = |c_1|^2 E_1 + |c_2|^2 E_2$ for this state.
+We have that since the Hamiltonian $H$ is the energy operator we can write 
+\begin{align}
+	 H \psi = c_1 H\psi_1 + c_2 H\psi_2
+\end{align}
+where we have used that the Hamiltonian is linear. Therefore, we have 
+\begin{align}
+	 \int_{-\infty}^{\infty} \psi^* H \psi &= \int_{-\infty}^{\infty}  (c_1\psi_1 + c_2\psi_2)^*(c_1\psi_1 + c_2\psi_2) dx \\
+	&= |c_1|^2 E_1 \int_{-\infty}^{\infty}  |\psi_1|^2 dx +  |c_2|^2 E_2 \int_{-\infty}^{\infty}  |\psi_2|^2 dx
+	 +  c_1^* E_1c_2 \int_{-\infty}^{\infty}  \psi_1^*\psi_2 dx +  c_2^* E_2 c_1 \int_{-\infty}^{\infty}  \psi_2^*\psi dx \\
+	&= |c_1|^2 E_1  +  |c_2|^2 E_2  
+\end{align}
+where we have exploited the orthonormality in the final line. So we have here in the last line the expectation value 
+of the energy in the state $\psi$ and this holds also for a general number of terms in the linear combination for $\psi$. 
+So we have 
+\begin{align}
+	 \langle E \rangle = \int_{-\infty}^{\infty} \psi^* H \psi \;dx
+\end{align}
+This is a general strategy for finding expectation values, which we shall come back to later, and we have also for 
+the position operator
+\begin{align}
+	 \langle x \rangle = \int_{-\infty}^{\infty} \psi^* x \psi \;dx
+\end{align}
+which we already have seen. For the momentum we have 
+\begin{align}
+	 \langle p \rangle = \int_{-\infty}^{\infty} \psi^* \big(\frac{\hbar}{i}\frac{\partial }{\partial x} \big)  \psi \; dx
+\end{align}
+
+
+
+
+
+
+
+\end{document}
+

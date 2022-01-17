@@ -1,0 +1,306 @@
+\documentclass{article}
+
+\usepackage{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepackage{tikz}
+\usetikzlibrary{decorations.markings}
+
+\usepackage{subfig}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\title{Plenary Exercises 2}
+
+
+\begin{document}
+\maketitle
+
+\section{Integration}
+
+\subsection{Integration by Parts}
+Integration by parts is an essential method for evaluating integrals. We can easily derive the formula by 
+considering two functions $f$ and $g$ of the same argument $x$, and differentiating the product of them
+using the product rule.
+\begin{align}
+	 (f g)' = f' g + f g'
+\end{align}
+We can now derive the rule by integrating both sides of the equation and obtain
+\begin{align}
+	 fg = \int f'g dx + \int fg' dx
+\end{align}
+Rearranging the terms now gives
+\begin{align}
+	 \int fg' dx = fg - \int f'g dx
+\end{align}
+We can now easily use integration of parts to evaluate e.g. the following integral
+\begin{align}
+	 I = \int (3x + 7)\cos(\frac{x}{4}) dx
+\end{align}
+We now let $f(x) = 3x + 7$ and  $g'(x) = \cos(x/4)$, which implies that $f'(x) = 3$ and $g(x) = 4\sin(x/4)$
+and we apply the formula to obtain
+\begin{align}
+	 \int (3x + 7)\cos(\frac{x}{4}) dx &= 4(3x + 7)\sin(\frac{x}{4}) - 12\int \sin(\frac{x}{4}) dx \\
+					   &=  4(3x + 7)\sin(\frac{x}{4}) +  48 \cos(\frac{x}{4}) + C
+\end{align}
+Note that for definite integrals one have to integrate over the boundary of the integral.
+
+\subsection{Odd and Even Functions}
+Often it is very useful to consider the parity of the functions which one want to integrate, i.e. if we have
+symmetric functions which are either odd or even, we can exploit this to easy our calculation load.
+We call a function even if it is symmetric about the $x$-axis, i.e. if we have 
+\begin{align}
+	 f(x) = f(-x)
+\end{align}
+and examples of even functions are $x^2$, $e^{-x^4}$, $\cos(2x)$.
+Antisymmetric functions which satisfies
+\begin{align}
+	 -g(x) = g(-x)
+\end{align}
+we call odd. Some examples of odd functions are $x$, $\sin(x)$.
+In Fig.\ref{fig:parity} we see some typical examples of symmetric function.
+\begin{figure*}
+	\centering
+	\subfloat[Odd functions]{\input{"Illustrations/odd.tex"}}
+	\hspace{1cm}
+	 \subfloat[Even function]{\input{"Illustrations/even.tex"}}
+	\caption{Some examples of odd and even functions.}
+	\label{fig:parity}
+\end{figure*}
+Furthermore it is the case that the product of two even functions is also even, a product of two odd functions
+is even and a product of an even and an odd function is odd.
+
+Considering the parity of symmetric functions is particularly useful when we are integrating.
+Assuming $f(x)$ is an even function we have that 
+\begin{align}
+	 \int_{-L}^{L} f(x) dx = 2 \int_{0}^{L} f(x) dx
+\end{align}
+Furthermore, if we assume $g(x)$ to be odd, it holds that
+\begin{align}
+	 \int_{-L}^{L} g(x) dx = 0
+\end{align}
+
+
+
+
+\section{Gaussian Integrals}
+
+\subsection{Gaussian Integral for Real Argument}
+
+We shall in the following be concerned with the so-called Gaussian integral 
+\begin{equation}
+	\int e^{-x^2} dx
+\end{equation}
+This integral doesn't really have an analytic solution, but if we consider the definite integral
+\begin{equation}
+	 I = \int_{-\infty}^{\infty}e^{-\beta x^2} dx
+\end{equation}
+where we have added a factor of $\beta$ for the sake of generality. 
+We shall see that we can deduce a solution of the integral. 
+We start by squaring the integral $I$, which gives
+\begin{align}
+	I^2 &= (\int_{-\infty}^{\infty}e^{-\beta x^2} dx)^2\\ 
+	    &= \int_{-\infty}^{\infty}e^{-\beta x^2} dx \int_{-\infty}^{\infty}e^{-\beta y^2} dy \\ 
+	    &= \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}e^{-\beta (x^2+y^2)} dxdy
+\end{align}
+We now see that we can swap to polar coordinates as we recognize the expression for the radius.
+We have $x^2 + y^2 = r^2$ and $\partial x \partial y = r \partial \theta \partial r$ which then gives
+\begin{align}
+	I^2 &= \int_{0}^{\infty}\int_{0}^{2\pi}e^{-\beta r^2} r \partial \theta \partial r \\
+	    &= 2 \pi \int_{0}^{\infty}e^{-\beta r^2} r \partial r\\
+\end{align}
+We employ the following substitution
+\begin{align}
+	 s &= r^2 \\ 
+	 \frac{ds}{dr} &= 2r
+\end{align}
+which gives
+\begin{align}
+	 I^2 &= 2\pi \int_{0}^{\infty} \frac{1}{2} e^{-\beta s} ds \\ 
+	   &= \pi \Big[-\frac{1}{\beta}e^{-\beta s} \Big]_{0}^{\infty} =  \frac{\pi}{\beta}
+\end{align}
+We have thus found an expression for the integral
+\begin{align}
+	\int_{-\infty}^{\infty}e^{-\beta x^2} dx = \sqrt{\frac{\pi}{\beta}}
+\end{align}	 
+We now move on to consider
+\begin{align}
+	 J = \int_{-\infty}^{\infty} x^2 e^{-\beta x^2} dx 
+\end{align}
+In order to solve this we need to rewrite the integrand as the derivative wrt. $\beta$ as
+\begin{align}
+	 x^2 e^{-\beta x^2}= -\frac{\partial}{\partial \beta} e^{-\beta x^2}
+\end{align}
+Which, when we assume we can swap the order of integration and differentiation, gives
+\begin{align}
+	 J &= -\frac{\partial}{\partial \beta} \int_{-\infty}^{\infty}  e^{-\beta x^2} dx \\ 
+	 &= -\frac{\partial}{\partial \beta} \sqrt{\frac{\pi}{\beta}} \\
+	 &= -\sqrt{\pi} \frac{\partial}{\partial \beta} \beta^{-\frac{1}{2}} = \frac{\sqrt{\pi}\beta^{-\frac{3}{2}}}{2} 
+\end{align}
+Thus we have found that 
+\begin{align}
+	 \int_{-\infty}^{\infty} x^2 e^{-\beta x^2} dx =  \frac{\sqrt{\pi}\beta^{-\frac{3}{2}}}{2}  
+\end{align}
+We now also need to consider the integral 
+\begin{align}
+	K = \int_{-\infty}^{\infty} x e^{-\beta x^2} dx 
+\end{align}
+We can see that this integral must evaluate to zero since we know that $x$ is an odd function and $e^{-\beta x^2}$, and the product of an odd and an even function is odd. Then, since the integration limits are symmetric about 0, we have that
+\begin{align}
+	 \int_{-\infty}^{\infty} x e^{-\beta x^2} dx = 0 
+\end{align}
+
+\subsection{Gaussian Integral for Complex Argument}
+
+
+We shall now move on to consider the Gaussian integral for a complex argument
+\begin{align}
+	 G = \int_{-\infty}^{\infty} e^{-(x - i\Lambda)^2} dx
+\end{align}
+where $\Lambda \in \mathbb{R}_+$ is a constant. 
+\begin{figure}
+	\centering
+	\input{"Illustrations/complex_gauss_line_integral.tex"}
+	\caption{Contour integral in the complex plane $\mathbb{C}$}
+	\label{fig:line_int}
+\end{figure}
+To solve this integral we are going to perform a line integral in the complex plane and exploit Cauchy's theorem.
+We consider the line integral of $e^{-z^2}$ along the contour $C = C_1 + C_2 + C_3 + C_4$ in 
+Fig.~\ref{fig:line_int}, where we let $z=x + iy$ and $x = \Re \{z\}$ and $y = \Im \{z\}$. 
+We can now use Cauchy's theorem which says that the line integral over a closed
+contour evaluates to zero if there are no singularities inside of the contour. Generally Cauchy's theorem states that a line integral over a closed path equals $2\pi$ times the sum of the residues of the function.
+
+If we consider the contour $C$ we have from Cauchy's theorem that 
+\begin{align}
+	 \oint_{C} e^{-z^2} dz = \int_{C_1} e^{-z^2} dz + \int_{C_2} e^{-z^2} dz 
+				+  \int_{C_3} e^{-z^2} dz + \int_{C_4} e^{-z^2} dz  = 0
+\end{align}
+We also have that our integral 
+\begin{align}
+	G &= \lim_{R\to\infty} \int_{-R}^{R} e^{-(x-i\Lambda)^2} dx\\
+	  &= \lim_{R\to\infty} \int_{C_3} e^{-z^2} dz
+\end{align}
+We also have that
+\begin{align}
+	I &= \lim_{R\to\infty} \int_{-R}^{R} e^{-x^2} dx\\
+	  &= -\lim_{R\to\infty} \int_{C_1} e^{-z^2} dz
+\end{align}
+where we remember that $I$ is the real Gaussian integral(assume $\beta=1$). Putting this together we have 
+\begin{align}
+	 \oint_{C} e^{-z^2} dz = \int_{-R}^{R} e^{-(x-i\Lambda)^2} dx + \int_{-\Lambda}^0 e^{-(R-iy)^2} dy 
+				+ \int_{R}^{-R} e^{-x^2} dx   + \int_0^{-\Lambda} e^{-(-R-iy)^2} dy
+\end{align}
+This gives us 
+\begin{align}
+	\int_{-R}^{R} e^{-(x-i\Lambda)^2} dx &= \int_{R}^{-R} e^{-x^2} dx  + \int_0^{-\Lambda} e^{-(R-iy)^2} dy 
+				-  \int_0^{-\Lambda} e^{-(-R-iy)^2} dy \\
+				 &= \int_{R}^{-R} e^{-x^2} dx  + \int_0^{-\Lambda} \Big[ e^{-(R-iy)^2} dy 
+					   -  e^{-(-R-iy)^2} \Big] dy
+\end{align}
+We now show that the last term goes to zero in the limit of large $R$. We do this by using the triangle inequality
+\begin{align}
+	\int_0^{-\Lambda} \Big[ e^{-(R-iy)^2} dy -  e^{-(-R-iy)^2} \Big] dy &\le
+	\Big|\int_0^{-\Lambda} \Big[ e^{-(R-iy)^2} dy -  e^{-(-R-iy)^2} \Big] dy \Big| \\ 
+	&\le \int_0^{-\Lambda} \Big[ |e^{-(R-iy)^2} dy| +  |e^{-(-R-iy)^2}| \Big] dy \\ 
+	&= 2 e^{-R} \int_{-\Lambda}^{0} e^{y^2} dy \\ 
+	&\le 2 e^{-R}  e^{\Lambda^2}  
+\end{align}
+This we see that must go to zero in the limit of large $R$, and we thus have 
+\begin{align}
+	G &= \lim_{R\to\infty} \int_{-R}^R e^{-(x-i\Lambda)^2}  dz \\
+	  &= \lim_{R\to\infty} \int_{-R}^{R} e^{-x^2} dx +   	
+	\lim_{R\to\infty}\int_0^{-\Lambda} \Big[ e^{-(R-iy)^2} dy -  e^{-(-R-iy)^2} \Big] dy \\
+ 	&= \int_{-\infty}^{\infty} e^{-x^2} dx \\ 
+	&= \sqrt{\pi}
+\end{align}
+
+
+
+\section{Dirac Delta Function}
+
+The Dirac delta function $\delta(x)$ is not strictly-speaking a function,
+but rather a generalized function or a distribution. We can heuristically be thought of as a
+function which is zero everywhere and infinite at the origin
+\begin{align}
+	 \delta(x) =
+	\begin{cases}
+		\infty, \;\;\; x = 0 \\ 
+		0, \;\;\;\; x \neq 0 
+	\end{cases}
+\end{align}
+where we also have that
+\begin{align}
+	\int_{-\infty}^{\infty} \delta(x) dx = 1
+\end{align}
+We shall take this as our definition, as is our prerogative as physicists, 
+but we note that it is indeed possible to rigorously define the Dirac delta as a
+distribution or a measure.
+
+\begin{figure}[h!]
+	\centering
+	\input{"Illustrations/gaussian_to_diracdelta.tex"}
+	\caption{Gaussian curves for different widths. These curves approach
+		the Dirac delta in the limit of $b\to0$}
+	\label{fig:delta}
+\end{figure}
+
+We can also think of the Dirac delta function as an infinitely narrow Gaussian function, and we can define it as 
+\begin{align}
+	 \delta(x) = \lim_{b\to 0}\sqrt{\frac{b}{\pi}}e^{-bx^2}
+\end{align}
+We can see in Fig.~\ref{fig:delta} that increasingly narrower Gaussian curves in the limit will be  infinite
+at $x=0$ and zero everywhere else.
+
+The Dirac delta function can be used to pick out one value from a function as
+\begin{align}
+	 \int_{-\infty}^{\infty} \delta(x) f(x) dx = f(0)
+\end{align}
+where $f$ can be any well-behaved function. This could, for our intents and purposes,
+also be taken as the definition of the Dirac delta function.
+We furthermore state some useful properties of Dirac delta. Firstly we have that
+\begin{align}
+ 	\delta(\alpha x) = \frac{\delta(x)}{|\alpha|}
+\end{align}
+and we also have that it is symmetric 
+\begin{align}
+	 \delta(-x) = \delta(x)
+\end{align}
+and finally we have that for any constant $a\in\mathbb{R}$ we have 
+\begin{align}
+	 \int_{-\infty}^{\infty} \delta(x-a) f(x) dx = f(a).
+\end{align}
+
+
+
+
+
+\end{document}
+
+\section{Example 1.10 Townsend}
+We consider a diffraction grating consisting of four very narrow slits separated by a distance d.
+We can trivially generalized our results from the double-slit experiment to find that the probability amplitude as
+\begin{align}
+	 z_P = re^{ikd_1}(1 + e^{i\phi} + e^{2i\phi} + e^{3i\phi} + e^{4i\phi})
+\end{align}
+where $\phi = kd_1\sin(\theta)$. \\
+
+\textbf{a)}
+We find the probability that the photon strikes a detector centred at the central maximum if the probability 
+of a photon being counted by this detector with a single slit open is $r^2$.
+We know that at the central maximum, which is found at $\phi=0$, all the amplitudes are in phase, i.e. we have
+\begin{align}
+	 z_P = re^{ikd_1}(1 + e^{i\phi} + e^{2i\phi} + e^{3i\phi} + e^{4i\phi}) = 4e^{ikd_1}
+\end{align}
+From this we can find the amplitude for detecting the photon at the central maximum as
+\begin{align}
+	|z|^2 = z z^* = 16r^2
+\end{align}
+
+\textbf{b)} We now calculate the probability of detecting a photon at the first minimum if the bottom two slits are closed. We know that at the first minimum the amplitudes sum to zero, but with two slits blocked two amplitudes are removed and we have 
+\begin{align}
+	zz^* = (\sqrt(2) r)^2 = 2r^2
+\end{align}
+Which implies that the probability is eight times smaller then for the central maximum of the four-slit grating.
+
+
