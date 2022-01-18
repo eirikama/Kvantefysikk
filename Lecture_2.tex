@@ -7,7 +7,7 @@
 \usepackage{tikz}
 \usetikzlibrary{decorations.markings}
 
-\usepackage{subfig}
+\usepackage{subcaption}
 \usepackage[margin=2.5cm]{geometry}
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -52,15 +52,16 @@ Vi har da
 	 -\frac{\hbar^2}{2m}\frac{\partial^2 \Psi(x,t)}{\partial x^2}  =
 	i\hbar \frac{\partial \Psi(x,t)}{\partial t} 
 \end{align}
-Vi ser at dette er en bølgeligning på samme måte som den klassiske bølgeligningene som kommer
-fra Maxwell's ligninger, men Schrödinger ligningen er kompleks.
+Dette er en bølgeligning på samme måte som den klassiske bølgeligningene som kommer 
+fra e.g. Maxwell's ligninger, men Schrödinger ligningen er kompleks.
 Vi ser at løsninger av S.L. må være på formen
 \begin{align}
-	 \Psi(x,t) = Ae^{i(kx - \omega t)}
+	 \Psi(x,t) = Ce^{i(kx - \omega t)}
 \end{align}
-Siden S.L. er kompleks er ikke de enkle harmonsike sinus og cosinus funksjonene løsnginger(prøv å sette inn f9or e.g. $cos(kx - \omega t)$),
-og vi trenger de komplekse eksponensial funksjonene.
-Ved innsettelse finner vi da 
+Altså elemntære løsninger av S.L. for en fri partikkel er planbølger.
+Siden S.L. er kompleks er ikke de enkle harmonsike sinus og cosinus funksjonene løsnginger
+(prøv å sette inn for e.g. $cos(kx - \omega t)$), og vi trenger de komplekse eksponensial funksjonene.
+Ved innsettelse av planbølgen i S.L. finner vi 
 \begin{align}
 	 \frac{\hbar^2k^2}{2m} = \hbar \omega
 \end{align}
@@ -188,18 +189,19 @@ Vi har sett at planbølger på formen
 \end{align}
 er løsninger til S.L., men vi ser fort at dette er problematisk siden vi har sagt at bare kvadrat 
 integrerbare bølgefunksjoner er fysikalske. Vi ser at planbølger ikke er kvadrat integrerbar og
-ikke kan normaliseres siden de ikke går mot 0 når $|x| \to \infty$. I tillegg kan vi ikke bestemme 
-posisjonen til en planbølge siden den er overalt i rommet, og vi ønsker å kunne betrakte lokaliserte
-partikler.
+ikke kan normaliseres siden de ikke går mot 0 når $|x| \to \infty$ som vi ser i Fig.~\ref{fig:non_norm}. 
+I tillegg kan vi ikke bestemme posisjonen til en planbølge siden den er overalt i rommet, 
+og vi ønsker å kunne betrakte lokaliserte partikler.
 
 Men vi vet at S.L. er lineær og hvis vi har to løsninger av S.L. så er lineær kombinasjon av de 
-også en løsning.
-
-\begin{figure}
+også en løsning. Vi kan overlagre bølger og skape noe som er mer lokalisert i rommet, som vi ser 
+antydninger til i Fig.~\ref{fig:superposition}. Vi har at for 4 overlagrede bølger kan vi skape en 
+ganske lokalisert puls, men som gjentas i det uendelige.
+\begin{figure}[h!]
      \centering
-     \begin{subfigure}
-         \centering
-	\begin{tikzpicture}
+     \begin{subfigure}[b]{0.8\textwidth}
+       \centering
+	\begin{tikzpicture}[width=\textwidth]
 	  \begin{axis}%
 	    [grid=both,
 	     minor tick num=1,
@@ -231,15 +233,13 @@ også en løsning.
 	    \node [above, color=blue!70] at (endofplot_1) {$\cos^2(kx)$};
 	  \end{axis}
 	\end{tikzpicture}
-
          \caption{$y=\cos(kx)$ og $y' = \cos^2(kx)$}
-         \label{fig:y equals x}
+         \label{fig:non_norm}
      \end{subfigure}
-     \hfill
-
-     \begin{subfigure}
+     \hspace{4cm}
+     \begin{subfigure}[b]{0.3\textwidth}
          \centering
-	\begin{tikzpicture}
+	\begin{tikzpicture}[width=\textwidth]
 	  \begin{axis}%
 	    [grid=both,
 	     minor tick num=1,
@@ -263,13 +263,12 @@ også en løsning.
 	  \end{axis}
 	\end{tikzpicture}
          \caption{$y=\cos(kx) + \cos(k'x)$}
-         \label{fig:three sin x}
+         \label{fig:2super}
      \end{subfigure}
-     \hfill
-
-     \begin{subfigure}
+     \hspace{3cm}
+     \begin{subfigure}[b]{0.3\textwidth}
          \centering
-	\begin{tikzpicture}
+	\begin{tikzpicture}[width=\textwidth]
 	\begin{axis}%
 	[grid=both,
 	minor tick num=1,
@@ -294,11 +293,32 @@ også en løsning.
 	\end{axis}
 	\end{tikzpicture}
          \caption{$y=\cos(kx) + \cos(k'x) + \cos(k''x) + \cos(k'''x)$}
-         \label{fig:five over x}
+         \label{fig:4super}
      \end{subfigure}
         \caption{Ovelagring av cosinus bølger.}
-        \label{fig:three_graphs}
+        \label{fig:superposition}
 \end{figure}
+Hvis vi overlagrer uendelig mange bølge kan vi skape en puls som gjentas uendelig sjelden, dvs som er 
+lokalisert rundt ett området i rommet. 
+Siden vi trenger uendelig mange overlagrede bølger blir summen vår til et integral, og vi har 
+\begin{align}
+	 \Psi(x,t) = \int_{-\inty}^{\infty} A(k)e^{i(kx - \omega(k) t)} dk
+\end{align}
+hvor vi inkluderer alle mulige bølgelengder ved at vi integrerer over $k$. Dette er nå noe som kan være 
+lokalisert, gitt at $A(k)$ er det. 
+
+Vi skal nå se på en Gaussisk bølgepakke, hvor vi lar $A(k)$ ha formen til en Gauss-kurve, vi har da 
+\begin{align}
+	 A(k) = \frac{\sqrt{\sigma}}{\sqrt{2}\pi^{\frac{1}{4}} } e^{-(k-k_0)^2 \frac{\sigma^2}{2}}
+\end{align}
+hvor $\sigma$ er bredden til Gauss-kurven og $k_0$ bølgetallet som kurven er sentrert rundt. 
+Vi har nå følgende bølgefunksjon
+\begin{align}
+	 \Psi(x, t) = \frac{\sqrt{\sigma}}{\sqrt{2}\pi^{\frac{1}{4}} } \int_{-\infty}^{\infty} 
+	e^{-(k-k_0)^2 \frac{\sigma^2}{2}} e^{i(kx - \omega(k)t)} dk
+\end{align}
+Dette tilfredstiller åpenbart S.L. siden vi vet at den er lineær og vi har har en sum linearkombinasjon
+av løsninger til S.L. (et integral, men som vi kan se på som en kontinuerlig sum).
 
 
 \end{document}
