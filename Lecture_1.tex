@@ -6,7 +6,7 @@
 \usepackage{tikz}
 \usetikzlibrary{decorations.markings}
 
-\usepackage{subfig}
+\usepackage{subcaption}
 \usepackage[margin=2.5cm]{geometry}
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -52,7 +52,7 @@ Vi kan også skrive bølgen mer generelt som
 hvor vi innfører en fase $\phi \in (0, 2\pi]$. Vi har da at 
 \begin{align}
 	 f(x,t)|_{\phi=0} &= f_0 \cos(kx - \omega t + 0) = f_c(x,t) \\
-	 f(x,t)|_{\phi=\frac{\pi}{2}} &= f_0 \cos(kx - \omega t + \frac{\pi}{2}) = f_s(x,t)
+	 f(x,t)|_{\phi=\frac{\pi}{2}} &= f_0 \cos(kx - \omega t - \frac{\pi}{2}) = f_s(x,t)
 \end{align}
 Vi kan også skrive bølgen som en kompleks funksjon 
 \begin{align}
@@ -63,10 +63,172 @@ hvor $i=\sqrt{-1}$ og vi har brukt Euler's formal
 	 e^{i\theta} = \cos(\theta) + i \sin(\theta)
 \end{align}
 
+\begin{figure}[h!]
+     \centering
+     \begin{subfigure}[t]{0.45\textwidth}
+         \centering
+	\begin{tikzpicture}
+	  \begin{axis}%
+	    [grid=both,
+	     minor tick num=1,
+	     xlabel=$x$,
+	     ylabel=$y$,
+	     grid style={line width=.01pt, draw=gray!10},
+	     major grid style={line width=.2pt,draw=gray!50},
+	     axis lines=middle,
+	     restrict y to domain=-2:2.,
+	     enlargelimits={abs=1.25}
+	    ]
+	\addplot+[mark=none, 
+	    domain=-5:5,
+	    samples=350,
+	    hatch distance=5pt,
+	    hatch thickness=0.5pt,
+	    draw=blue!70,
+	    pattern color=blue,
+	    area legend] {cos(deg(pi*x - 0.1))};
+	\node [color=blue!70] at (4.5, 2.25) {$\cos(kx)$};
+
+	\addplot+[mark=none, 
+	    domain=-5:5,
+	    samples=350,
+	    hatch distance=5pt,
+	    hatch thickness=0.5pt,
+	    draw=brown!70,
+	    pattern color=blue,
+	    area legend] { cos(deg(pi*x)) + cos(deg(pi*x))};
+	\node [color=brown!70] at (0, -2.5) {$\cos(kx) + \cos(kx)$};
+
+	\addplot+[mark=none, 
+	    domain=-5:5,
+	    samples=350,
+	    hatch distance=5pt,
+	    hatch thickness=0.5pt,
+	    draw=red!70,
+	    pattern color=blue,
+	    area legend] {cos(deg(pi*x))};
+	\node [below, color=red!70] at (4.75, -2.1) {$\cos(kx)$};
+	  \end{axis}
+	\end{tikzpicture}
+         \caption{Konstruktiv overlagring}
+         \label{fig:dest}
+     \end{subfigure}
+     \hspace{1cm}
+     \begin{subfigure}[t]{0.45\textwidth}
+         \centering
+	\begin{tikzpicture}
+	\begin{axis}%
+	[grid=both,
+	minor tick num=1,
+	xlabel=$x$,
+	ylabel=$y$,
+	grid style={line width=.01pt, draw=gray!10},
+	major grid style={line width=.2pt,draw=gray!50},
+	axis lines=middle,
+	restrict y to domain=-4:4.,
+	enlargelimits={abs=1.2}
+	]
+	\addplot+[mark=none, 
+	    domain=-5:5,
+	    samples=350,
+	    hatch distance=5pt,
+	    hatch thickness=0.5pt,
+	    draw=blue!70,
+	    pattern color=blue,
+	    area legend] {cos(deg(pi*x - pi))};
+	\node [color=blue!70] at (4.5, 1.25) {$\cos(kx - \pi)$};
+
+	\addplot+[mark=none, 
+	    domain=-5:5,
+	    samples=350,
+	    hatch distance=5pt,
+	    hatch thickness=0.5pt,
+	    draw=brown!70,
+	    pattern color=blue,
+	    area legend] { cos(deg(pi*x - pi)) + cos(deg(pi*x))};
+	\node [color=brown!70] at (0, -1.25) {$\cos(kx + \pi) + \cos(kx)$};
+
+	\addplot+[mark=none, 
+	    domain=-5:5,
+	    samples=350,
+	    hatch distance=5pt,
+	    hatch thickness=0.5pt,
+	    draw=red!70,
+	    pattern color=blue,
+	    area legend] {cos(deg(pi*x))};
+	\node [below, color=red!70] at (4.75, -1.1) {$\cos(kx)$};
+	\end{axis}
+	\end{tikzpicture}
+         \caption{Konstruktiv overlagring}
+         \label{fig:cons}
+     \end{subfigure}
+        \caption{Interferense av bølger}
+        \label{fig:interference}
+\end{figure}
+Vi vet at for bølgefenomener, har vi interferens når bølger med forskjellige bølgelengder 
+overlagrer. Hvis to bølger er i fase så vil den resulterende bølgen når de møtes få en 
+større amplitude 
+\begin{align}
+	 A\cos(kx) + B\cos(kx) = (A+B)\cos(kx)
+\end{align}
+Hvis de to bølgene er i motfase derimot, dvs. at de har en faseforskjell på $\pm \pi$, 
+da får vi destruktiv interferens og du slokker hverande ut
+\begin{align}
+	 A\cos(kx) + B\cos(kx - \pi) = (A-B)\cos(kx)
+\end{align}
+hvor vi har brukt at $\cos(x -\pi) = -\cos(x)$. Vi ser her at hvis de to bølgene hadde samme 
+amplitude so slokker de hverandre ut fullstendig.
+Eksempler på dette ser vi i Fig.~\ref{fig:interference}.
+Dette er noe av det som kjennetegner bølgebevegelse og vi observerer det både i bølger på vann, 
+lydbølger, lysbølger, og som vi skal se snart i kvantemekasniske sannsynlighetsbølger.
+
+
 
 \subsubsection{Young's dobbelspalte forsøk}
+Thomas Young beskrev sitt berømte dobbelspalte eksperiment ved starten av det nittende århundret.
+For å analysere dobbelspalte eksperimentet trenger vi Huygens-Fresnell's prinsipp som sier at 
+ethvert punkt på en bølgefront, kan sees som en kilde til nye sekunder bølger, og at hvordan den 
+totale bølgen oppfører seg, finnes ved å se på summen av slike sekundare bølger. Fasene er bevart 
+får disse sekundarbølgene, altså fasen er den samme som for den totalbølgen i det punktet.
 
+Vi ser da på bidraget til et tilfeldig punkt på skjermen, som vi vet er summen av bidraget fra 
+begge spaltene. Som vi ser i Fig.~\ref{fig:double_slit} oppstår det en sekunderbølge i $S_1$ og 
+en i $S_2$.
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.4\textwidth]{Illustrations/angles_doubleslit.jpg}
+\caption{Illustrasjon av Young's dobbelspalte eksperiment}
+\label{fig:double_slit}
+\end{figure}
+Summen av disse er det som måles på skjermen. Disse bølgene har forkjellig veilengde til skjermen,
+og de får derfor også forskjellige faser, som er grunnen til at vi observerer interferens.
+
+Vi ser ifra Fig.~\ref{fig:double_slit} at veilengden er gitt som $d\sin(\theta)$ og vi har da at 
+vi har konstruktiv interferens når 
+\begin{align}
+	 d\sin(\theta) = m \lambda  \;\;\; \forall \; \mathbb{N}
+\end{align}
+og destruktiv interferens når
+\begin{align}
+	 d\sin(\theta) = \Big( m + \frac{1}{2} \Big) \lambda  \;\;\; \forall \; \mathbb{N}
+\end{align}
 \subsubsection{Maxwell's ligninger}
+
+Vi har Maxwell's ligninger med all sin pomp og prakt
+\begin{align}
+\nabla \cdot \mathbf{E} &= 0                              \hspace{2cm} \text{(Gauss' Law for Electric Fields)}\\
+\nabla \cdot \mathbf{H} &= 0                              \hspace{2cm} \text{(Gauss' Law for Magnetic Fields)} \\
+\nabla \times \mathbf{E} &= i\omega\mu \mathbf{H}         \hspace{2.1cm} \text{(Ampere-Maxwells Law)} \\
+\nabla \times \mathbf{H} &= -i\omega\epsilon \mathbf{E}   \hspace{2.45cm} \text{(Faraday's Law)}
+\end{align} 
+Videre har vi fra Maxwell's ligninger at de elektriske og magnetiske feltene også må oppfylle 
+bølgeligningene
+\begin{align}
+\nabla^2 \mathbf{E} - \frac{1}{c^2}\frac{\partial^2 \mathbf{E}}{\partial t^2}  &= 0 \\
+\nabla^2 \mathbf{H} - \frac{1}{c^2}\frac{\partial^2 \mathbf{H}}{\partial t^2}  &= 0
+\end{align}
+hvor $k^2 = \omega^2\epsilon\mu$.
+
 
 \newpage
 \subsection{Lys som partikler}
@@ -80,15 +242,22 @@ Rayleigh-Jeans beregnet strålingstettheten til å være
 \begin{align}
     u(\nu, T) = \frac{8\pi \nu^2}{c^3} k_B T 
 \end{align}
-where they considered standing waves inside of a blackbody and derived the number of standing waves for a given frequency to be $8\pi\nu / c^3$, and they assumed every standing wave mode had the same average energy $\langle E \rangle=k_BT$, which is the found from classical thermodynamics. This formula miserably fails for low wavelengths and is known as the ultraviolet catastrophe.
+hvor de betraktet stående bølger inne i det sorte legemet og utledet antallete stående bølger 
+per frekvens til å være $\frac{8\pi\nu}{c^3}$, og antok at alle modene til de stående bølgene 
+hadde den samme energien $\langle E \rangle = k_BT $ som klassisk termodynamikk gir oss.
+Denne formelen fungerer fint for større bølgelengder men kollapser helt for korte bølgelender, 
+dette kaller vi den ultraviolette katastrofen.
 
-Planck solved this problem by noting that the assumption that every standing wave mode having the same energy is not sound. He assumed, as a mathematical trick, that every mode has quantized energy as $E_n = nh\nu$.
+Planck løste dette problemet ved å bemerke at antagelsen om at alle svingemodene hadde den samme 
+energien måte være kjernen til problemet. Han antok, som et matematisk triks, at hver svingemode 
+hadde kvantisert energi lik $E_n = nh\nu$. Med denne antagelsen er det rett fra å løse 
+problemet ved hjelp av statistisk fysikk.
 
-Remembering from statistical physics that the equilibrium distribution of energy levels of any given mode is
+Vi husker at ekvilibrium distribusjonen til energi-nivåene for enhver svingemode 
 \begin{align}
     P_r = \frac{e^{-\beta E(r)}}{Z(\beta)}
 \end{align}
-where $\beta = 1/k_BT$ and $Z(\beta)$ the partition function. We can now find the average energy in each mode as
+hvor $\beta = 1/k_BT$ og $Z(\beta)$ er partisjons-funksjonen til systemet. Vi kan nå finne gjennomsnitsenergien til de forskjellige svingemodene
 \begin{align}
     \langle E \rangle &= \sum_{n=0}^{\infty} hn\nu \frac{e^{-\beta hn\nu}}{\sum_{n=0}^{\infty} e^{-\beta hm\nu}} \\
     &=  h\nu \frac{\sum_{n=0}^{\infty} n (e^{-\beta h\nu})^n}{\sum_{n=0}^{\infty} (e^{-\beta h\nu})^m} \\ 
@@ -97,11 +266,13 @@ where $\beta = 1/k_BT$ and $Z(\beta)$ the partition function. We can now find th
      &=  h\nu e^{-\beta h\nu} \frac{1}{1 - e^{-\beta h\nu}} \\ 
      &=   \frac{h\nu}{e^{\beta h\nu} - 1}
 \end{align}
-where we have used some known binomial expansions to evaluate the infinite sums. We now get the energy density of the field as the product of the modes per frequency times the average energy per mode
+hvor vi har brukt binomial formelen til å evaluere de uendelige summene, Vi har nå funnet 
+energitettheten som et produkt mellom svingemoder per frekvens of gjennomsnitsenergien per 
+mode:
 \begin{align}
     u(\nu, T) = \frac{8\pi h \nu^3 }{c^3} \frac{1}{e^{\beta h\nu} - 1}
 \end{align}
-which is the infamous Planck's law.
+som er Planck's berømte lov.
 
 \subsubsection{Fotoelektrisk effekt}
 Fotoelektrisk effekt er prosessen hvor lys treffer et material, typisk et metall, og  overfører noe av den kinetiske energien sin til elektronene slik at de kan bevege seg vekk fra materialet.
