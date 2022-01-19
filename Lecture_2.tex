@@ -302,23 +302,299 @@ Hvis vi overlagrer uendelig mange bølge kan vi skape en puls som gjentas uendel
 lokalisert rundt ett området i rommet. 
 Siden vi trenger uendelig mange overlagrede bølger blir summen vår til et integral, og vi har 
 \begin{align}
-	 \Psi(x,t) = \int_{-\inty}^{\infty} A(k)e^{i(kx - \omega(k) t)} dk
+	 \Psi(x,t) = \int_{-\infty}^{\infty} A(k)e^{i(kx - \omega(k) t)} dk
 \end{align}
 hvor vi inkluderer alle mulige bølgelengder ved at vi integrerer over $k$. Dette er nå noe som kan være 
 lokalisert, gitt at $A(k)$ er det. 
 
+\subsubsection{Gaussisk Bølgepakke}
 Vi skal nå se på en Gaussisk bølgepakke, hvor vi lar $A(k)$ ha formen til en Gauss-kurve, vi har da 
 \begin{align}
-	 A(k) = \frac{\sqrt{\sigma}}{\sqrt{2}\pi^{\frac{1}{4}} } e^{-(k-k_0)^2 \frac{\sigma^2}{2}}
+   A(k) = \frac{\sqrt{\sigma}}{\sqrt{2\pi}\pi^{\frac{1}{4}} } e^{-(k-k_0)^2 \frac{\sigma^2}{2}}
 \end{align}
 hvor $\sigma$ er bredden til Gauss-kurven og $k_0$ bølgetallet som kurven er sentrert rundt. 
 Vi har nå følgende bølgefunksjon
 \begin{align}
-	 \Psi(x, t) = \frac{\sqrt{\sigma}}{\sqrt{2}\pi^{\frac{1}{4}} } \int_{-\infty}^{\infty} 
+	 \Psi(x, t) = \frac{\sqrt{\sigma}}{\sqrt{2\pi}\pi^{\frac{1}{4}} } \int_{-\infty}^{\infty} 
 	e^{-(k-k_0)^2 \frac{\sigma^2}{2}} e^{i(kx - \omega(k)t)} dk
 \end{align}
-Dette tilfredstiller åpenbart S.L. siden vi vet at den er lineær og vi har har en sum linearkombinasjon
-av løsninger til S.L. (et integral, men som vi kan se på som en kontinuerlig sum).
+Dette tilfredstiller åpenbart S.L. siden vi vet at den er lineær og vi har har en sum 
+linearkombinasjon av løsninger til S.L. 
+(et integral, men som vi kan se på som en kontinuerlig sum).
+\begin{figure}[h!]
+     \centering
+	\begin{tikzpicture}[width=\textwidth]
+	\begin{axis}%
+	[grid=both,
+	minor tick num=1,
+	xlabel=$k$,
+	ylabel=$A(k)$,
+	grid style={line width=.01pt, draw=gray!10},
+	major grid style={line width=.2pt,draw=gray!50},
+	axis lines=middle,
+	restrict y to domain=-5:5.,
+	enlargelimits={abs=.2}
+	]
+	\addplot+[mark=none, 
+	    domain=0:4,
+	    samples=350,
+	    hatch distance=5pt,
+	    hatch thickness=0.5pt,
+	    draw=red!70,
+	    pattern color=blue,
+	    area legend] {exp(-(2-x)^2 / (2*0.25^2)) / (0.25 * sqrt(pi))  } ;
+	\node [below, color=red!70] at (2.6, 2) {$A(k)$};
+	\end{axis}
+	\end{tikzpicture}
+        \caption{Gauss-kurve}
+        \label{fig:superposition}
+\end{figure}
+Vi skal nå finne et eksplisitt uttrykk for denne bølgefunksjon. Vi starter med å se på den 
+tidsuavhengige delen av bølgefunksjonen dvs. vi betrakter 
+\begin{align}
+	 \psi(x) = \Psi(x, 0) = \frac{\sqrt{\sigma}}{\sqrt{2\pi}\pi^{\frac{1}{4}} } 
+	\int_{-\infty}^{\infty} e^{-(k-k_0)^2 \frac{\sigma^2}{2}} e^{ikx} dk
+\end{align}
+Vi kan beregne $\psi(x)$ ved å regne integralet. For å gjøre det skriver vi om eksponenten
+slik at vi får et uttrykk som er lettere å jobbe med. Vi får da 
+\begin{align}
+   -(k-k_0)^2 \frac{\sigma^2}{2} + ikx
+&= -\frac{\sigma^2}{2} \Big[k^2 - 2kk_0 + k_0^2\Big] + \frac{\sigma^2}{2} ikx \frac{2}{\sigma^2} \\
+&= -\frac{\sigma^2}{2} \Big[k^2 - 2kk_0 - ikx\frac{2}{\sigma^2}\Big] - k_0^2  \frac{\sigma^2}{2} \\
+&= -\frac{\sigma^2}{2} \Big[k^2- 2k(k_0-\frac{ix}{\sigma^2}) + (k_0 + \frac{ix}{\sigma^2})^2\Big] 
+   + \frac{\sigma^2}{2} (k_0 + \frac{ix}{\sigma^2})^2 - k_0^2  \frac{\sigma^2}{2} \\
+   &= -\frac{\sigma^2}{2} \Big[k  - (k_0 + \frac{ix}{\sigma^2})\Big]^2 
+   + \frac{\sigma^2}{2} (k_0 + \frac{ix}{\sigma^2})^2 - k_0^2  \frac{\sigma^2}{2} \\
+   &= -\frac{\sigma^2}{2} \Big[k  - k_0 - \frac{ix}{\sigma^2}\Big]^2 
+   + \frac{\sigma^2}{2} (k_0^2 + 2k_0\frac{ix}{\sigma^2} + (\frac{ix}{\sigma^2})^2) - 
+   k_0^2  \frac{\sigma^2}{2} \\ 
+   &= -\frac{\sigma^2}{2} \Big[k  - k_0 - \frac{ix}{\sigma^2}\Big]^2 
+   + \frac{\sigma^2}{2} ( 2k_0\frac{ix}{\sigma^2} + (\frac{ix}{\sigma^2})^2)  \\ 
+   &= -\frac{\sigma^2}{2} \Big[k  - k_0 - \frac{ix}{\sigma^2}\Big]^2 
+   + ik_0x - \frac{x^2}{2\sigma^2}
+\end{align}
+Vi kan nå skrive uttrykket for bølgefunksjonen som 
+\begin{align}
+	 \psi(x) &= \frac{\sqrt{\sigma}}{\sqrt{2\pi}\pi^{\frac{1}{4}} } 
+	\int_{-\infty}^{\infty} e^{-\frac{\sigma^2}{2}(k - k_0 - \frac{ix}{\sigma^2})^2} 
+	e^{ik_0x} e^{-\frac{x^2}{2\sigma^2}} dk \\
+&= \frac{\sqrt{\sigma}}{\sqrt{2\pi}\pi^{\frac{1}{4}} } e^{ik_0x} e^{-\frac{x^2}{2\sigma^2}}
+	\int_{-\infty}^{\infty} e^{-\frac{\sigma^2}{2}(k - k_0 - \frac{ix}{\sigma^2})^2} dk
+\end{align}
+Vi kan nå beregne integralet og finne bølgefunksjonen. Vi trenger et kjent integral 
+\begin{align}
+	 I = \int_{-\infty}^{\infty} e^{(x - i\lambda)^2} dx = \sqrt{\pi} 
+\end{align}
+og vi utfører et variabelskifte og setter 
+\begin{align}
+	 y &= \frac{\sigma}{\sqrt{2}}(k-k_0) \\
+	\frac{d y}{d k} &= \frac{\sigma}{\sqrt{2}} \\
+	d k &= \frac{\sqrt{2}}{\sigma} d y
+\end{align}
+Dette gir 
+\begin{align}
+	 \psi(x) &= \frac{\sqrt{\sigma}}{\sqrt{2\pi}\pi^{\frac{1}{4}} } 
+	e^{ik_0x} e^{-\frac{x^2}{2\sigma^2}} 
+	\int_{-\infty}^{\infty} e^{-(y - \frac{ix}{\sqrt{2}\sigma})^2} \frac{\sqrt{2}}{\sigma}dy\\
+	 &= \frac{1}{\sqrt{\sigma}\pi^{\frac{1}{4}} } 
+	e^{ik_0x} e^{-\frac{x^2}{2\sigma^2}} 
+\end{align}
+\begin{figure}[h!]
+     \centering
+	\begin{tikzpicture}[width=\textwidth]
+	\begin{axis}%
+	[grid=both,
+	minor tick num=1,
+	xlabel=$x$,
+	ylabel=$y$,
+	grid style={line width=.01pt, draw=gray!10},
+	major grid style={line width=.2pt,draw=gray!50},
+	axis lines=middle,
+	restrict y to domain=-5:5.,
+	enlargelimits={abs=.2}
+	]
+	\addplot+[mark=none, 
+	    domain=-2:2,
+	    samples=350,
+	    hatch distance=5pt,
+	    hatch thickness=0.5pt,
+	    draw=blue!70,
+	    pattern color=blue,
+	    area legend] {exp(-x^2 / (2*0.25^2)) * cos(deg(20*x) / (0.25 * sqrt(pi))  } ;
+	\node [below, color=blue!70] at (1.6, 1) {$\mathcal{R} \{ \psi(x) \}$};
+	\addplot+[mark=none, 
+	    domain=-2:2,
+	    samples=350,
+	    hatch distance=5pt,
+	    hatch thickness=0.5pt,
+	    draw=red!70,
+	    pattern color=blue,
+	    area legend] {exp(-x^2 / (2*0.25^2)) / (0.25 * sqrt(pi))  } ;
+	\node [below, color=red!70] at (1.6, 2) {$|\psi(x)|^2$};
+	\end{axis}
+	\end{tikzpicture}
+        \caption{Bølgefunksjonen til Gaussisk bølgepakke}
+        \label{fig:gaussian_x}
+\end{figure}
+Vi har altså vist at både $A(k)$ og $|\psi(x)|^2$ er Gauss-kurver, hvilket kommer av at 
+Gauss-funksjonen er invariant under Fourier-transformasjon. 
+Generelt har vi at hvis noe er skarpt lokalisert i $k$ så er det mindre lokalisert i $x$. 
+Man kan vise utifra Fourier-teori at
+\begin{align}
+	 \Delta x \Delta k \ge \frac{1}{2}
+\end{align}
+Når vi bruker at $p=\hbar k$, gir dette oss \textbf{Heisenberg's uskarphetsrelasjon}
+\begin{align}
+	 \Delta x \Delta k \ge \frac{\hbar}{2}
+\end{align}
+
+
+\subsubsection{Tidsavhengig Gaussisk bølgefunksjon}
+Vi skal nå finne den tidsavhengige bølgefunksjon
+\begin{align}
+	 \Psi(x, t) = \frac{\sqrt{\sigma}}{\sqrt{2\pi^{\frac{3}{2}}}}  
+	\int_{-\infty}^{\infty} e^{-(k-k_0)^2\frac{\sigma^2}{2}}
+	e^{i(kx - \omega t)} dx
+\end{align}
+hvor vi da må løse det litt vriene integralet. Vi skal gjøre dette ved å først vise at vi kan skrive det om til
+\begin{align}
+	 \Psi(x, t) = \frac{\sqrt{\sigma}}{\sqrt{2\pi^{\frac{3}{2}}}} e^{i(k_0 x - \omega_0 t)} 
+	\int_{-\infty}^{\infty} e^{-(k-k_0)^2(\frac{\sigma^2}{2} + \frac{it\hbar}{2m})}
+	e^{i(k-k_0)(x - \frac{k_0\hbar t}{m})} dx
+\end{align}
+Vi bruker at $\omega = \hbar k^2 / 2m$ og kan vise at eksponentene i de to uttrykkene er 
+ekvivalente
+\begin{align}
+	 & i(k_0 - \omega_0) - (k - k_0)^2(\frac{\sigma^2}{2} + \frac{it\hbar}{2m}) + i(k-k_0)(x - \frac{k_0\hbarr t}{m}) \\
+	= & i(k_0x - \omega_0t) - k^2  \frac{it\hbar}{2m} + 2kk_0 \frac{it\hbar}{2m} - k_0^2 \frac{it\hbar}{2m} - (k-k_0)^2\frac{\sigma^2}{2} + i(k-k_0)x - \frac{ik k_0 \hbar t}{m} + \frac{ik_0^2 \hbar t}{m}	 \\ 
+	= & i(k_0x - \omega_0t) - i\omega t + 2kk_0 \frac{it\hbar}{2m} - i\omega_0 t - (k-k_0)^2\frac{\sigma^2}{2} + i(k-k_0)x - \frac{ik k_0 \hbar t}{m}  + 2i\omega_0 t \\ 
+	= & -(k-k_0)^2\frac{\sigma^2}{2} + i(kx-\omega t) 
+\end{align}
+Som er det vi ville vise. Videre gjøre vi de følgende variabel-substitusjonene
+\begin{align}
+	 y &= k - k_0 \\ 
+	a &= \frac{1}{\sqrt{\frac{\sigma^2}{2} + \frac{i\hbar t}{2m}}}  \\ 
+	 b &= x - \frac{k_0 \hbar t}{m}
+\end{align}
+som gir oss
+\begin{align}
+	 \psi(x,t) = \frac{\sqrt{\sigma} }{\sqrt{2\pi^{\frac{3}{2}}} } e^{i(k_0x - \omega_0t)} 
+	\int_{-\infty}^{\infty} e^{-(\frac{y}{a})^2}e^{iyb}dy
+\end{align}
+Vi kan nå utnytte det følgende kjente integral
+\begin{align}
+	 \int_{-\infty}^{\infty} e^{-(x - i \Lambda)^2} dx = \sqrt{\pi} 
+\end{align}
+Vi kan da bruke dette resultatet og introdusere en ny variabel $y=ax$ og definere en ny konstant
+$b = \frac{2\Lambda}{a}$. Dette gir da
+\begin{align}
+	\int_{-\infty}^{\infty} e^{-(x - i \Lambda)^2} dx
+	&= \int_{-\infty}^{\infty} e^{-x^2 + \Lambda^2 + 2 x i \Lambda} dx \\
+	&= e^{\Lambda^2} \int_{-\infty}^{\infty} e^{-x^2  + 2 x i \Lambda} dx \\
+	&= e^{\frac{a b }{2}} a^{-1} \int_{-\infty}^{\infty} e^{-(\frac{y}{a})^2  +  ib y  } dy  \\
+	&= \sqrt{\pi} 
+\end{align}
+Vi inverterer dette uttrykket og får
+\begin{align}
+	\sqrt{\pi} a e^{-(\frac{ab}{2})^2} =  \int_{-\infty}^{\infty} e^{-(\frac{y}{a})^2 + iby}dy 
+\end{align}
+Vi bruker nå at vi har at
+\begin{align}
+	 \big(\frac{ab}{2}\big)^2 = \big(\frac{1}{2}\frac{x - \frac{k_0 \hbar t}{m}}{\sqrt{\frac{\sigma ^2}{2} + \frac{i \hbar t}{2m}} }\big)^2
+\end{align}
+og vi har nå funnet uttrykket for den tidsavhengige bølgefunksjon
+\begin{align}
+	 \psi(x,t) &= \frac{\sqrt{\sigma}}{\sqrt{2}\pi^{\frac{3}{2}}} e^{i(k_0x - \omega_0 t)} \sqrt{\pi}
+	\frac{1}{\sqrt{\frac{\sigma ^2}{2} + 
+	\frac{i\hbar t}{2m}} }e^{-\frac{1}{4}\frac{(x-\frac{k_0 t}{m})^2}{\frac{\sigma^2}{2} + \frac{i\hbar t}{2m}} } \\ 
+	&= \frac{\sqrt{\sigma}}{\sqrt{\sigma ^2 + \frac{i\hbar t}{m}} \sqrt{\pi}} 
+	e^{i(k_0x - \omega_0 t)} e^{-\frac{1}{2}\frac{(x-\frac{k_0 t}{m})^2}{\sigma^2 + \frac{i\hbar t}{m}}}
+\end{align}
+Vi kan også finne absolutt kvadratet
+\begin{align}
+	 |\psi(x,t)|^2 &= \frac{\sigma}{\sqrt{(\sigma^2 + \frac{i\hbar t}{m})(\sigma^2-\frac{i\hbar t}{m})} \sqrt{\pi}} 
+	e^{-\frac{1}{2}\frac{(x-\frac{k_0 t}{m})^2}{\sigma^2 + \frac{i\hbar t}{m}}}  
+	e^{-\frac{1}{2}\frac{(x-\frac{k_0 t}{m})^2}{\sigma^2 - \frac{i\hbar t}{m}}} \\ 
+&= \frac{1}{\sqrt{\sigma^3 + \frac{\hbar t^2}{\sigma^2m^2}} \sqrt{\pi}} 
+	e^{-\frac{(x-\frac{k_0 t}{m})^2}{\sigma^2 + \frac{\hbar^2 t^2}{\sigma^2m^2}}}  
+\end{align}
+Vi ser at vi som forventet har at 
+\begin{align}
+	 |\psi(x, t=0)|^2 = \frac{1}{\sqrt{\pi} \sigma}e^{-\frac{x^2}{\sigma^2}}
+\end{align}
+Ved tid $t=0$ er den tidsavhegige bølgepakken lik den stasjonære. 
+Uskarpheten må derfor også være den samme ved $t=0$
+\begin{align}
+	 \Delta x(t=0)^2 = \frac{\hbar}{2}
+\end{align}
+Vi kan finne hvordan uskarpheten utvikler seg i tid ved hjelp av stndard formler for definisjonen
+av uskarphet.
+Men vi kan også se på hvordan uttrykkene forandrer seg fra stasjonær til tidsavhengig bølgepakke,
+hvor vi essensialt gjør følgende variabel-bytte
+\begin{align}
+	 \sigma^2 \to  \sigma^2 + \frac{\hbar^2 t^2}{\sigma^2 m^2}
+\end{align}
+Altså må uskarpheten være
+\begin{align}
+	 \Delta x(t) = \frac{1}{\sqrt{2}} \sqrt{\sigma^2 + \frac{\hbar^2t^2}{\sigma^2 m^2}}  
+\end{align}
+Uskarpheten i bevegelsesmengde hadde vi opprinnelig som 
+\begin{align}
+	 \Delta p(t=0)^2 = \frac{\hbar}{\sqrt{2} \sigma}
+\end{align}
+og hvis vi ser på bølgepakken in bevegelsesmengde-rommet
+and if we consider the time dependent wavefunction in momentum space
+\begin{align}
+	 \psi(x) = \frac{\sqrt{\sigma}}{\sqrt{2\pi^{\frac{3}{2}}}}  
+	\int_{-\infty}^{\infty} e^{-(k-k_0)^2\frac{\sigma^2}{2}}
+	e^{i(kx - \omega t)} dx
+\end{align}
+ser vi at den delen av bølgefunksjonen som gir bredden til bølgepakken er invariant i tid. 
+Derfor må det holde at uskarpheten i bevegelsesmengde er lik for alle tider, slik som den var 
+for $t=0$
+\begin{align}
+	 \Delta p(t)^2 = \frac{\hbar}{\sqrt{2} \sigma}
+\end{align}
+Vi har nå funnet at tidsutviklingen til uskarpheten til en Gaussisk bølgepakke er
+\begin{align}
+	 \Delta p(t)  \Delta x(t) = \frac{\hbar}{2}\sqrt{1 + \frac{\hbar^2 t^2}{\sigma^{4}m^2}} 
+\end{align}
+
+
+\subsection{Fase og gruppe-hastighet}
+Vi vet at vi har farten til en planbølge gitt ved 
+\begin{align}
+	 v_f = \frac{dx}{dt}
+\end{align}
+Dette kaller vi fasehastigheten, farten som en bølgetopp beveger seg med.
+Siden vi har $kdx - \omega dt = 0$ 
+når vi følger en bølgetopp (vi er hele tiden på samme punktet i bølgen), har vi
+\begin{align}
+	 v_{f} = \frac{\omega}{k} = \lambda \nu 
+\end{align}
+Men dette beskriver ikke hastigheten til en ikke-relativistisk partikkel, som vi kan se ifra S.L.
+siden vi har at 
+\begin{align}
+	v_f = \frac{\omega}{k} = \frac{\hbar\omega}{\hbar k} = \frac{E}{p} 
+	= \frac{\frac{mv^2}{2}}{mv} = \frac{v}{2}
+\end{align}
+Vi har argumentert for at bølgepakken er det som beskriver en fri partikkel og 
+siden vi har at bølgepakken er en uendelig sum av planbølger med forskjellige bølgelengder og
+derfor forskjellig fasehastighet, 
+mens farten til en bølgepakke er gitt ved gruppehastigheten som er definert som
+\begin{align}
+	 v_g = \frac{d \omega}{d k} 
+\end{align}
+fasehastighete er farten til et punkt i bølgen, mens gruppehastighet er farten til en lokalisert
+bølgepakke av overlagrede bølger.
+Vi vet at for en fri partikkel har vi $\frac{hk^2}{2m}$, hvilket gir 
+\begin{align}
+	 v_g = \frac{hk}{m} = \frac{p}{m} = v
+\end{align}
+Som er det vi kjenner som hastigheten til en partikkel; så vi konkluderer med at det er 
+gruppehastigheten som gitt hastigheten til en partikkel.
+
+
 
 
 \end{document}
