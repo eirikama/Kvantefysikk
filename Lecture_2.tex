@@ -101,6 +101,48 @@ Vi kan alltid normalisere bølgefunkajonen med mindre sannsynlighetstetthet dive
 $|x|\to \infty$, hvis dette ikke er tilfellet kaller vi bølgefunksjonene \textbf{kvadrat integrerbar}. Dette krever vi at alle fysikalske bølegfunksjoner må være.
 
 
+\subsection{Forventningsverdier og uskarphet}
+Forventnungsverdien til en måling av en partikkel med bølgefunksjon $\Psi(x,t)$ er 
+\begin{align}
+	 \langle x \rangle = \int_{-\infty}^{\infty} x |\psi(x,t)|^2 dx
+\end{align}
+hvor vi igjen antar at $|\Psi(x,t)|^2$ er normalisert. Forventningsverdien er ikke nødvendigvis 
+den verdien vi burde forvente å måle, og kan i noen tilfeller til og med være en verdi 
+som ikke er mulig å måle, men derimot gjennomsnittet av det man måler hvis man gjenntar 
+eksperimentet mange ganger.
+Videre har vi også at 
+\begin{align}
+	 \langle x^2 \rangle = \int_{-\infty}^{\infty} x^2 |\Psi(x,t)|^2 dx
+\end{align}
+Vi kan nå også se på standard avviket i posisjon til målingene, som vi har gitt som
+\begin{align}
+	 (\Delta x)^2 &=  \langle x - \langle x^2 \rangle \rangle \\
+	 &=  \langle x^2 \rangle - \langle x \rangle^2 \\
+	 &=  \int_{-\infty}^{\infty} x^2 |\Psi(x,t)|^2 dx 
+	 -  \Big[\int_{-\infty}^{\infty} x |\psi(x,t)|^2 \Big]^2 dx
+\end{align}
+I kvantefysikk kaller vi $\Delta x$ uskarpheten i partikkelen's posisjon, som viser til 
+en fundamental usikkerhet i bestemmelse av partikkelens possisjon siden partikkelen er beskrevet av bølgefunksjonen og den har ingen definitive posisjon.
+
+Tilsvarende har vi for uskarpheten i bevegelsesmengde i x-retning
+\begin{align}
+	 (\Delta p_x)^2 =  \langle p_x^2 \rangle - \langle p_x \rangle^2 \\
+\end{align}
+Vi skal snart se hvordan vi beregner $\langle p_x \rangle$ fra bølgefunksjon i praksis.
+
+
+
+\subsection{Ehrenfest's teorem}
+Schrödinger's ligning er kvantemekanikken's bevegelsesligning, og kan brukes til å finne 
+hvordan forventningsverdier utvikler seg i tid. 
+Men vi vil at kvantefysikk spådommer er konsistent med klassisk fysikk i de riktige grensene 
+(dette kalles noen ganger korrespondanseprinsippet), og det betyr at vi burde ha 
+\begin{align}
+     \frac{d\langle x \rangle}{dt} = \frac{\langle p_x \rangle}{m}	 
+\end{align}
+
+
+
 \subsection{Bevaring av sannsynlighet}
 Vi skal nå se på om en bølgefunksjon som vi normaliserer ved et tidspunkt $t$ forblir
 normalisert, altså om sannsynlighetstettheten er bevart i tid.
