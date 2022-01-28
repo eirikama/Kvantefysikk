@@ -101,48 +101,6 @@ Vi kan alltid normalisere bølgefunkajonen med mindre sannsynlighetstetthet dive
 $|x|\to \infty$, hvis dette ikke er tilfellet kaller vi bølgefunksjonene \textbf{kvadrat integrerbar}. Dette krever vi at alle fysikalske bølegfunksjoner må være.
 
 
-\subsection{Forventningsverdier og uskarphet}
-Forventnungsverdien til en måling av en partikkel med bølgefunksjon $\Psi(x,t)$ er 
-\begin{align}
-	 \langle x \rangle = \int_{-\infty}^{\infty} x |\psi(x,t)|^2 dx
-\end{align}
-hvor vi igjen antar at $|\Psi(x,t)|^2$ er normalisert. Forventningsverdien er ikke nødvendigvis 
-den verdien vi burde forvente å måle, og kan i noen tilfeller til og med være en verdi 
-som ikke er mulig å måle, men derimot gjennomsnittet av det man måler hvis man gjenntar 
-eksperimentet mange ganger.
-Videre har vi også at 
-\begin{align}
-	 \langle x^2 \rangle = \int_{-\infty}^{\infty} x^2 |\Psi(x,t)|^2 dx
-\end{align}
-Vi kan nå også se på standard avviket i posisjon til målingene, som vi har gitt som
-\begin{align}
-	 (\Delta x)^2 &=  \langle x - \langle x^2 \rangle \rangle \\
-	 &=  \langle x^2 \rangle - \langle x \rangle^2 \\
-	 &=  \int_{-\infty}^{\infty} x^2 |\Psi(x,t)|^2 dx 
-	 -  \Big[\int_{-\infty}^{\infty} x |\psi(x,t)|^2 \Big]^2 dx
-\end{align}
-I kvantefysikk kaller vi $\Delta x$ uskarpheten i partikkelen's posisjon, som viser til 
-en fundamental usikkerhet i bestemmelse av partikkelens possisjon siden partikkelen er beskrevet av bølgefunksjonen og den har ingen definitive posisjon.
-
-Tilsvarende har vi for uskarpheten i bevegelsesmengde i x-retning
-\begin{align}
-	 (\Delta p_x)^2 =  \langle p_x^2 \rangle - \langle p_x \rangle^2 \\
-\end{align}
-Vi skal snart se hvordan vi beregner $\langle p_x \rangle$ fra bølgefunksjon i praksis.
-
-
-
-\subsection{Ehrenfest's teorem}
-Schrödinger's ligning er kvantemekanikken's bevegelsesligning, og kan brukes til å finne 
-hvordan forventningsverdier utvikler seg i tid. 
-Men vi vil at kvantefysikk spådommer er konsistent med klassisk fysikk i de riktige grensene 
-(dette kalles noen ganger korrespondanseprinsippet), og det betyr at vi burde ha 
-\begin{align}
-     \frac{d\langle x \rangle}{dt} = \frac{\langle p_x \rangle}{m}	 
-\end{align}
-
-
-
 \subsection{Bevaring av sannsynlighet}
 Vi skal nå se på om en bølgefunksjon som vi normaliserer ved et tidspunkt $t$ forblir
 normalisert, altså om sannsynlighetstettheten er bevart i tid.
@@ -161,7 +119,7 @@ Vi antar at $V(x)$ er reelt og kompleks konjugerer denne ligningen
 -\frac{1}{i\hbar}\Big(-\frac{\hbar^2}{2m}\frac{\partial^2\Psi^*}{\partial x^2}+V(x)\Psi^*\Big)
 \end{align}
 Vi bruker disse to ligningene og finner 
-\begin{align}
+\begin{align} \label{eq:SL_cont}
 	 \frac{\partial |\Psi|^2}{\partial t} &= i\frac{\hbar}{2m} \Big(\Psi^* 
   \frac{\partial^2 \Psi}{\partial x^2} - \Psi \frac{\partial^2 \Psi^*}{\partial x^2}\Big)\\
  &= \frac{\partial}{\partial x}\Big[  i\frac{\hbar}{2m} \Big(\Psi^* 
@@ -217,7 +175,94 @@ Tilsvarende hvis $j_x(a,t)$ er positiv, da flyter sannsynlighetstrømmen inn i $
 \label{fig:j_x}
 \end{figure}
 
-\subsection{Heisenberg's Uskarphetsrelasjon}
+
+
+\subsection{Forventningsverdier og uskarphet}
+Forventnungsverdien til en måling av en partikkel med bølgefunksjon $\Psi(x,t)$ er 
+\begin{align}
+	 \langle x \rangle = \int_{-\infty}^{\infty} x |\psi(x,t)|^2 dx
+\end{align}
+hvor vi igjen antar at $|\Psi(x,t)|^2$ er normalisert. Forventningsverdien er ikke nødvendigvis 
+den verdien vi burde forvente å måle, og kan i noen tilfeller til og med være en verdi 
+som ikke er mulig å måle, men derimot gjennomsnittet av det man måler hvis man gjenntar 
+eksperimentet mange ganger.
+Videre har vi også at 
+\begin{align}
+	 \langle x^2 \rangle = \int_{-\infty}^{\infty} x^2 |\Psi(x,t)|^2 dx
+\end{align}
+Vi kan nå også se på standard avviket i posisjon til målingene, som vi har gitt som
+\begin{align}
+	 (\Delta x)^2 &=  \langle x - \langle x^2 \rangle \rangle \\
+	 &=  \langle x^2 \rangle - \langle x \rangle^2 \\
+	 &=  \int_{-\infty}^{\infty} x^2 |\Psi(x,t)|^2 dx 
+	 -  \Big[\int_{-\infty}^{\infty} x |\psi(x,t)|^2 \Big]^2 dx
+\end{align}
+I kvantefysikk kaller vi $\Delta x$ uskarpheten i partikkelen's posisjon, som viser til 
+en fundamental usikkerhet i bestemmelse av partikkelens possisjon siden partikkelen er beskrevet av bølgefunksjonen og den har ingen definitive posisjon.
+
+Tilsvarende har vi for uskarpheten i bevegelsesmengde i x-retning
+\begin{align}
+	 (\Delta p_x)^2 =  \langle p_x^2 \rangle - \langle p_x \rangle^2 \\
+\end{align}
+Vi skal snart se hvordan vi beregner $\langle p_x \rangle$ fra bølgefunksjon i praksis.
+
+
+
+\subsection{Ehrenfest's teorem}
+Schrödinger's ligning er kvantemekanikken's bevegelsesligning, og kan brukes til å finne 
+hvordan forventningsverdier utvikler seg i tid. 
+Men vi vil at kvantefysikk spådommer er konsistent med klassisk fysikk i de riktige grensene 
+(dette kalles noen ganger korrespondanseprinsippet).
+Vi vet at i klassisk fysikk har vi 
+\begin{align}
+	 \frac{d x(t)}{d t} = \frac{p_x(t)}{m} 
+\end{align}
+Det betyr at vi burde ha 
+\begin{align} \label{eq:ehrenfest}
+     \frac{d\langle x \rangle}{dt} = \frac{\langle p_x \rangle}{m}	 
+\end{align}
+Vi skriver ut dette vha. definisjonen på forventningsverdi som 
+\begin{align}
+	\frac{d\langle x \rangle}{dt} &=  \frac{d}{dt} \int_{-\infty}^{\infty} x|\Psi(x,t)|^2 dx \\
+				      &=  \int_{-\infty}^{\infty} x \frac{d\Psi\Psi^*}{dt}dx\\
+		&=   \int_{-\infty}^{\infty} x \frac{\partial}{\partial x} \Big( \frac{i\hbar}{2m} 
+     (\Psi^*  \frac{\partial \Psi}{\partial x} - \Psi \frac{\partial \Psi^*}{\partial x})\Big)dx 
+\end{align}
+hvor vi har brukt Lign.~[\ref{eq:SL_cont}]; S.L. multiplisert med den kompleks konjugerte
+av bølgefunksjonen. Vi kan løse dette ved hjelp av delvis integrasjon
+\begin{align}
+\frac{d\langle x \rangle}{dt} &=
+  - \int_{-\infty}^{\infty}  \frac{i\hbar}{2m} 
+  (\Psi^*  \frac{\partial \Psi}{\partial x} - \Psi \frac{\partial \Psi^*}{\partial x})dx  +
+  \Big[x \frac{\partial}{\partial x} \Big( \frac{i\hbar}{2m} 
+ (\Psi^*\frac{\partial \Psi}{\partial x} - \Psi \frac{\partial \Psi^*}{\partial x})\Big)
+  \Big]_{-\infty}^{\infty} \\ 
+ &=-\int_{-\infty}^{\infty}  \frac{i\hbar}{2m} 
+  (\Psi^*  \frac{\partial \Psi}{\partial x} - \Psi \frac{\partial \Psi^*}{\partial x})dx  \\
+ &=-\int_{-\infty}^{\infty}  \frac{i\hbar}{2m} 
+  (\Psi^*  \frac{\partial \Psi}{\partial x} + \Psi^* \frac{\partial \Psi}{\partial x})dx  \\
+ &=-\int_{-\infty}^{\infty}  \frac{i\hbar}{m} \Psi^*  \frac{\partial \Psi}{\partial x}dx \\
+ &= \frac{1}{m} \int_{-\infty}^{\infty} \Psi^*\frac{\hbar}{i}\frac{\partial \Psi}{\partial x}dx
+\end{align}
+Vi kan sammenligne dette med Lign.~[\ref{eq:ehrenfest}] og vi ser at vi da har 
+\begin{align}
+	\langle p_x \rangle 
+	= \int_{-\infty}^{\infty}\Psi^*\frac{\hbar}{i}\frac{\partial \Psi}{\partial x}dx
+\end{align}
+Hvor vi nå også har en måte å finne forventningsverdien til bevegelsesmengden.
+
+Vi har også i klassisk fysikk at 
+\begin{align}
+	 \frac{\partial p_x}{\partial t} = - V'(x)
+\end{align}
+Hvilket betyr at vi også skulle forvente etter korrespondanseprinsippet å ha i kvantefysikken
+\begin{align}
+	 \frac{d \langle p_x \rangle }{d t} = - \big\langle \frac{d V}{d x}  \big\rangle
+\end{align}
+Dette og Lign.~[\ref{eq:ehrenfest}] kaller vi \textbf{Ehrenfest's teorem}. Selv om det strengt tatt bare 
+er to spesiall tilfeller av et mer generelt teorem.
+
+\subsection{Heisenberg's uskarphetsrelasjon}
 Hvis vi ser for oss en bølge med en enkelt bølgelengde så kan vi lett måle bølgens bølgelengde 
 men ikke hvor bølgen er; bølgen er over alt. 
 På den andre siden kan vi se for oss en partikkel; den er er helt nøyaktig lokalisert i rommet,
