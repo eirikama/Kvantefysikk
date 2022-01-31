@@ -35,15 +35,20 @@ i et potensial $V(x)$ som
 	 -\frac{\hbar^2}{2m}\frac{\partial^2 \Psi(x,t)}{\partial x^2} + V(x)\Psi(x,t) =
 	i\hbar \frac{\partial \Psi(x,t)}{\partial t} 
 \end{align}
-hvor $m$ er partikkelens masse og $\hbar=\frac{h}{2\pi}$.
+hvor $m$ er partikkelens masse og $\hbar=\frac{h}{2\pi}$. $V(x)$ er potensialet partikkelen 
+befinner seg i, og som bestemmer hvilke omgivelser vi betrakter partikkelen i.
+Den klassiske ekvivalenten til potensialet er det som bestemmer kreftene i et konservativt 
+system som $F = -V'(x)$.
 $\Psi(x,t)$ er partikkelens bølgefunksjon, som vi skal se bestemmer hvordan 
 ikke-relativistiske (altså med fart $v \ll c$) partikler beveger seg. 
 Schrödinger ligningen (S.L) gjelder ikke i e.g. elementærpartikkel-fysikk og kan ikke egentlig
 beskrive fotoner, men den er fortsatt veldig nyttig og kan beskrive et utall av fenomener som 
-atom-, molekyl-, kjærne of faststoff-fysikk.
+atom-, molekyl-, kjerne of faststoff-fysikk.
 
 Bølgefunksjonen er en sannsynlighetsamplitude og den bestemmer sannsynligheten for å finne partiklen ved $x$ ved tid $t$.
 Dette er en ligning som ikke kan utledes fra klassisk mekanikk. 
+
+
 
 \subsection{Schrödinger's ligning for en fri partikkel}
 Vi skal nå fokusere på en fri partikkel, altså en partikkel som ikke har noe potensial, dvs $V(x)=0$.
@@ -58,10 +63,10 @@ Vi ser at løsninger av S.L. må være på formen
 \begin{align}
 	 \Psi(x,t) = Ce^{i(kx - \omega t)}
 \end{align}
-Altså elemntære løsninger av S.L. for en fri partikkel er planbølger.
-Siden S.L. er kompleks er ikke de enkle harmonsike sinus og cosinus funksjonene løsnginger
-(prøv å sette inn for e.g. $cos(kx - \omega t)$), og vi trenger de komplekse eksponensial funksjonene.
-Ved innsettelse av planbølgen i S.L. finner vi 
+Altså elementære løsninger av S.L. for en fri partikkel er planbølger.
+Siden S.L. er kompleks er ikke de enkle harmoniske sinus og cosinus funksjonene løsninger
+(prøv å sette inn for e.g. $cos(kx - \omega t)$), og vi trenger de komplekse eksponensial
+funksjonene. Ved innsettelse av planbølgen i S.L. finner vi 
 \begin{align}
 	 \frac{\hbar^2k^2}{2m} = \hbar \omega
 \end{align}
@@ -71,6 +76,8 @@ Vi finner da at
 \begin{align}
 	 E = \frac{p^2}{2m}
 \end{align}
+Dette forventet vi å ha siden dette er den velkjente relasjonen mellom energi, masse og 
+bevegelsesmengde som må holde for partikler. 
 
 \subsection{Fysikalsk tolkning av bølgefunksjonen}
 Siden $\Psi(x,t)$ er en kompleks funsksjon kan det ikke være noe vi kan måle direkte.
@@ -83,10 +90,30 @@ Born regelen (etter den tyske fysikeren Max Born) sier at
 Vi har altså at $|\Psi(x,t)|^2$  er partikkelens sannsynlighetstetthet.
 Dvs. at hvis vik kjenner $\Psi(x,t)$ for et elektron som beveger seg i en dimension
 kan bruke den til å e.g. finne sannsynligheten for å sannsynligheten for 
-finne det mellom $x_1$ og $x_2$ som
+finne det mellom $a$ og $b$ som
 \begin{align}
-	 \int_{x_1}^{x_2} |\Psi(x,t)|^2 dx 
+	 P(a<x<b, t) = \int_{a}^{b} |\Psi(x,t)|^2 dx 
 \end{align}
+hvor $P(a<x<b, t)$ er sannsynligheten for å finne en partikkelen i $[a,b]$ ved tid $t$, 
+som vi ser i Fig.~[\ref{fig:prob}].
+\begin{figure}[h!]
+ \captionsetup{width=.8\linewidth}
+\centering
+\begin{tikzpicture}
+\begin{scope}
+\clip (-0.3,3.7) .. controls (2.3,0.9) and (3.1,3.9) .. (5.1,4) .. controls (6.5,4.1) and (6.5,3) .. (8.2,2)--(6,-1)--(-.3,-1)--cycle;
+\fill[pink] (0.5,0)node [below=5pt, black] {$a$}--(6,0)node [below=5pt, black] {$b$}--(6,5)--(0.5,5)--(0.5,0)--cycle ;
+\draw[thick, red, dashed] (0.5,0)--(0.5,5);
+\draw[thick, red, dashed] (6,0)--(6,5);
+\node at (3.2,1.5) {$\Huge P(a<x<b)$};
+\end{scope}
+\draw[thick, red] (-0.3,3.7) .. controls (2.3,0.9) and (3.1,3.9) .. (5.1,4) .. controls (6.5,4.1) and (6.5,3) .. (8.2,2)node[black, above=15pt,pos=.9]{$|\Psi(x, t)|^2$};
+\draw [thick, ->] (-.5,0)--(8.3,0) node[below]{$x$};
+\end{tikzpicture}
+\caption{\textit{Sannsynligheten for å finne en partikkel mellom $a$ og $b$.}}
+\label{fig:prob}
+\end{figure}
+
 For at vi skal kunne tolke $|\Psi(x,t)|^2$ som en sannsynlighetstetthet må vi kreve at 
 \begin{align}
 	 \int_{-\infty}^{\infty} |\Psi(x,t)|^2 dx = 1
@@ -162,16 +189,27 @@ nærliggende område.
  \captionsetup{width=.8\linewidth}
 \centering
 \begin{tikzpicture}
-\draw[black,  thick, ->] (-3,0) -- (-1,0)  node[] at (2, 0.75) {$j_x(b,t)<0$};
-\draw[black,  thick, ->] (3,0) -- (1,0)  node[] at (-2, 0.75) {$j_x(a,t)>0$};
+%\fill[pink] (-1.,-1)--(1,-1)--(1,4)--(-1,4)--cycle ;
+%\clip (-1.,1.2) .. controls (.2, 2.9) and (.7,1.2) .. (1.,2) -- (1, 4) -- (-1, 4);
+%\draw[thick, black] (-1.,1.2) .. controls (.2, 2.9) and (.7,1.2) .. (1.,2);
+\draw[blue,  thick, ->] (-3,2) -- (-1.1,2)  node[] at (-2, 2.75) {$j_x(a,t)>0$};
+\draw[red,  thick, ->] (3,2) -- (1.1,2)  node[] at (2, 2.75) {$j_x(b,t)<0$};
+\draw[red,  thick, <-] (-3,0) -- (-1.1,0)  node[] at (-2, 0.75) {$j_x(a,t)<0$};
+\draw[blue,  thick, <-] (3,0) -- (1.1,0)  node[] at (2, 0.75) {$j_x(b,t)>0$};
 \draw[black,  thick, ->] (-5,-1) -- (5,-1)  node[anchor=west]{$x$};
 \filldraw[black] (1,-1) circle (1pt) node[anchor=north]{$b$};
 \filldraw[black] (-1,-1) circle (1pt) node[anchor=north]{$a$};
+\draw[grey, dashed, thick] (-1,-1) -- (-1,3);
+\draw[grey, dashed, thick] (1,-1) -- (1,3);
+\node[] at (0, 3.6) {$P(a<x<b)$} ;
 \end{tikzpicture}
-\caption{\textit{sannsynlighetsstrømmen inn og ut av et område $[a,b]$ bestemmer hvordan 
+\caption{\textit{Sannsynlighetsstrømmen inn og ut av et område $[a,b]$ bestemmer hvordan 
 sannsynlighetstettheten endrer seg på intervallet. Hvis e.g. $j_x(b,t)$ er negativ 
-flyter sannsynlighetstrømmen inn i intervallet og det blir mer sannsynlig at partikkelen finnes der.
-Tilsvarende hvis $j_x(a,t)$ er positiv, da flyter sannsynlighetstrømmen inn i $[a,b]$.}}
+flyter sannsynlighetstrømmen inn i intervallet og det blir mer sannsynlig at partikkelen 
+finnes der.
+Tilsvarende hvis $j_x(a,t)$ er positiv, da flyter sannsynlighetstrømmen inn i $[a,b]$. 
+Tidsutviklingen til sannsynligheten for å finne partikkelen i $[a,b]$ $P(a<x<b)$ er dermed gitt av 
+sannsynlighetsstrommen.}}
 \label{fig:j_x}
 \end{figure}
 
@@ -253,14 +291,14 @@ Hvor vi nå også har en måte å finne forventningsverdien til bevegelsesmengde
 
 Vi har også i klassisk fysikk at 
 \begin{align}
-	 \frac{\partial p_x}{\partial t} = - V'(x)
+	F = \frac{\partial p_x}{\partial t} = - V'(x)
 \end{align}
 Hvilket betyr at vi også skulle forvente etter korrespondanseprinsippet å ha i kvantefysikken
 \begin{align}
 	 \frac{d \langle p_x \rangle }{d t} = - \big\langle \frac{d V}{d x}  \big\rangle
 \end{align}
 Dette og Lign.~[\ref{eq:ehrenfest}] kaller vi \textbf{Ehrenfest's teorem}. Selv om det strengt tatt bare 
-er to spesiall tilfeller av et mer generelt teorem.
+er to spesiall tilfeller av et mer generelt teorem. 
 
 \subsection{Heisenberg's uskarphetsrelasjon}
 Hvis vi ser for oss en bølge med en enkelt bølgelengde så kan vi lett måle bølgens bølgelengde 
@@ -269,6 +307,13 @@ På den andre siden kan vi se for oss en partikkel; den er er helt nøyaktig lok
 men vi kan ikke bestemme bølgelengden til partikkelen. Siden vi vet at bevegelsesmengden til 
 partikkelen er gitt ved  $p=\frac{h}{\lambda}$ har vi da at bevegelsesmengden ikke kan bestemmes 
 entydig. \\
+
+Dette leder til Heisenberg's berømte uskarphetsrelasjon som sier at vi ikke kan bestemme  
+posisjon og bevegelsesmengde helt nøyaktig samtidig. Dette gjelder på sett og vis 
+også for energi og tid.
+Dette er dog ikke et kvantefenomem, men et helt generelt fenomen som gjelder for all 
+bølgebevegelse, de rare konsekvensene vi får ifra uskarphetsrelasjonen er bare et resultat 
+av at vi beskriver partikler som sannsynlighetsbølger i kvantefysikken.
 
 Vi har sett at planbølger på formen 
 \begin{align}
