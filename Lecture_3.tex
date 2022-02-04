@@ -1,0 +1,90 @@
+\documentclass{article}
+
+\usepackage{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepackage{tikz}
+\usetikzlibrary{decorations.markings}
+
+\usepackage{subfig}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+
+\newcommand\greybox[1]{
+	\vskip\baselineskip
+	\par\noindent\colorbox{lightgray}{
+		\begin{minipage}{\textwidth}#1\end{minipage}
+	}
+	\vskip\baselineskip
+}
+
+\title{Forelesning 3}
+
+
+\begin{document}
+\maketitle
+
+
+\section{Den tidsuavhengige Schrödingerligningen}
+
+Vi skal nå i dette kapitellet massere S.L. litt slik at vi den blir enklere å jobbe med framover.
+Vi starter med å skille tids- og posisjons-avhengigeten fra hverandre.
+
+\subsection{Separasjon av variable}
+
+
+Vi har S.L. som 
+\begin{align}
+ - \frac{\hbar^2}{2m}\frac{\partial^2 \Psi(x,t)}{\partial x^2} + V(x) \Psi(x,t) 
+	= i\hbar \frac{\partial \Psi(x,t)}{\partial t} 
+\end{align}
+vi har allerede løst ligningen for tilfellet med $V(x)$, altså for en fri partikkel. Vi skal i 
+det følgende løse S.L. for ikke trivielle potensialer.
+Når vi antar (som vi nesten alltid gjør) at potensialet er tidsuavhengige ($V(x)=0$) 
+så kan vi bruke separasjon av variabler til å løse ligningen. Dette er noe vi ofte gjør 
+når vi kan skrive ligningen slik at all posisjons-avhengigeten til operatorene er på venstre og all 
+tids-avhengigeten på høyre side av lighetstegnet.
+
+Det gjøres ved å anta følgende Ansatz
+\begin{align}
+	 \Psi(x,t) = \psi(x)f(t)
+\end{align}
+dvs. vi antar at vi kan dekomponere bølgefunksjonen i en del som varierer som en funksjon av 
+posisjon og en del som funksjon av tid.
+Vi setter inn i S.L.
+\begin{align}
+ - \frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2} [\psi(x)f(t)] + V(x) \psi(x)f(t) 
+	&= i\hbar \frac{\partial }{\partial t} [\psi(x)f(t)] \\
+	\Rightarrow f(t)[-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2} \psi(x) + V(x) \psi(x)] 
+	&= \psi(x) i\hbar \frac{\partial }{\partial t} f(t) \\
+   \Rightarrow \frac{1}{\psi(x)} [-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2} \psi(x) 
+   + V(x) \psi(x)] &= \frac{i\hbar}{f(t)}  \frac{\partial }{\partial t} f(t) \\
+\end{align}
+Vi har nå fått ligningen på en form slik at tids of posisjons-avhengigeten er på hver sin side av 
+likhetstegnet. Den eneste måten at denne ligningen kan være oppfylt på helt generelt er om begge
+sidene er lik en konstant. Vi kaller denne konstant $E$ siden vi skal assosiere den med partikkelens
+energi, vi ser allerede at den må ha samme enhet som $V(x)$ som vi vet har enhet energi. Vi har  
+\begin{align}
+    \frac{1}{\psi(x)} [-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2} \psi(x) 
+   + V(x) \psi(x)] = E
+\end{align}
+og 
+\begin{align}
+	   \frac{i\hbar}{f(t)}  \frac{\partial }{\partial t} f(t) = E
+\end{align}
+Den tidsavhengige ligningen er her veldig grei å løse og trengs bare å løse en gang for alle $V(x)$.
+Vi har at 
+\begin{align}
+	 f(t) = f(0) e^{ -i \frac{Et}{\hbar} }
+\end{align}
+Vi absorberer $f(0)$ inn i $\psi(x)$, som vi normerer etterhvert uansett, og vi har at den tidsavhengige løsningen er 
+\begin{align}
+	 \Psi(x,t) = \psi(x)e^{-i \frac{Et}{\hbar}}
+\end{align}
+Så vi har nå redusert problemet til  å løse en ordinær differensialligning, hhilket er mye lettere 
+enn partielle differensialligninger.
+
+
+\end{document}
