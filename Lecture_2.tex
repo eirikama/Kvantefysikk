@@ -6,6 +6,7 @@
 \pgfplotsset{compat=newest}
 \usepackage{tikz}
 \usetikzlibrary{decorations.markings}
+\usetikzlibrary{patterns}
 
 \usepackage{subcaption}
 \usepackage[margin=2.5cm]{geometry}
@@ -199,8 +200,8 @@ nærliggende område.
 \draw[black,  thick, ->] (-5,-1) -- (5,-1)  node[anchor=west]{$x$};
 \filldraw[black] (1,-1) circle (1pt) node[anchor=north]{$b$};
 \filldraw[black] (-1,-1) circle (1pt) node[anchor=north]{$a$};
-\draw[grey, dashed, thick] (-1,-1) -- (-1,3);
-\draw[grey, dashed, thick] (1,-1) -- (1,3);
+\draw[gray, dashed, thick] (-1,-1) -- (-1,3);
+\draw[gray, dashed, thick] (1,-1) -- (1,3);
 \node[] at (0, 3.6) {$P(a<x<b)$} ;
 \end{tikzpicture}
 \caption{\textit{Sannsynlighetsstrømmen inn og ut av et område $[a,b]$ bestemmer hvordan 
@@ -742,7 +743,7 @@ hvor vi da må løse det litt vriene integralet. Vi skal gjøre dette ved å fø
 Vi bruker at $\omega = \hbar k^2 / 2m$ og kan vise at eksponentene i de to uttrykkene er 
 ekvivalente
 \begin{align}
-	 & i(k_0 - \omega_0) - (k - k_0)^2(\frac{\sigma^2}{2} + \frac{it\hbar}{2m}) + i(k-k_0)(x - \frac{k_0\hbarr t}{m}) \\
+	 & i(k_0 - \omega_0) - (k - k_0)^2(\frac{\sigma^2}{2} + \frac{it\hbar}{2m}) + i(k-k_0)(x - \frac{k_0\hbar t}{m}) \\
 	= & i(k_0x - \omega_0t) - k^2  \frac{it\hbar}{2m} + 2kk_0 \frac{it\hbar}{2m} - k_0^2 \frac{it\hbar}{2m} - (k-k_0)^2\frac{\sigma^2}{2} + i(k-k_0)x - \frac{ik k_0 \hbar t}{m} + \frac{ik_0^2 \hbar t}{m}	 \\ 
 	= & i(k_0x - \omega_0t) - i\omega t + 2kk_0 \frac{it\hbar}{2m} - i\omega_0 t - (k-k_0)^2\frac{\sigma^2}{2} + i(k-k_0)x - \frac{ik k_0 \hbar t}{m}  + 2i\omega_0 t \\ 
 	= & -(k-k_0)^2\frac{\sigma^2}{2} + i(kx-\omega t) 
@@ -755,7 +756,7 @@ Som er det vi ville vise. Videre gjøre vi de følgende variabel-substitusjonene
 \end{align}
 som gir oss
 \begin{align}
-	 \psi(x,t) = \frac{\sqrt{\sigma} }{\sqrt{2\pi^{\frac{3}{2}}} } e^{i(k_0x - \omega_0t)} 
+	 \Psi(x,t) = \frac{\sqrt{\sigma} }{\sqrt{2\pi^{\frac{3}{2}}} } e^{i(k_0x - \omega_0t)} 
 	\int_{-\infty}^{\infty} e^{-(\frac{y}{a})^2}e^{iyb}dy
 \end{align}
 Vi kan nå utnytte det følgende kjente integral
@@ -781,31 +782,32 @@ Vi bruker nå at vi har at
 \end{align}
 og vi har nå funnet uttrykket for den tidsavhengige bølgefunksjon
 \begin{align}
-	 \psi(x,t) &= \frac{\sqrt{\sigma}}{\sqrt{2}\pi^{\frac{3}{2}}} e^{i(k_0x - \omega_0 t)} \sqrt{\pi}
+	 \Psi(x,t) &= \frac{\sqrt{\sigma}}{\sqrt{2}\pi^{\frac{3}{2}}} e^{i(k_0x - \omega_0 t)} \sqrt{\pi}
 	\frac{1}{\sqrt{\frac{\sigma ^2}{2} + 
-	\frac{i\hbar t}{2m}} }e^{-\frac{1}{4}\frac{(x-\frac{k_0 t}{m})^2}{\frac{\sigma^2}{2} + \frac{i\hbar t}{2m}} } \\ 
+	\frac{i\hbar t}{2m}} }e^{-\frac{1}{4}\frac{(x-\frac{k_0 \hbar t}{m})^2}{\frac{\sigma^2}{2} + \frac{i\hbar t}{2m}} } \\ 
 	&= \frac{\sqrt{\sigma}}{\sqrt{\sigma ^2 + \frac{i\hbar t}{m}} \sqrt{\pi}} 
-	e^{i(k_0x - \omega_0 t)} e^{-\frac{1}{2}\frac{(x-\frac{k_0 t}{m})^2}{\sigma^2 + \frac{i\hbar t}{m}}}
+	e^{i(k_0x - \omega_0 t)} e^{-\frac{1}{2}\frac{(x-\frac{k_0 \hbar t}{m})^2}{\sigma^2 + \frac{i\hbar t}{m}}}
 \end{align}
 Vi kan også finne absolutt kvadratet
 \begin{align}
-	 |\psi(x,t)|^2 &= \frac{\sigma}{\sqrt{(\sigma^2 + \frac{i\hbar t}{m})(\sigma^2-\frac{i\hbar t}{m})} \sqrt{\pi}} 
-	e^{-\frac{1}{2}\frac{(x-\frac{k_0 t}{m})^2}{\sigma^2 + \frac{i\hbar t}{m}}}  
-	e^{-\frac{1}{2}\frac{(x-\frac{k_0 t}{m})^2}{\sigma^2 - \frac{i\hbar t}{m}}} \\ 
+  |\Psi(x,t)|^2 &= \frac{\sigma}{\sqrt{(\sigma^2 +
+  	\frac{i\hbar t}{m})(\sigma^2-\frac{i\hbar t}{m})} \sqrt{\pi}} 
+	e^{-\frac{1}{2}\frac{(x-\frac{k_0 \hbar t}{m})^2}{\sigma^2 + \frac{i\hbar t}{m}}}  
+	e^{-\frac{1}{2}\frac{(x-\frac{k_0 \hbar t}{m})^2}{\sigma^2 - \frac{i\hbar t}{m}}} \\ 
 &= \frac{1}{\sqrt{\sigma^4 + \frac{\hbar t^2}{\sigma^2m^2}} \sqrt{\pi}} 
-	e^{-\frac{(x-\frac{k_0 t}{m})^2}{\sigma^2 + \frac{\hbar^2 t^2}{\sigma^2m^2}}}  
+	e^{-\frac{(x-\frac{k_0 \hbar t}{m})^2}{\sigma^2 + \frac{\hbar^2 t^2}{\sigma^2m^2}}}  
 \end{align}
 Vi ser at vi som forventet har at 
 \begin{align}
-	 |\psi(x, t=0)|^2 = \frac{1}{\sqrt{\pi} \sigma}e^{-\frac{x^2}{\sigma^2}}
+	 |\Psi(x, t=0)|^2 = \frac{1}{\sqrt{\pi} \sigma}e^{-\frac{x^2}{\sigma^2}}
 \end{align}
 Ved tid $t=0$ er den tidsavhegige bølgepakken lik den stasjonære. 
 Uskarpheten må derfor også være den samme ved $t=0$
 \begin{align}
 	 \Delta x(t=0)^2 = \frac{\hbar}{2}
 \end{align}
-Vi kan finne hvordan uskarpheten utvikler seg i tid ved hjelp av stndard formler for definisjonen
-av uskarphet.
+Vi kan finne hvordan uskarpheten utvikler seg i tid ved hjelp av standard formler for definisjonen
+av uskarphet, dvs. ed å beregne forventningsverdiene for $x$, $x^2$, $p$ og $p^2$.
 Men vi kan også se på hvordan uttrykkene forandrer seg fra stasjonær til tidsavhengig bølgepakke,
 hvor vi essensialt gjør følgende variabel-bytte
 \begin{align}
@@ -821,7 +823,7 @@ Uskarpheten i bevegelsesmengde hadde vi opprinnelig som
 \end{align}
 og hvis vi ser på bølgepakken in bevegelsesmengde-rommet
 \begin{align}
-	 \psi(x, t) = \frac{\sqrt{\sigma}}{\sqrt{2\pi^{\frac{3}{2}}}}  
+	 \Psi(x, t) = \frac{\sqrt{\sigma}}{\sqrt{2\pi^{\frac{3}{2}}}}  
 	\int_{-\infty}^{\infty} e^{-(k-k_0)^2\frac{\sigma^2}{2}}
 	e^{i(kx - \omega t)} dk
 \end{align}
