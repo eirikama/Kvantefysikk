@@ -298,9 +298,54 @@ Hvilket betyr at vi også skulle forvente etter korrespondanseprinsippet å ha i
 \begin{align}
 	 \frac{d \langle p_x \rangle }{d t} = - \big\langle \frac{d V}{d x}  \big\rangle
 \end{align}
-Dette og Lign.~[\ref{eq:ehrenfest}] kaller vi \textbf{Ehrenfest's teorem}. Selv om det strengt tatt bare 
-er to spesiall tilfeller av et mer generelt teorem. 
-
+Dette og Lign.~[\ref{eq:ehrenfest}] kaller vi \textbf{Ehrenfest's teorem}.
+Selv om det strengt tatt bare er to spesiall tilfeller av et mer generelt teorem. 
+Vi kan nå vise at også andre del av Ehrenfest's teorem holder, og vi ser på
+\begin{align}
+	 \frac{\partial \langle p \rangle}{\partial t} &= \frac{\partial}{\partial t}  
+  \int_{-\infty}^{\infty}  \psi^* (-i\hbar\frac{\partial }{\partial x}) \psi dx \\
+   &=  -i\hbar \int_{-\infty}^{\infty}  ( \frac{\partial}{\partial t} \psi^*)
+	\frac{\partial }{\partial x} \psi +  \psi^*
+	\frac{\partial }{\partial x} ( \frac{\partial}{\partial t} \psi ) dx
+\end{align}
+Vi bruker nå S.L. og dens kompleks konjugerte
+\begin{align}
+	 i\hbar \frac{\partial \psi}{\partial t}  
+	&= \frac{-\hbar^2}{2m} \frac{\partial^2 \psi}{\partial x^2} + V\psi \\
+	 -i\hbar \frac{\partial \psi^*}{\partial t} 
+	&= \frac{-\hbar^2}{2m} \frac{\partial^2 \psi^*}{\partial x^2}  + V\psi^* 
+\end{align}
+som vi setter inn i uttrykket for forventningsverdien for bevegelsesmengden. Dereter løser 
+vi integralene ved hjelp av delvis integrasjon mange ganger, 
+hvor my bruker at $\psi \to 0$ når $|x|\to\infty$ i integrasjonsgrensene
+\begin{align}
+ \frac{\partial \langle p \rangle}{\partial t}   
+   &= \int_{-\infty}^{\infty}  
+   ( \frac{-\hbar^2}{2m} \frac{\partial^2 \psi^*}{\partial x^2}  + V\psi^*) 
+   \frac{\partial \psi}{\partial x}  +  \psi^* \frac{\partial }{\partial x} 
+   (\frac{\hbar^2}{2m} \frac{\partial^2 \psi}{\partial x^2}  - V\psi) dx \\
+   &= \int_{-\infty}^{\infty}  
+   ( \frac{-\hbar^2}{2m} \frac{\partial^2 \psi^*}{\partial x^2}  + V\psi^*) 
+   \frac{\partial \psi}{\partial x}  +  \frac{\partial \psi^*}{\partial x}
+(\frac{\hbar^2}{2m} \frac{\partial^2 \psi}{\partial x^2}  - V\psi) dx \\
+   &= \int_{-\infty}^{\infty}  
+   ( \frac{-\hbar^2}{2m} \frac{\partial^2 \psi^*}{\partial x^2} \frac{\partial \psi }{\partial x} 
+   -   \frac{\hbar^2}{2m} \frac{\partial \psi^*}{\partial x} \frac{\partial^2 \psi}{\partial x^2}  
+  + \frac{\partial \psi^*}{\partial x}V\psi + V\psi^* \frac{\partial \psi }{\partial x}  ) dx \\
+   &= \int_{-\infty}^{\infty}  
+   ( \frac{-\hbar^2}{2m} \frac{\partial^2 \psi^*}{\partial x^2} \frac{\partial \psi }{\partial x} 
+ + \frac{\hbar^2}{2m} \frac{\partial^2 \psi^*}{\partial x^2} \frac{\partial \psi}{\partial x}  
+  + \frac{\partial \psi^*}{\partial x}V\psi + V\psi^* \frac{\partial \psi }{\partial x}  ) dx \\
+   &= \int_{-\infty}^{\infty}  
+   (\frac{\partial \psi^*}{\partial x}V\psi + V\psi^* \frac{\partial \psi }{\partial x}  ) dx \\
+   &= \int_{-\infty}^{\infty}  
+   (\frac{\partial \psi^*}{\partial x}V\psi - \frac{\partial V \psi^*}{\partial x} \psi  ) dx \\
+   &= \int_{-\infty}^{\infty}  
+   (\frac{\partial \psi^*}{\partial x}V\psi - \frac{\partial V }{\partial x} \psi^* \psi -
+   \frac{\partial \psi^* }{\partial x}V \psi) dx \\
+   &= \int_{-\infty}^{\infty} - \frac{\partial V }{\partial x} |\psi|^2 dx \\
+   &= \langle - \frac{\partial V }{\partial x}  \rangle
+\end{align}
 \subsection{Kvalitativt om Heisenberg's uskarphetsrelasjon}
 
 \begin{figure}[h!]
@@ -732,13 +777,13 @@ Vi skal nå finne den tidsavhengige bølgefunksjon
 \begin{align}
 	 \Psi(x, t) = \frac{\sqrt{\sigma}}{\sqrt{2\pi^{\frac{3}{2}}}}  
 	\int_{-\infty}^{\infty} e^{-(k-k_0)^2\frac{\sigma^2}{2}}
-	e^{i(kx - \omega t)} dx
+	e^{i(kx - \omega t)} dk
 \end{align}
 hvor vi da må løse det litt vriene integralet. Vi skal gjøre dette ved å først vise at vi kan skrive det om til
 \begin{align}
 	 \Psi(x, t) = \frac{\sqrt{\sigma}}{\sqrt{2\pi^{\frac{3}{2}}}} e^{i(k_0 x - \omega_0 t)} 
 	\int_{-\infty}^{\infty} e^{-(k-k_0)^2(\frac{\sigma^2}{2} + \frac{it\hbar}{2m})}
-	e^{i(k-k_0)(x - \frac{k_0\hbar t}{m})} dx
+	e^{i(k-k_0)(x - \frac{k_0\hbar t}{m})} dk
 \end{align}
 Vi bruker at $\omega = \hbar k^2 / 2m$ og kan vise at eksponentene i de to uttrykkene er 
 ekvivalente
@@ -763,7 +808,7 @@ Vi kan nå utnytte det følgende kjente integral
 \begin{align}
 	 \int_{-\infty}^{\infty} e^{-(x - i \Lambda)^2} dx = \sqrt{\pi} 
 \end{align}
-Vi kan da bruke dette resultatet og introdusere en ny variabel $y=ax$ og definere en ny konstant
+Vi kan da bruke dette resultatet og introdusere en ny variabel $y=ax$ og definere $\Lambda$ slik at
 $b = \frac{2\Lambda}{a}$. Dette gir da
 \begin{align}
 	\int_{-\infty}^{\infty} e^{-(x - i \Lambda)^2} dx
