@@ -431,12 +431,17 @@ den består av.
 
 Begge de to nevnte eksemplene kan forklares ved Fourier-teori, hvor vi har at alle (eller 
 i hvert fall de aller fleste) funksjoner kan dekomponeres som en sum av sinus og cosinus kurver.
-Vi har da funksjon $f(x)$ definert på et intervall av lengde $L$ kan approkismeres arbitrært godt med 
+Vi har da funksjon $f(x)$ periodisk på et intervall av lengde $L$ 
+kan approkismeres arbitrært godt med 
 \begin{align}
 	 f_N(x) = \frac{a_0}{2} \sum_{n=-N}^{N} \Big( a_n \cos(\frac{2\pi}{L} nx ) +
 	b_n \sin(\frac{2\pi}{L} nx )     \Big)
 \end{align}
-
+For en generell funksjon $f(x)$ har vi Fourier-transformerte $ \hat{f}(k)$ gitt ved
+\begin{align}
+	 f(x) = \int_{-\infty}^{\infty} \hat{f}(k) e^{2\pi i kx} dk \\
+	 \hat{f}(k) = \int_{-\infty}^{\infty} f(x) e^{-2\pi i kx} dx
+\end{align}
 Dvs. at det tyder på at vi enten kan bestemme bølgelengde skarpt eller vi kan bestemme posisjonen
 skarpt. Vi kan også trekke denne analogen til partikler også, hvor vi da ikke kan bestemme 
 bølgelengde og posisjon skarpt samtidig. 
@@ -725,12 +730,12 @@ Vi kan nå se på uskarpheten for bølgepakken. Vi starter med posisjonen
          &= 0
 \end{align}
 hvor vi har brukt at integranden er asymmetrisk, siden $x$ er asymmetrisk og 
-$e^{ \frac{x^2}{\sigma^2}}$ er symmetriks på et symmetrisk intervall om $0$.
+$e^{ \frac{x^2}{\sigma^2}}$ er symmetrisk på et symmetrisk intervall om $0$.
 Videre har vi 
 \begin{align}
     \langle x^2 \rangle &= \frac{1}{\sqrt{\pi}\sigma } \int_{-\infty}^{\infty} x^2 
                      e^{-\frac{x^2}{\sigma^2}} dx \\
-         &= \frac{1}{\sqrt{\pi}\sigma }  \frac{\sqrt{\pi} \sigma^{3}}{2} \\
+         &= \frac{1}{\sqrt{\pi}\sigma }  \frac{\sqrt{\pi} (\sigma^{-2})^{-\frac{3}{2}}}{2} \\
          &=  \frac{\sigma^{2}}{2}
 \end{align}
 Hvor vi brukte det kjente integralet 
@@ -740,30 +745,57 @@ Hvor vi brukte det kjente integralet
 Vi regner nå ut forventningsverdien til bevegelsesmengden som vi vet hvordan man 
 beregner takket være Ehrenfest's teorem
 \begin{align}
-\langle p \rangle &= \frac{1}{\sqrt{\pi}\sigma } \int_{-\infty}^{\infty}e^{-\frac{x^2}{2\sigma^2}}
-  \Big(\frac{\hbar}{i}\frac{\partial }{\partial x} \Big) e^{-\frac{x^2}{2\sigma^2}} dx \\
- &= \frac{i\hbar}{\sqrt{\pi}\sigma } \int_{-\infty}^{\infty}e^{-\frac{x^2}{2\sigma^2}}
-   \frac{x}{\sigma^2} e^{-\frac{x^2}{2\sigma^2}} dx \\
- &= \frac{i\hbar}{\sqrt{\pi}\sigma^3 } \int_{-\infty}^{\infty} x e^{-\frac{x^2}{\sigma^2}} dx \\
- &= 0
+\langle p \rangle 
+&= \frac{1}{\sqrt{\pi}\sigma }  \int_{-\infty}^{\infty}
+e^{-\frac{x^2}{2\sigma^2}}e^{-ik_0x}
+  \Big(\frac{\hbar}{i}\frac{\partial }{\partial x} \Big) e^{ik_0x}e^{-\frac{x^2}{2\sigma^2}} dx \\
+ &= -\frac{i\hbar}{\sqrt{\pi}\sigma } \int_{-\infty}^{\infty}e^{-\frac{x^2}{2\sigma^2}}e^{i_0kx}
+ (ik_0 - \frac{x}{\sigma^2})e^{-ik_0x} e^{-\frac{x^2}{2\sigma^2}} dx \\
+ &= -\frac{i\hbar}{\sqrt{\pi}\sigma } \int_{-\infty}^{\infty} 
+ (ik_0 - \frac{x}{\sigma^2}) e^{-\frac{x^2}{\sigma^2}} dx \\
+ &= \frac{\hbar k_0}{\sqrt{\pi}\sigma } \int_{-\infty}^{\infty}  e^{-\frac{x^2}{\sigma^2}} dx \\
+ &= \hbar k_0
+\end{align}
+hvor vi har brukt 
+\begin{align}
+	 \int_{-\infty}^{\infty} e^{-\beta x^2}dx = \sqrt{\frac{\pi}{\beta}}
 \end{align}
 Til sist beregner vi 
 \begin{align}
-\langle p^2\rangle &= \frac{1}{\sqrt{\pi}\sigma} \int_{-\infty}^{\infty}e^{-\frac{x^2}{2\sigma^2}}
-  \Big(\frac{\hbar}{i}\frac{\partial }{\partial x} \Big)^2 e^{-\frac{x^2}{2\sigma^2}} dx \\
- &= \frac{\hbar^2}{\sqrt{\pi}\sigma } \int_{-\infty}^{\infty}e^{-\frac{x^2}{2\sigma^2}}
-  \frac{\partial }{\partial x} \big( \frac{x}{2\sigma^2} e^{-\frac{x^2}{2\sigma^2}} \Big) dx \\
- &= \frac{\hbar^2}{2\sqrt{\pi}\sigma^3 } \int_{-\infty}^{\infty}e^{-\frac{x^2}{2\sigma^2}}
-  \Big(1 + \frac{x}{2\sigma^2} \Big)e^{-\frac{x^2}{2\sigma^2}} dx \\
- &= \frac{\hbar^2}{2\sqrt{\pi}\sigma^3 } \int_{-\infty}^{\infty}e^{-\frac{x^2}{\sigma^2}}dx \\
- &= \frac{\hbar^2}{2\sqrt{\pi}\sigma^3 } \sigma \int_{-\infty}^{\infty}e^{-x'^2}dx' \\
- &= \frac{\hbar^2}{2\sigma^2 } 
+\langle p^2\rangle 
+&= \frac{1}{\sqrt{\pi}\sigma }  \int_{-\infty}^{\infty} e^{-\frac{x^2}{2\sigma^2}}e^{-ik_0x}
+\Big(\frac{\hbar}{i}\frac{\partial }{\partial x} \Big)^2 e^{ik_0x}e^{-\frac{x^2}{2\sigma^2}} dx \\
+&= -\frac{\hbar^2}{\sqrt{\pi}\sigma }  \int_{-\infty}^{\infty} e^{-\frac{x^2}{2\sigma^2}}e^{-ik_0x}
+\frac{\partial^2}{\partial x^2} \Big(e^{ik_0x}e^{-\frac{x^2}{2\sigma^2}} \Big) dx \\
+ &= -\frac{\hbar^2}{\sqrt{\pi}\sigma } \int_{-\infty}^{\infty}e^{-\frac{x^2}{2\sigma^2}}e^{i_0kx}
+ \frac{\partial}{\partial x}\Big((ik_0 - \frac{x}{\sigma^2})e^{-ik_0x} 
+	 e^{-\frac{x^2}{2\sigma^2}} \Big) dx \\
+ &= -\frac{\hbar^2}{\sqrt{\pi}\sigma } \int_{-\infty}^{\infty}e^{-\frac{x^2}{2\sigma^2}}e^{i_0kx}
+ \Big( - \frac{1}{\sigma^2} + (ik_0 - \frac{x}{\sigma^2})^2 \Big) e^{-ik_0x} 
+ e^{-\frac{x^2}{2\sigma^2}} dx \\
+ &= -\frac{\hbar^2}{\sqrt{\pi}\sigma } \int_{-\infty}^{\infty}
+ \Big( - \frac{1}{\sigma^2} - k_0^2  - \frac{2ik_0x}{\sigma^2} + \frac{x^2}{\sigma^4} \Big) 
+ e^{-\frac{x^2}{\sigma^2}} dx \\
+ &= -\frac{\hbar^2}{\sqrt{\pi}\sigma } 
+ \Big\{ ( - \frac{1}{\sigma^2} - k_0^2 ) \int_{-\infty}^{\infty} e^{-\frac{x^2}{\sigma^2}} dx
+ -  \frac{2ik_0}{\sigma^2} \int_{-\infty}^{\infty} x e^{-\frac{x^2}{\sigma^2}} dx 
+ + \frac{1}{\sigma^4} \int_{-\infty}^{\infty} x^2  e^{-\frac{x^2}{\sigma^2}} dx \Big\} \\
+ &= -\frac{\hbar^2}{\sqrt{\pi}\sigma } 
+ \Big\{ ( - \frac{1}{\sigma^2} - k_0^2 ) \sqrt{\pi} \sigma
+ + \frac{1}{\sigma^4} \frac{\sqrt{\pi} \sigma^3}{2}  \Big\} \\
+ &= \frac{\hbar^2}{\sigma^2} + \hbar^2 k_0^2  - \frac{\hbar^2}{2\sigma^2} \\
+ &= \frac{\hbar^2}{2\sigma^2} + \hbar^2 k_0^2  
 \end{align}
-Vi har at 
+Vi har da at 
 \begin{align}
-	(\Delta x)^2 (\Delta p)^2 &= (\langle p^2\rangle - \langle p\rangle^2)
-   (\langle x^2\rangle -\langle x\rangle^2 ) \\
-   &= \frac{\hbar^2}{4}
+	 (\Delta x)^2 &= \langle x^2\rangle - \langle x\rangle^2  \\
+		&= \frac{\sigma^2}{2}\\
+	 (\Delta p_x)^2 &= \langle p_x^2\rangle - \langle p_x\rangle^2 \\
+			&= \frac{\hbar^2}{2\sigma^2}
+\end{align}
+Hvilket gir
+\begin{align}
+	(\Delta x)^2 (\Delta p)^2 = \frac{\hbar^2}{4}
 \end{align}
 Dvs. vi har funnet at bølgepakken er helt på grensen av det som er tillatt ved Heisenberg's 
 uskarphetsrelasjon. Bølgepakken er maksimalt uskarp, siden vi har
@@ -839,7 +871,7 @@ Vi kan også finne absolutt kvadratet
   	\frac{i\hbar t}{m})(\sigma^2-\frac{i\hbar t}{m})} \sqrt{\pi}} 
 	e^{-\frac{1}{2}\frac{(x-\frac{k_0 \hbar t}{m})^2}{\sigma^2 + \frac{i\hbar t}{m}}}  
 	e^{-\frac{1}{2}\frac{(x-\frac{k_0 \hbar t}{m})^2}{\sigma^2 - \frac{i\hbar t}{m}}} \\ 
-&= \frac{1}{\sqrt{\sigma^4 + \frac{\hbar t^2}{\sigma^2m^2}} \sqrt{\pi}} 
+&= \frac{1}{\sqrt{\sigma^2 + \frac{\hbar t^2}{\sigma^2m^2}} \sqrt{\pi}} 
 	e^{-\frac{(x-\frac{k_0 \hbar t}{m})^2}{\sigma^2 + \frac{\hbar^2 t^2}{\sigma^2m^2}}}  
 \end{align}
 Vi ser at vi som forventet har at 

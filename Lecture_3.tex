@@ -155,7 +155,7 @@ Vi kan bestemmer konstanten $A_n$ fra normaliseringskravet som
 	1 &= \int_{-\infty}^{\infty} |\psi(x)|^2 dx \\
 	  &= \int_{0}^{L} |A_n|^2 \sin^2( \frac{n\pi x}{L}) dx \\
 	  &= |A_n|^2 \int_{0}^{L} \big( 1  - \cos( \frac{2n\pi x}{L}) \big) dx \\
-	  &= |A_n|^2  \Big[ x  - \frac{L}{2n\pi} \sin( \frac{2n\pi x}{L}) \Big]_0^L dx
+	  &= |A_n|^2  \Big[ x  - \frac{L}{2n\pi} \sin( \frac{2n\pi x}{L}) \Big]_0^L dx \\
 	  &= |A_n|^2  \frac{L}{2}
 \end{align}
 Vi velger nå fasen til amplituden til å være reel, hvilket gir oss konstanten som 
@@ -327,7 +327,7 @@ være større, hvilket også tillater at energien er større.
         \label{fig:bølger}
 \end{figure}
 
-\subsection{Tidsavhengighet}
+\subsubsection{Tidsavhengighet}
 Vi ser at om en partikkel er i en av de stasjonære tilstandene så er sannsynlighetstettheten
 uavhengig av tid, og partikkelen beveger seg ikke. Partikkelen har ingen bestemt posisjon
 men sannsynligheten for å finne partikkelen på forskjellige steder er konstant i tid.
@@ -368,12 +368,13 @@ Hvis vi derimot ser for oss at partikkelen er i superposisjon av stasjonære til
  \end{align}
 hvor vi har $c_n(t) = c_n e^{-i \frac{E_n t}{\hbar}}$. 
 
-Vi skal nå vise at settet av alle stasjonære tilstander $\{\psi_n(x)\}$ utgjør 
+Vi skal nå se at settet av alle stasjonære tilstander $\{\psi_n(x)\}$ utgjør 
 et \textbf{ortonormalt sett}, dvs at de er ortogonale og normalisert. Dette er analogt med 
-enhetsvektorene $ \hat{i}_x$, $ \hat{i}_y$ og $ \hat{i}_z$ som vi kjenner fra $\mathbb{R}^3$, 
+enhetsvektorene $ \mathbf{\hat{i}}_x$, $ \mathbf{\hat{i}}_y$ og $ \mathbf{\hat{i}}_z$ 
+som vi kjenner fra $\mathbb{R}^3$, 
 som vi vet er ortonormale mhp. et indreprodukt som vi kjenner som prikk-produktet. Dvs. vi har
 \begin{align}
-	 \hat{i}_i \cdot \hat{i}_j = \delta_{i, j} \hspace{0.5cm} \forall i,j \in [x, y, z]
+\mathbf{\hat{i}}_i \cdot \mathbf{\hat{i}}_j = \delta_{i,j}\hspace{0.5cm} \forall i,j \in [x, y, z]
 \end{align}
 hvor vi har Kroenecker-deltaet som 
 \begin{align}
@@ -387,12 +388,60 @@ på hverandre i rommet.
 
 Tilsvarende har vi for de stasjonære tilstandene
 \begin{align}
-	\int_{-\infty}^{\infty} \psi_n(x)\psi_m^*(x) dx = 
+	\int_{-\infty}^{\infty} \psi^*_n(x)\psi_m(x) dx = 
 	\delta_{n, m} \hspace{0.5cm} \forall n,m \in \mathbb{N}_+
 \end{align}
 Her har vi at indreprodukt ikke er prikk-produktet, men integralet over hele domenet av den 
 ene bølgefunksjonen multiplisert med den kompleks konjugerte av den andre.
-
+I tillegg er de stasjonære tilstandene $\psi_n$ \textbf{komplette},
+dvs alle mulige tilstander (bølgefunksjoner) kan uttrykkes som en linearkombinasjon av de.
+Altså kan alle mulige bølgefunksjoner skrives som
+\begin{align}
+	 \psi = \sum_{n=1}^{\infty} c_n\psi_n
+\end{align}
+Dette er i anologi med enhetsvektorene $ \mathbf{\hat{i}}_x$, $ \mathbf{\hat{i}}_y$ 
+og $ \mathbf{\hat{i}}_z$,
+hvor vi vet at enhver vektor i $\mathbb{R}^3$ kan skrives på formen 
+\begin{align}
+	\mathbf{v} = v_x \mathbf{\hat{i}}_x + v_y \mathbf{\hat{i}}_y + v_z \mathbf{\hat{i}}_z
+\end{align}
+hvor vi også kan finne vekten/komponenten til en av enhetsvektorene som
+\begin{align}
+v_i = \mathbf{\hat{i}}_i \cdot \mathbf{v} \hspace{0.5cm} \forall i,j \in [x, y, z]
+\end{align}
+altså ved å ta indreprodukt av vektoren med den vektoren i linearkombinasjon som vi vil finne 
+vekten til.
+Dette fungerer på samme måte for de stasjonære tilstandene, men vi har et annet indre produkt. 
+Vi må her multiplisere bølgefunksjonen med den kompleks konjugerte av den stasjonære tilstanden 
+som vi vil finne vekten til og integrere som 
+\begin{align}
+	 \int_{-\infty}^{\infty} \psi_n^* \psi \;dx
+	&= \int_{-\infty}^{\infty} \psi_n^* \sum_{m=1}^{\infty} c_m \psi_m \;dx \\
+	&= \sum_{m=1}^{\infty} c_m  \int_{-\infty}^{\infty} \psi_n^*\psi_m \;dx \\
+	&= \sum_{m=1}^{\infty}   c_m \delta_{m, n}  \\
+	&= c_n 
+\end{align}
+Koeffisientene $c_n$ spiller en veldig viktig rolle i kvantemekanikk, og vi har at for 
+normaliserte bølgefunksjoner 
+\begin{align}
+  1 &= \int_{-\infty}^{\infty} |\psi|^2 dx \\
+  &= \int_{-\infty}^{\infty}\sum_{m=1}^{\infty} c_m^*\psi^*_m \sum_{n=1}^{\infty} c_n\psi_n dx \\
+  &= \sum_{m=1}^{\infty} \sum_{n=1}^{\infty} c_m^* c_n \int_{-\infty}^{\infty} \psi^*_m \psi_n dx\\
+  &= \sum_{m=1}^{\infty} \sum_{n=1}^{\infty} c_m^* c_n \delta_{m,n} \\
+  &= \sum_{m=1}^{\infty} |c_m|^2
+\end{align}
+hvor viser at kvadratet av koeffisientene summerer til en. Dette lokker på en tolkning av 
+koeffisientene som sannsynligheter 
+\begin{align}
+	 |c_n|^2 = P_n
+\end{align}
+hvor de gir sannsynligheten for å måle at en partikkel har energien $E_n$ som er assosiert med 
+den stasjonære tilstanden $\psi_n$.
+Vi har da at de eneste tillatte verdiene vi kan måle for energien er $\{E_n\}$ og sannsynligheten 
+for å måle $E_n$ er gitt som $|c_n|^2$, hvilket gir forventningsverdien som 
+\begin{align}
+	 \langle E \rangle = \sum_{n=1}^{\infty} |c_n|^2 E_n
+\end{align}
 
 
 \end{document}
