@@ -186,8 +186,8 @@ Vi skriver om litt slik at vi har
 \end{align}
 Videre definerer vi 
 \begin{align}
-	 \xi_0 &= \frac{ka}{2} \\ 
-	\xi &= \frac{a}{2} \frac{\sqrt{mV_0}}{\hbar}
+	\xi_0 &= \frac{a}{2} \frac{\sqrt{mV_0}}{\hbar} \\
+	\xi &= \frac{ka}{2} = \frac{a}{2} \frac{\sqrt{2mE}}{\hbar}
 \end{align}
 slik at vi får \ref{eq:AB_1_start} på formen
 \begin{align}
@@ -221,8 +221,510 @@ Slik at vi får \ref{eq:AB_1_start} på formen
 når vi igjen innfører $\xi$ og $\xi_0$.
 Lign. \ref{eq:trans_s} og \ref{eq:trans_as} er transcendentale ligninger som vi kan bruke til å 
 bestemme energinivåene.
+Disse transcendentale ligningene kan vi enten løse numerisk eller plotte de og se 
+på de grafisk som i Fig.~[\ref{fig:trans}].
+
+\begin{figure}[h!]
+     \centering
+     \begin{subfigure}[b]{0.4\linewidth}
+       \centering
+	\begin{tikzpicture}
+	  \begin{axis}%
+	    [
+	     xlabel=$x$,
+	     ylabel=$y$,
+	     axis lines=middle,
+	     restrict y to domain=0:5.,
+	     enlargelimits={abs=.3}
+	    ]
+	\addplot+[mark=none, 
+	    domain=4.2:6.5,
+	    samples=350,
+	    draw=blue!70,
+	    area legend] {-cot(deg(x))}  ;
+	    \node [above, color=blue!70] at (5.3, 4.) {$-\cot(\xi)$};
+	\addplot+[mark=none, 
+	    domain=1.8:3.5,
+	    samples=350,
+	    draw=blue!70,
+	    area legend] {-cot(deg(x))}  ;
+	    \node [above, color=red!70] at (3, 0.6) {};
+	\addplot+[mark=none, 
+	    domain=0:7,
+	    samples=350,
+	    draw=red!70,
+	    area legend] {sqrt(10 - x^2)/x}  ;
+	    \node [above, color=red!70] at (3, 0.6) {};
+	\addplot+[mark=none, 
+	    domain=0:7,
+	    samples=350,
+	    draw=red!70,
+	    area legend] {sqrt(30 - x^2)/x}  ;
+	    \node [above, color=red!70] at (3, 0.6) {};
+	\addplot+[mark=none, 
+	    domain=0:7,
+	    samples=350,
+	    draw=red!70,
+	    area legend] {sqrt(70 - x^2)/x}  ;
+	    \node [above, color=red!70] at (3, 0.6) {};
+	\addplot+[mark=none, 
+	    domain=0:7,
+	    samples=950,
+	    draw=red!70,
+	    area legend] {sqrt(120 - x^2)/x}  ;
+	    \node [above, color=red!70] at (4, 3.) {$ \frac{\sqrt{\xi_0^2 - \xi^2}}{\xi}$};
+	\addplot+[mark=none, 
+	    domain=0:7,
+	    samples=350,
+	    draw=red!70,
+	    area legend] {sqrt(2 - x^2)/x}  ;
+	    \node [above, color=red!70] at (3, 0.6) {};  \end{axis}
+	\end{tikzpicture}
+         \label{fig:cos}
+     \end{subfigure}
+     \hspace{3cm}
+     \begin{subfigure}[b]{0.4\linewidth}
+         \centering
+	\begin{tikzpicture}
+	\begin{axis}%
+	[
+	xlabel=$\xi$,
+	axis lines=middle,
+	restrict y to domain=0.1:5.,
+	enlargelimits={abs=.3}
+	]
+	\addplot+[mark=none, 
+	    domain=6.4:8.5,
+	    samples=350,
+	    draw=blue!70,
+	    area legend] {tan(deg(x))}  ;
+	    \node [above, color=blue!70] at (6.9, 4.) {$\tan(\xi)$};
+	\addplot+[mark=none, 
+	    domain=3.2:4.5,
+	    samples=350,
+	    draw=blue!70,
+	    area legend] {tan(deg(x))}  ;
+	    \node [above, color=red!70] at (3, 0.6) {};
+	\addplot+[mark=none, 
+	    domain=0.2:2.5,
+	    samples=350,
+	    draw=blue!70,
+	    area legend] {tan(deg(x))}  ;
+	    \node [above, color=red!70] at (3, 0.6) {};
+	\addplot+[mark=none, 
+	    domain=0:7,
+	    samples=350,
+	    draw=red!70,
+	    area legend] {sqrt(10 - x^2)/x}  ;
+	    \node [above, color=red!70] at (3, 0.6) {};
+	\addplot+[mark=none, 
+	    domain=0:7,
+	    samples=350,
+	    draw=red!70,
+	    area legend] {sqrt(30 - x^2)/x}  ;
+	    \node [above, color=red!70] at (3, 0.6) {};
+	\addplot+[mark=none, 
+	    domain=0:7,
+	    samples=350,
+	    draw=red!70,
+	    area legend] {sqrt(70 - x^2)/x}  ;
+	    \node [above, color=red!70] at (3, 0.6) {};
+	\addplot+[mark=none, 
+	    domain=0:7,
+	    samples=950,
+	    draw=red!70,
+	    area legend] {sqrt(120 - x^2)/x}  ;
+	    \node [above, color=red!70] at (5.8, 1.85) {$ \frac{\sqrt{\xi_0^2 - \xi^2}}{\xi}$};
+	\addplot+[mark=none, 
+	    domain=0:7,
+	    samples=350,
+	    draw=red!70,
+	    area legend] {sqrt(2 - x^2)/x}  ;
+	    \node [above, color=red!70] at (3, 0.6) {};
+	\end{axis}
+	\end{tikzpicture}
+         \label{fig:puls}
+     \end{subfigure}
+        \caption{De transcendentale ligningene som bestemmer energien til partikkel i boks.}
+        \label{fig:trans}
+\end{figure}
+Vi ser at vi bare for noen tillate løsninger for en gitt verdi av $\xi_0$. Når vi øker $\xi_0$, 
+dvs øker $V_0$, $a$ eller $m$ så får vi flere mulige bundne ($E<V_0$) tilstander, siden det er 
+da flere krysningspunkter mellom $\sqrt{\xi_0 - \xi}/\xi$ og $-\cot(\xi)$ eller $\tan(\xi)$.
+
+Vi ser at for $V_0\to\infty$ har vi at energiene bestemmes av $\tan(\xi)=\infty$ og 
+$\cot(-\xi) = \infty$, som har løsninger
+\begin{align}
+	 \xi = (2n+1)\frac{\pi}{2} \hspace{0.5cm}  &\land  \hspace{0.5cm} \xi = n\pi\\
+	\Rightarrow E =& \frac{n^2 \pi ^2 \hbar^2}{2ma^2}
+\end{align}
+som er energiene vi fant for partikel i boks, hvilket vi burde forvente siden brønnen blir til en 
+boks når vi sender $V_0\to\infty$, vi ser her dog også at vi får samme resultat om vi sender 
+bredden til brønnen $a\to\infty$.
+
+\begin{figure}[h!]
+     \centering
+     \begin{subfigure}[b]{0.4\linewidth}
+       \centering
+	\begin{tikzpicture}
+	  \begin{axis}%
+	    [
+	     xlabel=$x$,
+	     ylabel=$\psi$,
+	     axis lines=middle,
+	     restrict y to domain=0:5.,
+	     enlargelimits={abs=.3},
+    every axis plot/.append style={ultra thick}
+	    ]
+	\addplot+[mark=none, 
+	    domain=1:3,
+	    samples=350,
+	    draw=red!70,
+	    area legend] {e^(-x)}  ;
+	    \node [above, color=red!70] at (3, 0.6) {};
+	\addplot+[mark=none, 
+	    domain=-1:1,
+	    samples=350,
+	    draw=red!70,
+	    area legend] {0.67*cos(deg(x))}  ;
+	    \node [above, color=red!70] at (3, 0.6) {};
+	\addplot+[mark=none, 
+	    domain=-3:-1,
+	    samples=350,
+	    draw=red!70,
+	    area legend] {e^(x)}  ;
+	    \node [above, color=red!70] at (2, 0.2) {$\psi_1$};
+	\end{axis}
+	\end{tikzpicture}
+	 \label{fig:cos}
+     \end{subfigure}
+     \hspace{3cm}
+     \begin{subfigure}[b]{0.4\linewidth}
+	 \centering
+	\begin{tikzpicture}
+	\begin{axis}%
+	[
+	xlabel=$x$,
+	ylabel=$\psi$,
+	axis lines=middle,
+	restrict y to domain=-1:1.,
+	enlargelimits={abs=.3},
+    every axis plot/.append style={ultra thick}
+	]
+	\addplot+[mark=none, 
+	    domain=1:3,
+	    samples=350,
+	    draw=red!70,
+	    area legend] {e^(-x)}  ;
+	    \node [above, color=red!70] at (3, 0.6) {};
+	\addplot+[mark=none, 
+	    domain=-1:1,
+	    samples=350,
+	    draw=red!70,
+	    area legend] {0.4*sin(deg(x * 2))}  ;
+	    \node [above, color=red!70] at (3, 0.6) {};
+	\addplot+[mark=none, 
+	    domain=-3:-1,
+	    samples=350,
+	    draw=red!70,
+	    area legend] {-e^(x)}  ;
+	    \node [above, color=red!70] at (2, 0.2) {$\psi_2$};
+	\end{axis}
+	\end{tikzpicture}
+	 \label{fig:puls}
+     \end{subfigure}
+	\caption{Bølgefunksjonene til partikkel i boks.}
+	\label{bølgef}
+\end{figure}
+Vi ser fra formen til bølgefunksjonene at de tilstandene med høyere energi har større 
+sannsynlighet for å befinne seg utenfor boksen. Siden Bølgefunksjonene penetrerer lenger inn 
+regionen hvor $V>E$. 
+de klassisk forbudte området. Igjen har vi da i ekstremtilfellet når energien er uendelig mye 
+lavere enn $V_0$ at vi får igjen partikkel i boks, hvor vi så at det er umulig for partikkelen 
+å befinne seg utenfor boksen.
 
 
+
+\section{Kvalitative betraktninger}
+Vi skal nå drøfte kvalitativt oppførselen til energi egentilstander (stasjonære tilstander)
+i forskjellige potensialer.
+Vi har den generelle S.L. i et område hvor $E>V(x)$ som
+\begin{align}
+	 \frac{\partial^2 \psi}{\partial x^2} = - k^2(x) \psi
+\end{align}
+hvor 
+\begin{align}
+	 k^2(x) = \frac{2m [E - V(x)]}{\hbar^2}
+\end{align}
+Her ser vi at den andrederiverte har motsatt fortegn som bølgefunksjonen selv. 
+Dette betyr at bølgefunksjonen alltid blyer seg inn mot x-aksen, og det betyr altså 
+at bølgefunksjonen oscillerer. Dette er det samme som vi fant for partikkel i boks og brønn, men 
+vi ser her at det gjelder helt generelt i områder hvor energien er større en potensialet.
+
+Videre ser vi for oss et område med $E< V(x)$, hvor vi nå har
+\begin{align}
+	 \frac{\partial^2 \psi}{\partial x^2} =  \kappa^2(x) \psi
+\end{align}
+hvor
+\begin{align}
+	 \kappa^2(x) = \frac{2m [V(x) - E]}{\hbar^2}
+\end{align}
+Her ser vi at den andrederiverte har samme fortegn som bølgefunksjonen selv. Hvilket forteller 
+oss at i områder hvor energien er mindre en potensialet så krummer alltid bølgefunksjonen vekk 
+vekk fra x-aksen.
+
+Vi ser her da at vi ikke kan ha en normaliserbar bølgefunksjon hvis vi har $V(x)>E$ for alle $x$,
+vi trenger områder med $E >V(x)$ for å kunne ha en normaliserbar stasjonær tilstand.
+Slik var det med partikkel i brønn hvor bølgefunksjon krummet vekk ($V(x) > E$) 
+ifra x-aksen til høyre og 
+venstre for brønnen mens den oscillererte ($V(X) <E$) inne i brønnen.
+Tilsvarende kan vi ikke ha en normaliserbar stasjonær tilstand om vi har $V(x)<E$ overalt. 
+Dette husker vi ifra diskusjonen rundt bølgepakken, hvor vi så at planbølgene ikke var 
+normaliserbare.
+\begin{figure}[h!]
+     \centering
+     \begin{subfigure}[b]{0.4\linewidth}
+       \centering
+	\begin{tikzpicture}
+	  \begin{axis}%
+	    [
+	     xlabel=$x$,
+	     ylabel=$\psi$,
+	     axis lines=middle,
+	     restrict y to domain=-2:2.,
+	     enlargelimits={abs=.3},
+    every axis plot/.append style={ultra thick}
+	    ]
+	\addplot+[mark=none, 
+	    domain=-2.15:-1,
+	    samples=350,
+	    draw=red!70,
+	    area legend] {sin(deg(x))}  ;
+	    \node [above, color=red!70] at (1, 0.85) {$\psi$};
+	\addplot+[mark=none, 
+	    domain=1:2.15,
+	    samples=350,
+	    draw=red!70,
+	    area legend] {sin(deg(x))}  ;
+	    \node [above, color=red!70] at (-1, -0.85) {$\psi$};
+	\end{axis}
+	\end{tikzpicture}
+	\caption{$E>V(x)$}
+	 \label{fig:cos}
+     \end{subfigure}
+     \hspace{1cm}
+     \begin{subfigure}[b]{0.4\linewidth}
+	 \centering
+	\begin{tikzpicture}
+	\begin{axis}%
+	[
+	xlabel=$x$,
+	ylabel=$\psi$,
+	axis lines=middle,
+	restrict y to domain=-3:3.,
+	enlargelimits={abs=.3},
+    every axis plot/.append style={ultra thick}
+	]
+	\addplot+[mark=none, 
+	    domain=-2.15:-1,
+	    samples=350,
+	    draw=red!70,
+	    area legend] {sin(deg(x)) + 1.25 }  ;
+	    \node [above, color=red!70] at (-1, 0.4) {$\psi$};
+	\addplot+[mark=none, 
+	    domain=1:2.15,
+	    samples=350,
+	    draw=red!70,
+	    area legend] {sin(deg(x)) - 1.25}  ;
+	    \node [above, color=red!70] at (1, -0.35) {$\psi$};
+	\end{axis}
+	\end{tikzpicture}
+	\caption{$E<V(x)$}
+	 \label{fig:puls}
+     \end{subfigure}
+	\caption{Energi egentilstander for områder med forskjellige potensial-størrelser.}
+	\label{bølgef}
+\end{figure}
+
+
+\section{Harmonisk oscillator}
+
+Vi skal nå se på harmonisk oscillator potensialet, 
+som er et veldig viktig potensiale i kvantefysikk.
+En av grunnene til at H.O. er et så viktig potensial er at det er en god tilnærming til mange 
+andre potensialer rundt lokale minima.
+Dette kan vi se ved å Taylor-utvikle et potensial $V(x)$ om et minima $ x_0 $ 
+\begin{align}
+	 V(x) = V(x_0) + \Big( \frac{\partial V}{\partial x}  \Big)_{x=x_0} (x - x_0)
+	+ \frac{1}{2}\Big( \frac{\partial^2 V}{\partial x^2}  \Big)_{x=x_0} (x-x_0)^2 + \ldots 
+\end{align}
+Men siden $ x_0 $ er et minimum forsvinner den førster-deriverte her og vi har 
+\begin{align}
+	 V(x) \approx V(x_0) 
+	+ \frac{1}{2}\Big( \frac{\partial^2 V}{\partial x^2}  \Big)_{x=x_0} (x-x_0)^2 
+\end{align}
+som en god tilnærming til potensialet når utslagene ikke er altfor store.
+Vi lar 
+\begin{align}
+	 K = m\omega^2 = \Big( \frac{\partial^2 V}{\partial x^2}  \Big)_{x=x_0}
+\end{align}
+være analog til fjærkonstanten, hvor $\omega$ er angulerfrekvensen tl fj'ren.
+Vi står fritt til å legge null-nivået til energien hvor vi vil, så vi lar $V(x_0)=0$.
+Vi har da
+\begin{align}
+	 V(x) = \frac{1}{2}m\omega^2 x^2
+\end{align}
+Slik at vi har S.L.
+\begin{align}
+  \frac{\partial^2 \psi}{\partial x^2} = \frac{2m}{\hbar^2} ( \frac{1}{2}m\omega^2 x^2 - E)\psi
+\end{align}
+Dette er en differensialligning som er noe komplilsert å løse.
+Vi starter dog med å se på tilfellet hvor utslaget er stort, slik at vi har 
+\begin{align}
+  \frac{\partial^2 \psi}{\partial x^2} \approx \frac{2m\omega^2}{\hbar^2}  x^2 \psi
+\end{align}
+Dette er forholdsvis enkelt å løse og vi har 
+\begin{align}
+	 \psi(x) = A x^n e^{ - \frac{m\omega x^2 }{2\hbar}} + B x^n e^{\frac{m\omega x^2 }{2\hbar}}
+\end{align}
+hvor vi må ha $B=0$ siden vi må ha $\psi\to 0$ når $|x|\to\infty$.
+Vi kan se på tilstanden $n=0$
+\begin{align}
+	 \psi_0(x) = N_0 e^{- \frac{m\omega x^2}{ 2 \hbar}}
+\end{align}
+Dette viser seg å være den eksakte grunntilstanden for H.O. uavhengig av utslaget.
+Vi setter inn i S.L. for å bekrefte dette 
+\begin{align}
+	 - \frac{\hbar^2}{2m} \frac{\partial^2}{\partial x^2} e^{- \frac{m\omega x^2}{ 2 \hbar}}
+	+ \frac{1}{2}m\omega^2 x^2 e^{- \frac{m\omega x^2}{ 2 \hbar}} 
+	&= E e^{- \frac{m\omega x^2}{ 2 \hbar}} \\
+\Rightarrow - \frac{\hbar^2}{2m}( -\frac{m\omega }{\hbar} + (\frac{m\omega x}{\hbar})^2) 
+ e^{- \frac{m\omega x^2}{ 2 \hbar}} + \frac{1}{2}m\omega^2 x^2 e^{- \frac{m\omega x^2}{ 2 \hbar}} 
+	&= E e^{- \frac{m\omega x^2}{ 2 \hbar}} \\
+\Rightarrow \frac{1}{2}\hbar\omega e^{- \frac{m\omega x^2}{ 2 \hbar}}  
+	&= E e^{- \frac{m\omega x^2}{ 2 \hbar}} \\
+\Rightarrow \frac{1}{2}\hbar\omega  
+	&= E
+\end{align}
+hvor vi ser at $ \psi_0 $ er en løsning med energi $ E=\frac{1}{2}\hbar \omega $. 
+Vi kan også normalisere $ \psi_0 $hvor vi har 
+\begin{align}
+	 1 &= \int_{-\infty}^{\infty} |N_0|^2 e^{- \frac{m\omega x^2}{\hbar}} dx\\
+	  &=  |N_0|^2 \sqrt{\pi} ( \frac{m\omega}{\hbar})^{-\frac{1}{2}} \\
+	\Rightarrow N_0  &=  (\frac{m\omega}{\pi\hbar})^{\frac{1}{4}}
+\end{align}
+slik at grunntilstanden til H.O. er 
+\begin{align}
+	\psi_0(x) = (\frac{m\omega}{\pi\hbar})^{\frac{1}{4}} e^{- \frac{m\omega x^2}{2\hbar}} 
+\end{align}
+Man kan også regne ut de alle de eksakte bølgefunksjonene til H.O. og vi har at 
+\begin{align}
+	 \psi_n(x) =  N_n H_n(\sqrt{ \frac{m\omega}{\hbar}} x) e^{- \frac{m\omega x^2}{2\hbar}}
+\end{align}
+hvor energiene er gitt som 
+\begin{align}
+	 E_n = (n + \frac{1}{2}) \hbar \omega
+\end{align}
+
+\subsection{Null-punkts energien \& Heisenberg's uskarphetsrelasjon}
+
+At det finnes en grunntilstand for H.O. som ikke har energi lik null, er interessant. Vi ser på 
+forventningsverdien i Energi for grunntilstanden
+\begin{align}
+	 \langle E \rangle &= \int_{-\infty}^{\infty} \psi_0^* ( 
+  \frac{1}{2m}(-i\hbar \frac{\partial}{\partial x}  )^2 + \frac{1}{2}m\omega^2 x^2) \psi_0 dx\\
+  &= \frac{ \langle p^2 \rangle }{2m} + \frac{1}{2}m\omega^2 \langle x^2 \rangle 
+\end{align}
+Vi har dog at $H\psi_0 = E_0\psi_0$, og vi har at 
+\begin{align}
+ \langle x \rangle &= N_n \int_{-\infty}^{\infty} x e^{- \frac{m\omega x^2}{2\hbar}} dx = 0
+\end{align}
+og 
+\begin{align}
+    \langle p \rangle &= N_n \int_{-\infty}^{\infty} ( -i\hbar \frac{\partial}{\partial x} )
+   e^{- \frac{m\omega x^2}{2\hbar}} dx\\
+  &=  i m\omega N_n \int_{-\infty}^{\infty}x e^{- \frac{m\omega x^2}{2\hbar}} dx = 0 
+\end{align}
+hvor vi har brukt symmetribetraktninger.
+Dette gir oss at 
+\begin{align}
+	 (\Delta x)^2 &= \langle x^2 \rangle \\
+	 (\Delta p)^2 &= \langle p^2 \rangle 
+\end{align}
+Slik at vi har 
+\begin{align}
+	 E_0 = \frac{(\Delta p^2)}{2m} + \frac{1}{2} m\omega^2 (\Delta x^2)
+\end{align}
+Men nå kan vi bruke Heisenberg's uskarphetsrelasjon $\Delta x \Delta p \ge \hbar / 2$.
+Vi bruker nå at $2 \Delta x / \hbar \ge 1 / \Delta p$.
+Vi har nå
+\begin{align}
+	 E_0 \ge \frac{\hbar^2}{8 m (\Delta x)^2} + \frac{1}{2}m\omega^2 (\Delta x)^2
+\end{align}
+Dette må holde for grunntilstands energien, vi vet at naturen alltid vil være i den minst 
+energetiske tilstanden. Vi finner minima for energien da ved å derivere mhp.  $ \Delta x $ og 
+sette lik 0. Dett gir oss
+\begin{align}
+	 - \frac{\hbar^2}{4m (\Delta x)^3} + m\omega^2 \Delta x = 0
+\end{align}
+som leder til 
+\begin{align}
+	 (\Delta x)^2 = \frac{\hbar}{2m\omega}
+\end{align}
+Som vi setter inn i uttrykket vårt for $E_0$ og finner 
+\begin{align}
+	 E_0 \ge \frac{1}{4}\hbar \omega \frac{1}{4}\hbar \omega = \frac{1}{2}\hbar \omega
+\end{align}
+Dette er den minste energien som er forenelig med Heisenberg's uskarphetsrelasjon, og vi kjenner
+det igjen som den faktiske grunntilstanden til H.O. Vi har da at den Gaussiske grunntilstanden 
+er en minimum uskarphets-tilstand.
+Dette er i sterk kontrast til den klassiske H.O., hvor vi vet at grunntilstanden har energi lik 
+null og partikkelen bare sitter stille ved $x=0$. 
+Dette bryter dog med Heisenberg's uskarphetsprinsipp siden vi da ville ha kjent posisjon
+og bevegelsesmengde skarpt samtidig.
+
+I kvantefysikk har H.O. grunntilstanden en lik miks av forventningsverdi som kommer 
+fra potensiell og kinetisk energi, i motsetning til klassisk hvor det bare er potensiell energi
+i grunntilstanden.
+
+Denne framgangsmåten med å bruke Heisenberg's uskarphetsprinsipp for å beregne 
+grunntilstandsenergien virket så bra fordi potensialet går som $x^2$. For andre potensialer kan 
+man også bruke Heisenberg uskarphetsprinsipp for å beregne energien i grunntilstanden men man må 
+da typisk ty til approksimasjoner.
+
+
+
+
+\section{Dirac delta funksjon potensialet}
+Vi skal nå betrakte et potensiale beskrevet ved Dirac delta funksjonen, som strengt tatt ikke 
+er en funksjon (matematisk sett), det er heller en grense av en sekvens med funksjoner.
+Vi kan definere det som 
+\begin{align}
+	 \delta(x) = \lim_{b\to\infty} \sqrt{ \frac{b}{\pi} } e^{-bx^2}
+\end{align}
+hvor vi ser at Dirac deltaet er normalisert 
+\begin{align}
+	 \int_{-\infty}^{\infty}  \delta(x) dx &= 
+	\lim_{b\to\infty} \sqrt{ \frac{b}{\pi} } \int_{-\inty}^{\infty} e^{-bx^2} dx \\
+	 &= \lim_{b\to\infty} \sqrt{ \frac{b}{\pi} } \sqrt{ \frac{\pi}{b}} = 1
+\end{align}
+Vi har at i grensen $b\to\infty$ får vi 
+\begin{align}
+	 \delta(x) = \begin{cases}
+		0 \hspace{1cm} x\neq 0 \\
+		\infty \hspace{0.85cm} x = 0
+		\end{cases}
+\end{align}
+Typisk dukker Dirac delta opp inne i integrander. Vi har da at 
+\begin{align}
+ \int_{-\infty}^{\infty} f(x) \delta(x)  dx = f(0) \int_{-\infty}^{\infty} \delta(x)dx = f(0)
+\end{align}
+hvor $ f(x) $ er en hvilket som helst godt oppført funksjon.
+
+Vi ser nå for oss et potensial som er null overalt bortsett fra i origo, det kan vi skrive som 
+\begin{align}
+	 \frac{2m}{\hbar^2} V(x) = - \frac{\alpha}{a} \delta(x)
+\end{align}
 
 \end{document}
 
