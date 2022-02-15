@@ -28,12 +28,12 @@
 \maketitle
 
 
-\section{Den tidsuavhengige Schrödingerligningen}
+\section*{Den tidsuavhengige Schrödingerligningen}
 
 Vi skal nå i dette kapitellet massere S.L. litt slik at vi den blir enklere å jobbe med framover.
 Vi starter med å skille tids- og posisjons-avhengigeten fra hverandre.
 
-\subsection{Separasjon av variable}
+\subsection*{Separasjon av variable}
 
 
 Vi har S.L. som 
@@ -94,7 +94,7 @@ altså at sannsynlighetstettheten er tidsuavhengig hvis vi vet at systemet vårt
 gitt av $\psi(x)$, og derfor kaller vi $\psi(x)$ stationære tilstander.
 
 
-\subsection{Partikkel i boks}
+\section*{Partikkel i boks}
 Vi skal nå beregne de stasjonære tilstandene for et spesifikt system, nemlig en såkalt 
 partikkel i boks, som er bneskrevet av det følgende potensialet 
 \begin{align}
@@ -327,7 +327,7 @@ være større, hvilket også tillater at energien er større.
         \label{fig:bølger}
 \end{figure}
 
-\subsubsection{Tidsavhengighet}
+\subsubsection*{Tidsavhengighet}
 Vi ser at om en partikkel er i en av de stasjonære tilstandene så er sannsynlighetstettheten
 uavhengig av tid, og partikkelen beveger seg ikke. Partikkelen har ingen bestemt posisjon
 men sannsynligheten for å finne partikkelen på forskjellige steder er konstant i tid.
@@ -360,7 +360,7 @@ Hvis vi derimot ser for oss at partikkelen er i superposisjon av stasjonære til
  bøgefunskjonene.
 
 
- \subsection{Statistisk tolkning av kvantemekanikk}
+ \section*{Statistisk tolkning av kvantemekanikk}
  Vi ser nå for oss en enda mer generell bølgefunksjon som en superposisjon av stasjonære
  tilstander som 
  \begin{align}
@@ -443,5 +443,88 @@ for å måle $E_n$ er gitt som $|c_n|^2$, hvilket gir forventningsverdien som
 	 \langle E \rangle = \sum_{n=1}^{\infty} |c_n|^2 E_n
 \end{align}
 
+
+\section*{Energi operatoren}
+
+Vi betrakter ofte den tids S.L.
+\begin{align}
+	 ( - \frac{\hbar^2}{2m} \frac{\partial^2}{\partial x^2} + V(x) )\psi = E \psi
+\end{align}
+som en eigenverdi ligning. En eigenverdi-ligning er en hvor en operator virker på en funksjon 
+gir en konstant multiplisert med funksjonen, slik som 
+\begin{align}
+	 \hat{O}f_{\lambda}(x) = \lambda f_{\lambda}(x)
+\end{align}
+hvor $ \lambda $ er eigenverdien til eigenfunksjonen $f_{\lambda}(x)$ til operatorene $ \hat{O} $. 
+En operator er noe som virker på en funksjon og gir en ny funksjon.
+Vi har sett implisitt sett posisjons operatoren $ \hat{x} = x$  allerede hvor vi har 
+\begin{align}
+	 \hat{x}\psi = x\psi
+\end{align}
+Vi har da at posisjons operatoren virker på bølgefunksjonen ved å multiplisere den med $x$.
+
+Videre har vi bevegelsesmengde oepratoren $ \hat{p} = -i\hbar \frac{\partial}{\partial x}  $ 
+Slik at vi har 
+\begin{align}
+	 \hat{p}\psi = \frac{\hbar}{i}\frac{\partial \psi}{\partial x} 
+\end{align}
+bevegelsesmengde operatoren virker på bølgefunksjonen ved å deriivere den mhp x og multiplisere 
+med $-i\hbar$.
+Vi kan nå se at planbølger med et bestemt bølgetall er eigenfunksjonen til $ \hat{p}$ siden vi 
+har 
+\begin{align}
+ \hat{p} A e^{ikx} = A \frac{\hbar}{i} \frac{\partial}{\partial x}  e^{ikx} = \hbar k A e^{ikx} 
+\end{align}
+hvor vi ser at eigenverdien til planbølgen er $p_k = \hbar k$.
+
+Vi kan nå se hvorfor T.I.S.L. er en eigenverdi-ligning. Vi vet at i ikke-relativistisk 
+kvantemekanikk har vi at energien er summen av potensiell og kinetisk energi operatorene som 
+\begin{align}
+	 \hat{H} &= \frac{ \hat{p}^2}{2m} + V( \hat{x}) \\
+	 &=  \frac{1}{2m}(\frac{\hbar}{i} \frac{\partial}{\partial x})^2 + V(x) \\
+	 &=  -\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2} + V(x) 
+\end{align}
+hvor vi kaller energi operatoren for \textbf{Hamilton operatoren} $ \hat{H} $.
+Vi kan nå skrive T.I.S.L. som 
+\begin{align}
+	 \hat{H}\psi_n = E_n \psi_n
+\end{align}
+hvor vi har indeksert de forskjellige eigenfunksjonene med tilhørende eigenverdier med $n$.
+
+Vi ser nå igjen på partikkel i boks og ser på en tilstand som er en superposisjon av de 
+to første stasjonære tilstandene 
+\begin{align}
+	 \psi = c_1\psi_1 + c_2\psi_2
+\end{align}
+Vi lar Hamilton operatorene virke på denne tilstanden 
+\begin{align}
+	 \hat{H}\psi &= c_1 \hat{H}\psi_1 + c_2 \hat{H}\psi_2 \\
+	 &= c_1 E_1\psi_1 + c_2 E_2\psi_2
+\end{align}
+siden vi vet at $\{\psi_n \}$ er eigentilstander til Hamilton operatoren, siden de løser S.L.
+og vi har sett at S.L. kan skrives som Hamilton operatorens eigenverdi-ligning.
+Vi kan nå finne forventningsverdien til energien 
+\begin{align}
+\int_{-\infty}^{\infty}	 \psi^*\hat{H}\psi dx 
+&= \int_{-\infty}^{\infty} (c_1^*\psi_1^* + c_2^*\psi_2^*)  \hat{H} (c_1\psi_1 + c_2\psi_2)  dx \\ 
+&= |c_1|^2 \int_{-\infty}^{\infty} \psi_1^*\hat{H} \psi_1 dx  
+ + |c_2|^2 \int_{-\infty}^{\infty} \psi_2^*\hat{H} \psi_2 dx  
+ + c_1^* c_2 \int_{-\infty}^{\infty} \psi_1^*\hat{H} \psi_2 dx  
+ + c_2^*c_1 \int_{-\infty}^{\infty} \psi_2^*\hat{H} \psi_1 dx  \\
+&= |c_1|^2 E_1 \int_{-\infty}^{\infty}  |\psi_1|^2 dx  
+ + |c_2|^2 E_2 \int_{-\infty}^{\infty}  |\psi_2|^2 dx  
+ + c_1^* c_2 E_2 \int_{-\infty}^{\infty}  \psi_1^* \psi_2 dx  
+ + c_2^*c_1 E_1 \int_{-\infty}^{\infty}  \psi_2^*\psi_1 dx  \\
+&= |c_1|^2 E_1 + |c_2|^2 E_2
+\end{align}
+Vi sa at vi tolker $|c_n|^2$ som sannsynligheten for å måle $E_n$ så vi ser da at vi må ha 
+\begin{align}
+	 \langle E \rangle  = \int_{-\infty}^{\infty} \psi^* \hat{H} \psi dx
+\end{align}
+Dette gjelder også generelt at vi har forventningsverdien til enhver variabel 
+\begin{align}
+	 \langle O \rangle =  \int_{-\infty}^{\infty} \psi^* \hat{O} \psi dx
+\end{align}
+og vi har ellerede sett at dette stemmer for posisjon og bevegelsesmengden.
 
 \end{document}
