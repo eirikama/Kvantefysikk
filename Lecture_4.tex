@@ -31,7 +31,7 @@
 Vi skal i dette kapitelet se på en rekke forskjellige en-dimensionale potensialer, som vi løser
 S.L. for og finner bølgefunksjonene til, og ser på tolkninger av.
 
-\section{Partikkel i brønn}
+\section*{Partikkel i brønn}
 Vi skal nå se på en partikkel som befinner seg i en potensial-brønn. Dette er beskrevet av 
 potensialet 
 \begin{align}
@@ -445,7 +445,7 @@ lavere enn $V_0$ at vi får igjen partikkel i boks, hvor vi så at det er umulig
 
 
 
-\section{Kvalitative betraktninger}
+\section*{Kvalitative betraktninger}
 Vi skal nå drøfte kvalitativt oppførselen til energi egentilstander (stasjonære tilstander)
 i forskjellige potensialer.
 Vi har den generelle S.L. i et område hvor $E>V(x)$ som
@@ -547,7 +547,7 @@ normaliserbare.
 \end{figure}
 
 
-\section{Harmonisk oscillator}
+\section*{Harmonisk oscillator}
 
 Vi skal nå se på harmonisk oscillator potensialet, 
 som er et veldig viktig potensiale i kvantefysikk.
@@ -626,7 +626,7 @@ hvor energiene er gitt som
 	 E_n = (n + \frac{1}{2}) \hbar \omega
 \end{align}
 
-\subsection{Null-punkts energien \& Heisenberg's uskarphetsrelasjon}
+\subsection*{Null-punkts energien \& Heisenberg's uskarphetsrelasjon}
 
 At det finnes en grunntilstand for H.O. som ikke har energi lik null, er interessant. Vi ser på 
 forventningsverdien i Energi for grunntilstanden
@@ -695,7 +695,7 @@ da typisk ty til approksimasjoner.
 
 
 
-\section{Dirac delta funksjon potensialet}
+\section*{Dirac delta funksjon potensialet}
 Vi skal nå betrakte et potensiale beskrevet ved Dirac delta funksjonen, som strengt tatt ikke 
 er en funksjon (matematisk sett), det er heller en grense av en sekvens med funksjoner.
 Vi kan definere det som 
@@ -705,7 +705,7 @@ Vi kan definere det som
 hvor vi ser at Dirac deltaet er normalisert 
 \begin{align}
 	 \int_{-\infty}^{\infty}  \delta(x) dx &= 
-	\lim_{b\to\infty} \sqrt{ \frac{b}{\pi} } \int_{-\inty}^{\infty} e^{-bx^2} dx \\
+	\lim_{b\to\infty} \sqrt{ \frac{b}{\pi} } \int_{-\infty}^{\infty} e^{-bx^2} dx \\
 	 &= \lim_{b\to\infty} \sqrt{ \frac{b}{\pi} } \sqrt{ \frac{\pi}{b}} = 1
 \end{align}
 Vi har at i grensen $b\to\infty$ får vi 
@@ -725,6 +725,590 @@ Vi ser nå for oss et potensial som er null overalt bortsett fra i origo, det ka
 \begin{align}
 	 \frac{2m}{\hbar^2} V(x) = - \frac{\alpha}{a} \delta(x)
 \end{align}
+hvor vi merker oss at $ \frac{2m}{\hbar^2} $ har dimensjoner $ \frac{1}{\text{lengde}^2} $. Siden 
+delta-funksjonen har dimension $ \frac{1}{\text{lengde}} $ må vi da ha med konstanten $\frac{\alpha}{a}$ hvor $\alpha$ er dimensionsløs og $a$ har dimensjon lengde. Vi kan nå variere $\alpha$ for 
+å justere styrken på potensialet.
+
+Vi  vet at vi egentlig alltid ønsker oss kontinurerlige bølgefunksjoner og deriverte av 
+bølgefunksjonene. Men hvis vi ser på 
+\begin{align}
+ \int_{0^-}^{0^+} \frac{\partial^2 \psi}{\partial x^2}  dx &= 
+\Big( \frac{\partial \psi}{\partial x} \Big)_{0^+} -
+\Big( \frac{\partial \psi}{\partial x} \Big)_{0^-} \\					
+&= \frac{2m}{\hbar^2} \int_{0^-}^{0^+} (V(x) - E) dx
+\end{align}
+hvor vi har brukt S.L. og kalkulusens fundamental teorem. Vi har videre 
+\begin{align}
+	 \frac{2mE}{\hbar^2} \int_{0^-}^{0^+} \psi(x) dx = 0
+\end{align}
+fordi bølgefunksjonen ikke kan være uendelig og integrasjonsdomenet infinitissemalt. 
+Vi har videre at
+\begin{align}
+	 \frac{2m}{\hbar^2} \int_{0^-}^{0^+} V(x) \psi(x) dx = 
+	- \frac{\alpha}{a} \int_{0^-}^{0^+} \delta(x) \psi(x) dx = - \frac{\alpha}{a} \psi(0)
+\end{align}
+Slik at vi har 
+\begin{align}
+\Big( \frac{\partial \psi}{\partial x} \Big)_{0^+} -
+\Big( \frac{\partial \psi}{\partial x} \Big)_{0^-} = - \frac{\alpha}{a} \psi(0)
+\label{eq:disc_wave}
+\end{align}
+og vi ser at at den første-deriverte av bølgefunksjonen er diskontinuerlig.
+Og vi ser hvorfor bølgefunksjonen som regel er kontinurerlig og det er kun når potensialet er 
+singulært at vi har diskontinuerlige bølgefunksjoner. Dette er også tilfellet for partikkel i 
+boks hvor vi også hadde at potensialet gikk fra 0 til uendelig i punktet ved boksens ender.
+Vi ser over at venstresiden alltid forsvinner over et infinitissemalt intervall for alle 
+ikke-singulære potensialer.
+
+Vi løser nå S.L., og vi ser at til høyre og venstre for boksen har vi S.L.
+\begin{align}
+	 \frac{\partial^2 \psi}{\partial x^2} = \frac{-2mE}{\hbar}\psi
+\end{align}
+Vi ønsker bundne tilstander, dvs $E<0$ og at partikkelen holder seg i nerheten av dirac deltaet.
+Vi definerer derfor
+\begin{align}
+	 \kappa = \frac{\sqrt{-2mE}}{\hbar}
+\end{align}
+So gir på begge sidene av $x=0$
+\begin{align}
+	 \psi(x) = A e^{\kappa x} + B e^{\kappa x}
+\end{align}
+hvor vi må se bort ifra de potensialene divergerer når $x\to\infty$ som da gir 
+\begin{align}
+	 \psi(x) = \begin{cases}
+		Ae^{-i\kappa x} \hspace{1cm} x \le 0 \\
+		Ae^{i\kappa x} \hspace{1.2cm} x \ge 0 
+		\end{cases}
+\end{align}
+Vi setter in for bølgefunksjonen i betingelsen for diskontinuerlighet av bølgefunksjonens 
+deriverte i Lign.~\ref{eq:disc_wave} og finner
+\begin{align}
+	 -2\kappa A &= -\frac{\alpha}{a}A \\
+	\Rightarrow \frac{\sqrt{-2mE}}{\hbar} &= \frac{\alpha}{2 a} \\
+	\Rightarrow E &= - \frac{\alpha^2 \hbar^2}{8 m a^2}
+\end{align}
+Vi har bare en bundet tilstand for Dirac delta potensialet. Dette kunne vi også ha sett utifra 
+våre kvalitative betraktninger om bølgefunksjonens krumning, hvor vi ser at bølgefunksjonen 
+må ha positiv andre-derivert overalt, og i tilleg være kontinuerlig. Da er det bare en mulig 
+bølgefunksjon som kan oppfylle dette. Dette burde vi kanskje også forvente utifra det vi så 
+om partikkel i brønn, hvor vi fant at samme hvor stor eller dyb brønnen var, vil den alltid ha 
+minst en bundet tilstand.
+
+\section*{Dobbelt brønn og molekylærbinding}
+
+Vi har sett at vi kan se for oss potensialbrønnen som representativ for et elektron
+fanget av e.g. et Hydrogen atom, hvor potensialbrønnen befinner seg rundt protonet. 
+Veien er kort derfra til å se for seg at vi kan bruke to potensialbrønner til å beskrive 
+molekylærbinding til e.g. et H$^+_2$ ion.
+Vi kan bruke det til å se på hvorfor molekylær overhodet kan eksistere.
+\begin{figure}[h!]
+     \centering
+     \begin{subfigure}[b]{0.4\linewidth}
+       \centering
+	\begin{tikzpicture}
+	  \begin{axis}%
+	    [
+	     xlabel=$x$,
+	     ylabel=$V(x)$,
+	     axis lines=middle,
+	     restrict y to domain=-1:2.,
+	     enlargelimits={abs=.75},
+	     yticklabels=\empty,
+	     xticklabels=\empty
+	    ]
+	    \addplot+[mark=none, 
+		    domain=-1:1,
+		    samples=150,
+		    draw=black!70,
+		    pattern color=black,
+	    	    area legend] { 0 }  ;
+	    \node [color=black!70] at (-0.25, 0.65) {$V_0$};
+	\draw [ultra thick] (1, 0.5) -- (2,0.5);
+	\draw [ultra thick] (-1, 0.5) -- (-2,0.5);
+	\draw [ultra thick] (1, 0) -- (1,0.5);
+	\draw [ultra thick] (-1, 0) -- (-1,0.5);
+	\draw [ultra thick] (-1, 0.) -- (-0.5,0);
+	\draw [ultra thick] (1, 0.) -- (0.5,0);
+	\draw [ultra thick] (-0.5, 0) -- (-0.5,0.5);
+	\draw [ultra thick] (0.5, 0) -- (0.5,0.5);
+	\draw [ultra thick] (0.5, 0.5) -- (-0.5,0.5);
+	  \end{axis}
+	\end{tikzpicture}
+         \label{fig:cos}
+     \end{subfigure}
+       \caption{Potensialet $V(x)$ til dobelt brønn.}
+        \label{fig:bølger}
+\end{figure}
+
+
+Vi kan see kvalitativt på hvordan bølgefunksjonen ser ut for dobbel-brønnpotensialet.
+Igjen har vi at bølgefunksjonen er oscillatorisk inne i brønnen og eksponensiell utenfor.
+Vi har også at potensialet er symmetrisk $V(-x) = V(x)$ og derfor vil også bøglefunksjonen 
+være det. Vi ser da at dette vil føre til at sannsynligeten for å finne elektronet er like 
+stor i begge brønnene, altså ved begge protonene. Denne elektron-delingen er det som gjør 
+at slike molekyler er stabile. 
+Det er energetisk fordelaktig å dele på elektronet. Dette er litt knotete å regne ut dette nøyaktig
+siden vi får 8 randbetingelser vi må ta hensyn til. Vi ser derfor istedet på et enklere system 
+som beskriver det samme konseptet.
+
+Vi ser på en dobbel Dirac delta potensial.
+
+\begin{align}
+	 \frac{2m}{\hbar^2} V(x) = - \frac{\alpha}{a} [\delta(x+a) - \delta(x-a)]
+\end{align}
+hvor vi igjen har 
+\begin{align}
+	 \psi(x) = A e^{-\kappa x} + Be^{\kappa x}
+\end{align}
+i både til høyre og venstre og imellom brønnene. I mellom brønnene trenger vi ikke forkaste  noen
+av leddene siden vi ikke har $x\to\infty$ her. Dette gir en symmetrisk
+\begin{align}
+	 \psi_{sym}(x) = \begin{cases} 
+		A e^{\kappa x} \hspace{1.7cm}  x\le -a \\
+		B \cosh(\kappa x) \hspace{0.85cm} x \in [-a, a] \\
+		A e^{-\kappa x} \hspace{1.5cm}  x\ge a 
+		\end{cases}
+\end{align}
+og en asymmetrisk
+\begin{align}
+	 \psi_{asym}(x) = \begin{cases} 
+		A e^{\kappa x} \hspace{1.7cm}  x\le -a \\
+		B \sinh(\kappa x) \hspace{0.85cm} x \in [-a, a] \\
+		-A e^{-\kappa x} \hspace{1.5cm}  x\ge a 
+		\end{cases}
+\end{align}
+bølgefunksjon, hvor vi minner om at vi har 
+\begin{align}
+	 \cosh(x) &= \frac{e^{x} + e^{-x}}{2}\\
+	 \sinh(x) &= \frac{e^{x} - e^{-x}}{2} \\
+	 \tanh(x) &= \frac{\sinh(x)}{\cosh(x)} = \frac{e^{x} - e^{-x}}{e^{x} + e^{-x}} \\
+\end{align}
+
+\subsubsection*{Symmetrisk}
+Vi ser at bølgefunksjonen er symmetrisk rundt origo $\psi(-x) = \psi(x)$. 
+Vi får nå at kontinuerlighet av bølgefunksjonen gir at vi må ha 
+\begin{align}
+	 B\cosh(\kappa x) = A e^{-\kappa x}
+\end{align}
+og betingelsen for diskontinuerligheten for den første deriverte ved brønnen e.g. til høyre gir
+\begin{align}
+\Big( \frac{\partial \psi}{\partial x} \Big)_{a^+} -
+\Big( \frac{\partial \psi}{\partial x} \Big)_{a^-} &= - \frac{\alpha}{a} \psi(a) \\
+\Rightarrow - \kappa A  e^{-\kappa a}  -\kappa B \sinh(\kappa a) 
+				&= -\frac{\alpha}{a} B \cosh(\kappa a)\\
+\Rightarrow  -\kappa B\cosh(\kappa a) -\kappa B \sinh(\kappa a) 
+				&= -\frac{\alpha}{ a} B \cosh(\kappa a) \\
+\Rightarrow  -1 -\tanh(\kappa a)  &= -\frac{\alpha}{\kappa a}  \\
+\Rightarrow  \tanh(\kappa a)  &= \frac{\alpha}{\kappa a}  - 1
+\end{align}
+hvor vi har brukt betingelsen for kontinuerlighet av bølgefunksjonen.
+\begin{figure}[h!]
+	\centering
+      \begin{subfigure}[b]{0.4\linewidth}
+       \centering
+	\begin{tikzpicture}
+	  \begin{axis}%
+	    [
+	     xlabel=$\kappa a$,
+	     %ylabel=$$,
+	     axis lines=middle,
+	     restrict y to domain=-1:2.,
+	     enlargelimits={abs=.5},
+	     yticklabels=\empty,
+	     xticklabels=\empty,
+    	every axis plot/.append style={ thick}
+	    ]
+	    \addplot+[mark=none, 
+		    domain=0:3,
+		    samples=150,
+		    draw=red!70,
+	    	    area legend] { 3 / x - 1 }  ;
+	    \addplot+[mark=none, 
+		    domain=0:3,
+		    samples=550,
+		    draw=blue!70,
+	    	    area legend] { tanh( x ) }  ;
+	    \node [color=black!70] at (-0.15, 1) {$1$};
+	    \node [color=red!70] at (1.6, 1.7) {$\frac{\alpha}{\kappa a} - 1$};
+	    \node [color=blue!70] at (2.6, 0.75) {$\tanh(\kappa a)$};
+	    \draw[dashed] (0,1) -- (5,1);
+	  \end{axis}
+	\end{tikzpicture}
+         \caption{Symmetrisk bølgefunksjon}
+     \end{subfigure}
+     \hspace{1cm}
+     \begin{subfigure}[b]{0.4\linewidth}
+       \centering
+	\begin{tikzpicture}
+	  \begin{axis}%
+	    [
+	     xlabel=$\kappa a$,
+	     %ylabel=$$,
+	     axis lines=middle,
+	     restrict y to domain=-0.:5.,
+	     enlargelimits={abs=.5},
+	     yticklabels=\empty,
+	     xticklabels=\empty,
+    	every axis plot/.append style={ thick}
+	    ]
+	    \addplot+[mark=none, 
+		    domain=0:5,
+		    samples=150,
+		    draw=red!70,
+	    	    area legend] { 1 - x / 0.3 }  ;
+	    \addplot+[mark=none, 
+		    domain=0:5,
+		    samples=150,
+		    draw=red!70,
+	    	    area legend] { 1 - x / 1.4 }  ;
+	    \addplot+[mark=none, 
+		    domain=0:5,
+		    samples=150,
+		    draw=red!70,
+	    	    area legend] { 1- x / 0.6  }  ;
+	    \addplot+[mark=none, 
+		    domain=0:2.6,
+		    samples=550,
+		    draw=blue!70,
+	    	    area legend] { exp( -2*x ) }  ;
+	    \node [color=black!70] at (-0.15, 1) {$1$};
+	    \node [color=red!70] at (1.1, 0.7) {$1-\frac{\kappa a}{\alpha}$};
+	    \node [color=blue!70] at (2.6, .15) {$e^{-2\kappa a}$};
+	    \draw[dashed] (0,1) -- (5,1);
+	  \end{axis}
+	\end{tikzpicture}
+         \caption{asymmetrisk bølgefunksjon}
+     \end{subfigure}
+       \caption{Transcendental ligning for energien i til dobbel Dirac delta 
+       potensial.}
+        \label{fig:bølger}
+\end{figure}
+Vi vet at $\tanh(\kappa a)$ alltid er mindre enn 1 siden tangens hyperbolicus funksjonen er 
+begrenset. 
+Dette gir da 
+\begin{align}
+	 \frac{\alpha}{\kappa a} - 1 &< 1 \\
+\Rightarrow \kappa &< \frac{\alpha}{2a} \\
+\Rightarrow E &< -\frac{\hbar^2 \alpha^1}{8ma^2}
+\end{align}
+
+\subsubsection*{Asymmetrisk}
+Vi ser nå på den asymetriske bølgefunksjonen rundt origo $\psi(-x) = -\psi(x)$. 
+Vi får nå at kontinuerlighet av bølgefunksjonen i dette tilfellet ved $x=a$ gir
+\begin{align}
+	 B\sinh(\kappa x) = -A e^{-\kappa x}
+\end{align}
+og betingelsen for diskontinuerligheten for den første deriverte ved brønnen e.g. til høyre gir
+\begin{align}
+\Big( \frac{\partial \psi}{\partial x} \Big)_{a^+} -
+\Big( \frac{\partial \psi}{\partial x} \Big)_{a^-} &= - \frac{\alpha}{a} \psi(a) \\
+\Rightarrow \kappa A  e^{-\kappa a}  - \kappa B \cosh(\kappa a) 
+				&= -\frac{\alpha}{a} B \sinh(\kappa a)\\
+\Rightarrow  -\kappa B\sinh(\kappa a) - \kappa B \cosh(\kappa a) 
+				&= - \frac{\alpha}{ a} B \sinh(\kappa a) \\
+\Rightarrow  -(e^{\kappa a} - e^{-\kappa a}) - (e^{\kappa a} + e^{-\kappa a}) 
+				&= - \frac{\alpha}{\kappa a} (e^{\kappa a} - e^{-\kappa a})  \\
+\Rightarrow  -2e^{\kappa a} &= - \frac{\alpha}{\kappa a} (e^{\kappa a} - e^{-\kappa a})  \\
+\Rightarrow   \frac{2e^{\kappa a}}{e^{\kappa a} - e^{-\kappa a}} &= \frac{\alpha}{\kappa a}  \\
+\Rightarrow   \frac{1}{1 - e^{-2\kappa a}} &= \frac{\alpha}{2\kappa a}  \\
+\Rightarrow   e^{-2\kappa a} &= 1 - \frac{2\kappa a}{\alpha}
+\end{align} 
+hvor vi har brukt betingelsen for kontinuerlighet av bølgefunksjonen.
+
+Vi har nå funnet den transcendentale ligningen for energinivåer for den asymmetriske 
+bølgefunksjon.
+Vi ser at vi trenger å ha at H.S. stiger fortere en $ e^{-2\kappa a} $ ved $\kappa a=0$ for at 
+ligningen har en løsning.
+Vi ser derfor på stigningstallene gitt ved de deriverte ved $x=0$ av V.S.
+\begin{align}
+	\Big[ \frac{\partial}{\partial \kappa a} e^{-2\kappa a} \Big]_0 = 
+	\Big[ -2\tanh^{-2\kappa a} \Big]_0 = -2
+\end{align}
+og H.S.
+\begin{align}
+	\Big[ \frac{\partial }{\partial \kappa a}  ( 1 - \frac{2\kappa a }{\alpha} ) \Big]_0 
+	= -\frac{2}{\alpha}
+\end{align}
+Vi har da følgende krav for at det finnes asymmetriske bundne tilstander
+\begin{align}
+	 -\frac{2}{\alpha} < -2 \\
+	\Rightarrow \alpha > 1 \\
+\end{align}
+hvor vi da ser at vi bare har en bundet tilstand med asymmetrisk bølgefunksjon og bare når 
+ $\alpha > 1$. Hvis $\alpha < 1$ har vi kun en bundet tilstand, nemlig den symmetriske, siden
+potensialet ikke er sterkt nok til å holde på mer energetiske tilstander.
+
+
+\subsubsection*{Molekyler}
+Hvor vi ser at et elektrons energi er mindre hvis det er bundet i en dobbeltbrønn en om det er 
+bundet i en enkeltbrønn.
+Dette er grunnen til at molekylær dannes og at vi ikke bare har atomer.
+Dette er noe som går igjen i flere sammenhenger, og det at bølgefunksjonen til elektroner kan 
+være på flere atomer samtidig gjør at det er energetisk fordelaktig for elektroner å slå seg 
+sammen til molekyler.
+
+
+\section*{Spredning og trinnpotensialet}
+
+Vi har til nå sett på tilstander som har vært bundne, til forskjellige potensialer.
+Vi skal nå igjen se på løsninger av S.L. hvor partikkelen ikke er bundet, slik som var tilfellet
+for den frie S.L. Vi vil da igjen se at vi ikke får noen føringer på tillatte energier, og vi 
+finner et kontinium av energier.
+Vi har da at vi må overlagre løsninger fra kontiniumet av S.L. elementære løsninger med 
+forskjellige energier for å lage 
+en lokalisert og normaliserbar bølgepakke som er en fysikalsk tillatt bølgefunksjon.
+Bølgepakken består av løsninger med forskjellige energier så den vil utvikle seg i tid, og vi 
+ser nå på hvordan slike løsninger utvikler seg i tid når de treffer potensialer. Vi kaller 
+vi spredning når ikke-bundne tilstander's tidsuvikling betraktes.
+\begin{figure}[h!]
+     \centering
+     \begin{subfigure}[b]{0.4\linewidth}
+       \centering
+	\begin{tikzpicture}
+	  \begin{axis}%
+	    [
+	     xlabel=$x$,
+	     ylabel=$V(x)$,
+	     axis lines=middle,
+	     restrict y to domain=-1:2.,
+	     enlargelimits={abs=.75},
+	     yticklabels=\empty,
+	     xticklabels=\empty
+	    ]
+	    \addplot+[mark=none, 
+		    domain=-1:1,
+		    samples=150,
+		    draw=black!70,
+		    pattern color=black,
+	    	    area legend] { 0 }  ;
+	    \node [color=black!70] at (-0.25, 0.35) {$V_0$};
+	    \node [color=black!70] at (-1.2, 0.25) {$E$};
+	\draw [<->] (-1, 0.025) -- (-1, 0.475);
+	\draw [ultra thick] (-2, 0) -- (0, 0);
+	\draw [ultra thick] (0, 0.) -- (0, 0.35);
+	\draw [ultra thick] (0, 0.35) -- (2, 0.35);
+	\draw [thick, dashed] (-2, 0.5) -- (2, 0.5);
+	  \end{axis}
+	\end{tikzpicture}
+         \label{fig:cos}
+     \end{subfigure}
+       \caption{Trinnpotensialet $V(x)$  til en som en partikkel spredes på.}
+        \label{fig:bølger}
+\end{figure}
+
+
+Vi starter med å betrakte 
+\begin{align}
+	 V(x) = \begin{cases}
+		0 \hspace{1.2cm} x < 0 \\
+		V_0 \hspace{1cm} x > 0
+		\end{cases}
+\end{align}
+Nå antar vi at energien er større en potensial-barrieren $ E > V_0 $.
+Vi har da S.L. 
+\begin{align}
+ \frac{\partial^2 \psi}{\partial x^2} &= -\frac{2mE}{\hbar^2} \psi \hspace{2.1cm} x < 0 \\
+ \frac{\partial^2 \psi}{\partial x^2} &= -\frac{2m(E-V_0)}{\hbar^2} \psi \hspace{1cm} x > 0
+\end{align}
+hvor vi definerer
+\begin{align}
+	 k &= \frac{\sqrt{2mE}}{\hbar} \\
+	 k_0 &= \frac{\sqrt{2m(E-V_0)}}{\hbar} 
+	= \sqrt{ k^2 - \frac{2mV_0}{\hbar^2}} 
+\end{align}
+Vi finner da løsningene 
+\begin{align}
+	 \psi(x) = 
+	\begin{cases}
+		Ae^{ikx} + Be^{-ikx} \hspace{1.2cm} x<0 \\
+	 Ce^{ik_0 x} + De^{-ik_0 x} \hspace{1cm} x>0
+	\end{cases}
+\end{align}
+Dette er ikke normaliserbart så vi kan ikke bruke normaliseringskravet for å bestemme konstantene,
+det vi istedenfor gjør er å se på sannsynlighetsstrømmen
+\begin{align}
+ j(x) = \frac{\hbar}{2mi}\big(\psi^* \frac{\partial}{\partial x}\psi 
+ - \psi \frac{\partial}{\partial x}\psi^*   \big)
+\end{align}
+som for vår bølgefunksjon blir 
+\begin{align}
+	 j(x) = \begin{cases}
+		\frac{\hbar k}{m} (|A|^2 - |B|^2) \hspace{1.15cm} x < 0 \\
+		\frac{\hbar k_0}{m} (|C|^2 - |D|^2) \hspace{1.cm} x > 0 
+		\end{cases}
+\end{align}
+Her ser vi at de positive leddene represneterer sannsynlighetsstrøm mot høyyre langs x-aksen,
+og de negative leddene til venstre, og vi ser at sannsynlighetsstrømmen beveger seg med 
+hastighet som er gitt ved farten til partikkelen i det mediumet den befinner seg i. 
+Vi ser her også at vi må sette $D=0$, det er fordi dette representerer en sannsynlighetsstrøm 
+som kommer inn fra høyre mot trinnpotensialet og det er ikke dette vi ønsker å se på. Vi vil 
+betrakte en som kommer fra venstre og spres på potensial trinnet.
+\begin{figure}[h!]
+     \centering
+     \begin{subfigure}[b]{0.4\linewidth}
+       \centering
+	\begin{tikzpicture}
+	  \begin{axis}%
+	    [
+	     xlabel=$x$,
+	     %ylabel=$V(x)$,
+	     axis lines=middle,
+	     restrict y to domain=-1:2.,
+	     enlargelimits={abs=.75},
+	     yticklabels=\empty,
+	     xticklabels=\empty
+	    ]
+	    \addplot+[mark=none, 
+		    domain=1:1.5,
+		    samples=150,
+		    draw=white,
+	    	    area legend] { 0.3 }  ;
+	    \addplot+[mark=none, 
+		    domain=-1:1,
+		    samples=150,
+		    draw=black!70,
+		    pattern color=black,
+	    	    area legend] { 0 }  ;
+	    \node [color=black!70] at (-0.25, 0.45) {$V_0$};
+	    \node [color=black!70] at (-0.5, 0.85) {$\frac{\hbar k}{m}|B|^2 $};
+	    \node [color=black!70] at (-1.5, 0.85) {$\frac{\hbar k}{m}|A|^2 $};
+	    \node [color=black!70] at (0.5, 0.85) {$\frac{\hbar k}{m}|C|^2 $};
+	    \node [color=black!70] at (-0.5, 0.6) {$j_{ref}$};
+	    \node [color=black!70] at (-1.5, 0.6) {$j_{inc}$};
+	    \node [color=black!70] at (0.5, 0.6) {$j_{trans}$};
+	    \node [color=red!70] at (1.5, 0.85) {$\frac{\hbar k}{m}|D|^2 $};
+	\draw[<-, ultra thick] (-0.75, 0.7) -- (-0.25, 0.7);
+	\draw[->, ultra thick] (-1.75, 0.7) -- (-1.25, 0.7);
+	\draw[<-, ultra thick] (0.75, 0.7) -- (0.25, 0.7);
+	\draw[->, ultra thick, red!70] (1.75, 0.7) -- (1.25, 0.7);
+	\draw [ultra thick] (-2, 0) -- (0, 0);
+	\draw [ultra thick] (0, 0.) -- (0, 0.45);
+	\draw [ultra thick] (0, 0.45) -- (2, 0.45);
+	  \end{axis}
+	\end{tikzpicture}
+         \label{fig:cos}
+     \end{subfigure}
+       \caption{sannsynlighetsstrømmen til en partikkel som spres på et trinn potensiale.}
+        \label{fig:bølger}
+\end{figure}
+Vi definerer refleksjons og transmisjonskoeffisientene som
+\begin{align}
+ R &= \frac{j_{ref}}{j_{inc}} = \frac{\frac{\hbar k}{m} |B|^2}{\frac{\hbar k}{m} |A|^2} =
+  \frac{ |B|^2}{|A|^2} \\
+ T &= \frac{j_{trans}}{j_{inc}} = \frac{\frac{\hbar k_0}{m} |C|^2}{\frac{\hbar k}{m} |C|^2} 
+ \frac{j_{trans}}{j_{inc}} = \frac{ k_0 |C|^2}{k |A|^2} 
+\end{align}
+Vi ser da at transmisjonskoeffisienten ikke bare er $|C|^2/|A|^2$ siden partikkelen beveger seg 
+saktere i regionen til høyre for trinnet ($x>0$).
+
+Vi bruker nå kravet om at bølgefunksjonen må være kontinuerlig overalt, og spesielt ved 
+$x=0$ til å finne 
+\begin{align}
+	 A + B = C + D
+\end{align}
+og kontinuitet av de første deriverte gir 
+\begin{align}
+	 Aik - ikB = ik_0 C - ik_0 D 
+\end{align}
+Vi har 2 ligninger for å bestemme 4 ukjente. Det er mange måter å oppfylle dette underbestemte 
+ligningssettet. Vi valgte allerede å sette $D=0$ på fysikalsk grunnlag. Så vi får nå
+\begin{align}
+	 A + B &= \frac{k}{k_0}(A-B) \\
+\Rightarrow k_0(A+B) &= k(A-B) \\
+\Rightarrow A(k_0 - k) &= -B(k_0 + k) \\
+\Rightarrow \frac{A}{B} &= \frac{k + k_0}{k - k_0} \\
+\end{align}
+og 
+\begin{align}
+	ik_0C &= ikA - ikA \frac{k - k_0}{k_0+k} \\
+	k_0C(k+k_0) &= kA (k+k_0) - kA (k - k_0) \\
+	k_0C(k+k_0) &= Akk_0  + A kk_0 \\
+	C(k+k_0) &= 2A k  \\
+	\frac{A}{C} &=  \frac{k_+k_0}{2k} 
+\end{align}
+Vi ser nå at vi ikke har noe krav om hvilke energier som er tillatt. Dette kommer av at vi 
+har en situasjon hvor partikkelen ikke er restriktert til et avgrenset området i rommet. 
+Vi får da 
+\begin{align}
+	 R &= \frac{(k-k_0)^2}{(k+k_0)^2} \\
+	 T &= \frac{4kk_0}{(k+k_0)^2} 
+\end{align}
+Vi har da også
+\begin{align}
+	 R+T=1
+\end{align}
+som vi selvsagt burde ha.
+
+\subsubsection*{Spredning av bølgepakke}
+
+Vi har allerede sett at vi kan lage normaliserbare bølgefunksjoner som en superposisjon av 
+planbølger med forskjellig energi. Vi kan her skrive det som 
+\begin{align}
+	 \Psi(x,t) = \begin{cases}
+	&\int_{- \infty }^{ \infty}  [ A(k) e^{i(kx - \frac{E}{\hbar}t)} - 
+			B(k) e^{i(kx + \frac{E}{\hbar}t)} ] dx \hspace{1cm} x<0\\
+	&\int_{- \infty }^{ \infty}  C(k) e^{i(k_0x - \frac{E}{\hbar}t)} dx \hspace{3.6cm} x>0
+	  \end{cases}
+\end{align}
+hvor vi ser at leddet med $A(k)$ og $C(k)$ er bølger som beveger seg mot høyre og $B(k)$ 
+beveger seg mot venstre. 
+Vi kan også beregne transmissjon og refleksjons koeffisientene ved å beregne integralene og 
+finne et eksakt uttrykk for $\Psi(x,t)$ og deretter integrere $|\Psi|^2$ på høyre og venstre 
+side av potensial trinnet etter partikkelen treffer potensialet.
+\begin{figure}[h!]
+     \centering
+     \begin{subfigure}[b]{0.4\linewidth}
+       \centering
+	\begin{tikzpicture}
+	  \begin{axis}%
+	    [
+	     xlabel=$x$,
+	     %ylabel=$V(x)$,
+	     axis lines=middle,
+	     restrict y to domain=-5:5.,
+	     enlargelimits={abs=.25},
+	     yticklabels=\empty,
+	     xticklabels=\empty,
+    every axis plot/.append style={ultra thick}
+	    ]
+	    \addplot+[mark=none, 
+		    domain=-3.:-1.,
+		    samples=150,
+		    draw=red!70,
+	    	    area legend] { 1 + 0.25*exp(-6.*(x+2.)^2)  }  ;
+	    \addplot+[mark=none, 
+		    domain=-2.5:-0.5,
+		    samples=150,
+		    draw=black!70,
+	    	    area legend] { 0.6 + 0.25*exp(-6.*(x+1.25)^2)  }  ;
+	    \addplot+[mark=none, 
+		    domain=2.5:0.5,
+		    samples=150,
+		    draw=black!70,
+	    	    area legend] { 0.6 + 0.25*exp(-6.*(x-1.25)^2)  }  ;
+	    \addplot+[mark=none, 
+		    domain=1:1.5,
+		    samples=150,
+		    draw=white,
+	    	    area legend] { 0.3 }  ;
+	    \addplot+[mark=none, 
+		    domain=-1:1,
+		    samples=150,
+		    draw=black!70,
+		    pattern color=black,
+	    	    area legend] { 0 }  ;
+	\draw [ultra thick] (-2, 0) -- (0, 0);
+	\draw [ultra thick] (0, 0.) -- (0, 0.45);
+	\draw [ultra thick] (0, 0.45) -- (2, 0.45);
+	  \end{axis}
+	\end{tikzpicture}
+         \label{fig:cos}
+     \end{subfigure}
+       \caption{sannsynlighetsstrømmen til en partikkel som spres på et trinn potensiale.}
+        \label{fig:bølger}
+\end{figure}
+
+
 
 \end{document}
 
