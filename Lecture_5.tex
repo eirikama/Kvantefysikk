@@ -1,0 +1,226 @@
+\documentclass{article}
+
+\usepackage{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepackage{tikz}
+\usetikzlibrary{decorations.markings}
+
+\usepackage{subfig}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+
+\newcommand\greybox[1]{
+	\vskip\baselineskip
+	\par\noindent\colorbox{lightgray}{
+		\begin{minipage}{\textwidth}#1\end{minipage}
+	}
+	\vskip\baselineskip
+}
+
+\title{Prinsipper i kvantemekanikk}
+
+
+\begin{document}
+\maketitle
+
+\section*{Paritetsoperatoren}
+
+Vi har allerede sett på Hamilton-, posisjons- og bevegelsesmengde-operatorene. Nå skal 
+vi introdusere en ny operator, nemlig paritetsoperatoren. Paritetsoperatoren
+er en operator som gjør transformasjonen $x \to -x$, vi definerer den som 
+\begin{align}
+	 \hat{\Pi}\psi(x) = \psi(-x)
+\end{align}
+Vi har da følgende eigenverdiligning 
+\begin{align}
+	 \hat{\Pi}\psi_{\lambda}(x) = \lambda\psi_{\lambda}(x)
+\end{align}
+Vi kan løse denne ligningen ved å merke oss at $ \hat{\Pi}^2=1$ siden hvis vi transformerer 
+$x \to -x$ to ganger er tilbake der vi startet. Vi har
+\begin{align}
+	 \hat{\Pi}^2 \psi_{\lambda} = \hat{\Pi}\lambda \psi_{\lambda} = \lambda^2 \psi_{\lambda}
+\end{align}
+som gir 
+\begin{align}
+	 \lambda^2 &= 1 \\
+	\Rightarrow \lambda &= \pm 1
+\end{align}
+Dvs. eigentilstandene til paritetsoperatoren med eigenverdi $+1$ er jevne tilstander 
+og $-1$ eigenverdier har odde tilstander.
+Vi har sett at for symmetriske potensialer $V(x) = V(-x)$ er energi eigentilstandene 
+også symmetriske, enten jevne eller odde. Så vi har derfor generelt at energi eigentilstander 
+er også paritets eigentilstander.
+
+Det er enkelt å vise at alle tilstander kan skrives som en lineærkombinasjon av jevne og odde 
+tilstander. Som vi kan se ved å skrive om en arbitrær $\psi(x)$ på følgende måte
+\begin{align}
+	 \psi(x) = \frac{1}{2}(\psi(x) + \psi(-x)) + \frac{1}{2}(\psi(x) - \psi(-x))
+\end{align}
+hvor vi nå ser at det første leddet er jevnt mens det andre er odde.
+Det betyr at også eigentilstandene til paritetsoperatoren danner et komplett sett.
+
+
+\section*{Hermitiske operatorer og observable}
+
+Vi starter med litt notasjon; vi innfører notasjonen hvor 
+vi skriver en kvante tilstand som $ | \psi \rangle = \psi$ (dette kaller vi en ket) 
+og vi lar den kompleks konjugert være $ \langle \psi| = \psi^*$ (som vi kaller en bra).
+Fordelen med en slik notasjon er at vi 
+kan nå har en veldig kompakt måte å skrive indreproduktet mellom tilstandene 
+$\psi_n$ og $\psi_m$ som $ \langle \psi_n | \psi_m \rangle $, dvs vi har 
+\begin{align}
+	 \langle \psi_n|\psi_m  \rangle = \int_{- \infty}^{ \infty} \psi_n^*\psi_m dx
+\end{align}
+Dette indreproduktet kalles nå en braket.
+Vi har også for en  operator $\hat{O}$ at 
+\begin{align}
+	 | \hat{O}\psi \rangle &= \hat{O} | \psi \rangle = \hat{O} \psi \\
+(| \hat{O}\psi \rangle)^* = \langle \hat{O} \psi|  &=\langle \psi| \hat{O}^*  = \hat{O}^* \psi^*
+\end{align}
+Denne notasjonen stammer fra Paul Dirac og kalles 
+Dirac notasjon, eller bra-ket notasjon, og er en veldig effektiv måte å uttrykke kvantetilstander 
+på.
+
+Videre sier vi at en operator $ \hat{O}$ er \textbf{hermitisk} hvis vi har 
+\begin{align}
+	\langle \phi| \hat{O}\psi \rangle &= \langle \hat{O}\phi| \psi \rangle  
+\hspace{0.5cm}	\Leftrightarrow \hspace{0.5cm} \int_{- \infty}^{ \infty} \phi^* \hat{O}\psi dx =
+  \int_{- \infty}^{ \infty} (\hat{O}\phi)^* \psi dx 
+\end{align}
+Vi har videre at om vi har to distinkte eigenverdier til en hermitisk operator 
+så er eigentilstandene deres ortogonal, som vi ser fra 
+\begin{align}
+	 \langle \psi_{\lambda_1}| \hat{O} \psi_{\lambda_2} \rangle 
+	&= \langle \hat{O} \psi_{\lambda_1}| \psi_{\lambda_2} \rangle \\
+	\Rightarrow \langle \psi_{\lambda_1}|\lambda_2 | \psi_{\lambda_2} \rangle 
+	&= \langle \psi_{\lambda_1}| \lambda_1 | \psi_{\lambda_2} \rangle \\
+	\Rightarrow (\lambda_2 - \lambda_1) \langle \psi_{\lambda_1}| \psi_{\lambda_2}\rangle &= 0 
+\end{align}
+Som gir 
+\begin{align}
+	 \langle \psi_{\lambda_1}| \psi_{\lambda_2} \rangle = 0 \hspace{1cm}\lambda_1 \neq \lambda_2
+\end{align}
+at hermitiske operatorer har ortogonale tilstander. Vi har allerede sett at dette gjelder for 
+eigentilstandene til Hamilton operatoren, men nå har vi at dette gjelder helt generelt for 
+hermitiske oepratorer. Siden vi også krever at tilstandene er normaliserte har vi at eigentilstander
+utgjør et ortonormalt sett tilstander $ \{ | \psi_n \rangle  \} $ slik at 
+\begin{align}
+	 \langle \psi_n| \psi_m \rangle  = \delta_{n,m}
+\end{align}
+Vi ar også at $ | \psi_n \rangle  $ er et komplett sett 
+\begin{align}
+	 | \psi \rangle = \sum^{ \infty}_{n=1} c_n | \psi_n \rangle 
+\end{align}
+for en hvilken som helst tilstand $ | \psi \rangle  $. Når vi antar at $ | \psi \rangle  $ 
+er normalisert får vi da 
+\begin{align}
+	 1 &= \langle \psi| \psi \rangle \\
+  &=\Big(\sum^{ \infty}_{m=1} c_m^* \langle \psi_m | \Big)
+\sum^{ \infty}_{n=1} c_n | \psi_n \rangle  \\
+  &=\sum^{ \infty}_{m=1} \sum^{ \infty}_{n=1} c_m^*c_n \langle \psi_m  | \psi_n \rangle \\
+  &=\sum^{ \infty}_{m=1} \sum^{ \infty}_{n=1} c_m^*c_n \delta_{n,m} \\
+  &= \sum^{ \infty}_{n=1} |c_n|^2
+\end{align}
+hvor vi har at $|c_n|^2$ er sannsynligheten for å måle eigenverdien $\lambda_n$ til operatoren 
+$ \hat{O} $.
+
+Vi har igjen at vi kan finne vektene til lineærkombinasjonen ved 
+\begin{align}
+	 \langle \psi_n| \psi \rangle  &= 
+	 \langle \psi_n| \Big( \sum_{m=1}^{ \infty} c_m | \psi_m \rangle \Big)  \\
+	 &= \sum_{m=1}^{ \infty} c_m  \langle \psi_n|  \psi_m \rangle  \\
+	 &= \sum_{m=1}^{ \infty} c_m  \delta_{n,m}  =  c_n
+\end{align}
+Siden $|C_n|^2$ er sannsynligheten for å måle eigenverdi $\lambda_n$ har vi 
+\begin{align}
+	 \langle O \rangle  = \sum^{ \infty}_{n=1} |c_n|^2 \lambda_n
+\end{align}
+Som gir generelt for hermitiske operatorer at 
+\begin{align}
+	\langle \psi| \hat{O} | \psi \rangle   &= 
+  \Big(\sum^{ \infty}_{n=1} c_n  \langle \psi_n| \Big)
+  \hat{O}\Big( \sum_{m=1}^{ \infty} c_m | \psi_m \rangle \Big)  \\
+ &=\sum^{ \infty}_{n=1}\sum_{m=1}^{\infty}c_n^*c_m \langle \psi_n| \hat{O}| \psi_m \rangle \\
+ &=\sum^{ \infty}_{n=1}\sum_{m=1}^{\infty}c_n^*c_m \lambda_m \langle \psi_n|  \psi_m \rangle \\
+ &=\sum^{ \infty}_{n=1}\sum_{m=1}^{\infty}c_n^*c_m \lambda_m  \delta_{n,m} \\
+ &=\sum^{ \infty}_{n=1}|c_m|^2 \lambda_m 
+\end{align}
+Slik at vi har
+\begin{align}
+	\langle O \rangle = \langle \psi| \hat{O} | \psi \rangle  
+\end{align}
+
+%Vi ser nå på forventningsverdien til en hermitisk operator $ \hat{O}$ og vi får da 
+%\begin{align}
+	% \langle O  \rangle &= \int_{- \infty}^{ \infty} \psi^* (\hat{O} \psi) dx \\
+			    %&= \int_{- \infty}^{ \infty} (\hat{O}\psi)^* \psi dx \\
+			    %&= \Big(\int_{- \infty}^{ \infty} \psi^* (\hat{O} \psi) dx \Big)^*\\ 
+			    %&= \langle O  \rangle^* 
+%\end{align}
+%eller i Dirac notasjon 
+Vi får da videre at når vi bruker at $ \hat{O} $ er hermitisk
+\begin{align}
+	 \langle O  \rangle = \langle \psi| \hat{O}\psi \rangle
+ = \langle \psi| \hat{O} | \psi \rangle =
+\langle \hat{O} \psi|\psi \rangle = \langle O  \rangle^* 
+\end{align}
+Med andre ord forventningsverdien til observable som representeres av hermitiske operatorer er 
+reelle. Dvs. vi har at alle observerbare størrelser representeres av hermitiske operatorer 
+og de vil alltid ha reelle forventningsverdier.
+Hvis vi videre antar at vi har en eigenverdiligning for en hermitisk operator 
+\begin{align}
+	 \hat{O}\psi_{\lambda} = \lambda \psi_{\lambda}
+\end{align}
+Så får vi da at 
+\begin{align}
+	 \langle O  \rangle = \langle \psi_\lambda| \hat{O}\psi_{\lambda} \rangle
+	 = \lambda \langle \psi_\lambda|\psi_{\lambda} \rangle = \lambda
+\end{align}
+hvor vi antar at eigentilstandene er normalisert. Dette gir da 
+\begin{align}
+	 \langle O  \rangle =  \langle O  \rangle^* \hspace{1cm} \Rightarrow \hspace{1cm}
+	\lambda = \lambda^*
+\end{align}
+altså hermitiske operatorer har alltid reelle eigenverdier.
+
+Til slutt nevner vi at vi kan skrive uskarpheten til en hvilken som helst observabel som 
+\begin{align}
+ (\Delta O)^2 = \langle \psi| \hat{O}^2 | \psi \rangle -  \langle \psi | \hat{O} |\psi \rangle^2
+\end{align}
+
+
+\section*{Kommuterende operatorer}
+
+Vi vet at om vi multipliserer to reelle tall med hverandre så spiller rekkefølgen ingen rolle 
+\begin{align}
+	 a b = b a \hspace{1cm} \forall a,b \in \mathbb{R}
+\end{align}
+mens vi også vet at for to matriser spiller rekkefølgen en veldig viktig rolle når 
+vi multipliserer de med hverandre og vi har generelt at 
+\begin{align}
+	 \mathbf{M_1} \mathbf{M_2} \neq \mathbf{M_2} \mathbf{M_1} 
+\end{align} 
+når $ \mathbf{M_1}$ og $ \mathbf{M_2} $ er generelle matriser og det er ikke nødvendigvis tilfellet 
+at $ \mathbf{M_2} \mathbf{M_1} $ eksisterer selv om $ \mathbf{M_1} \mathbf{M_2} $ gjør det.
+Vi sier at reelle tall kommuterer mens matriser generelt ikke gjør det. Vi skal se på det 
+for generelle operatorer i det følgende.
+og vi definerer nå den såkalte \textbf{kommutatoren} som 
+\begin{align}
+	 [ \hat{A}, \hat{B}] = \hat{A} \hat{B} - \hat{B} \hat{A}
+\end{align}
+Vi har da at to operatorer kommuterer når kommutatoren forsvinner 
+\begin{align}
+	 [ \hat{A}, \hat{B}] &= 0 \\
+	\Rightarrow \hat{A} \hat{B} &= \hat{B} \hat{A}
+\end{align}
+
+
+
+
+
+
+\end{document}
+

@@ -1275,38 +1275,182 @@ side av potensial trinnet etter partikkelen treffer potensialet.
 		    domain=-3.:-1.,
 		    samples=150,
 		    draw=red!70,
-	    	    area legend] { 1 + 0.25*exp(-6.*(x+2.)^2)  }  ;
+	    	    area legend] { 1.2 + 0.5*exp(-6.*(x+2.)^2)  }  ;
 	    \addplot+[mark=none, 
 		    domain=-2.5:-0.5,
 		    samples=150,
 		    draw=black!70,
-	    	    area legend] { 0.6 + 0.25*exp(-6.*(x+1.25)^2)  }  ;
+	    	    area legend] { 0.6 + 0.25*exp(-6.*(x+1.5)^2)  }  ;
 	    \addplot+[mark=none, 
 		    domain=2.5:0.5,
 		    samples=150,
 		    draw=black!70,
-	    	    area legend] { 0.6 + 0.25*exp(-6.*(x-1.25)^2)  }  ;
-	    \addplot+[mark=none, 
-		    domain=1:1.5,
-		    samples=150,
-		    draw=white,
-	    	    area legend] { 0.3 }  ;
+	    	    area legend] { 0.6 + 0.25*exp(-6.*(x-1.5)^2)  }  ;
+	\draw [ultra thick, red, ->] (-2.5, 1.75) -- (-1.25, 1.75);
+	\draw [ultra thick, <-] (-2., .9) -- (-.75, .9);
+	\draw [ultra thick, ->] (0.75, .9) -- (2., .9);
+	\draw [ultra thick, gray, dashed] (0, 0.) -- (0, 1.45);
+	\draw [ultra thick, gray, dashed] (0, 1.45) -- (3, 1.45);
+	\draw [ultra thick, gray, dashed] (-2, 0.3) -- (0, 0.3);
+	  \end{axis}
+	\end{tikzpicture}
+         \label{fig:cos}
+     \end{subfigure}
+       \caption{En plan bølge som spres på et potensial trinn.}
+        \label{fig:bølger}
+\end{figure}
+
+
+\section*{Tunnellering}
+Vi skal nå se på ikke bundne, spredningstillstander som treffer en potensiall-barriere
+som vi beskriver som 
+\begin{align}
+	 V(x) = \begin{cases}
+		0 \hspace{1.1cm} x<0 \\
+		V_0 \hspace{1cm} x \in (0, a) \\
+		0 \hspace{1.1cm} x>a 
+	\end{cases}
+\end{align}
+
+Dette kan vi løse med samme framgangsmåte som for spredning på ett potensial-trinn.
+Vi skal annta at energien er mindre en potensialbarrieren $E<V_0$.
+For et slikt scenario vet vi at klassisk er sannsynligheten lik null for et en partikkel 
+kan passere barrieren.
+Kvantemekanisk skal vi se at det er en mulighet for en partikkel å passere til andre siden av 
+potensialbarrieren selv om energien egentlig er for lav, klassiks sett. Dette kaller 
+vi \textbf{tunnellering}.
+\begin{figure}[h!]
+     \centering
+     \begin{subfigure}[b]{0.4\linewidth}
+       \centering
+	\begin{tikzpicture}
+	  \begin{axis}%
+	    [
+	     xlabel=$x$,
+	     ylabel=$V(x)$,
+	     axis lines=middle,
+	     restrict y to domain=-1:2.,
+	     enlargelimits={abs=.75},
+	     yticklabels=\empty,
+	     xticklabels=\empty
+	    ]
 	    \addplot+[mark=none, 
 		    domain=-1:1,
 		    samples=150,
 		    draw=black!70,
 		    pattern color=black,
 	    	    area legend] { 0 }  ;
+	    \node [color=black!70] at (-0.25, 0.5) {$V_0$};
+	    \node [color=black!70] at (-1.2, 0.25) {$E$};
+	    \node [color=black!70] at (.75, -.05) {$a$};
+	\draw [<->] (-1, 0.025) -- (-1, 0.275);
+	\draw [thick, dashed] (-2, 0.3) -- (2, 0.3);
 	\draw [ultra thick] (-2, 0) -- (0, 0);
-	\draw [ultra thick] (0, 0.) -- (0, 0.45);
-	\draw [ultra thick] (0, 0.45) -- (2, 0.45);
+	\draw [ultra thick] (0, 0.) -- (0, 0.5);
+	\draw [ultra thick] (0, 0.5) -- (0.75, 0.5);
+	\draw [ultra thick] (0.75, 0.5) -- (0.75, 0);
+	\draw [ultra thick] (0.75, 0.) -- (2, 0);
 	  \end{axis}
 	\end{tikzpicture}
          \label{fig:cos}
      \end{subfigure}
-       \caption{sannsynlighetsstrømmen til en partikkel som spres på et trinn potensiale.}
+       \caption{Rektangulær potensialbarriere.}
         \label{fig:bølger}
 \end{figure}
+Vi ser at løsningene til T.U.S.L. må være på formen 
+\begin{align}
+	 \psi(x) = \begin{cases}
+		Ae^{ikx} + Be^{-ikx} \hspace{1cm} x<0 \\
+		Fe^{-\kappa x} + Ge^{\kappa x} \hspace{1.1cm} x \in (0,a) \\
+		Ce^{ikx} \hspace{2.1cm} x>a
+	\end{cases}
+\end{align}
+hvor vi som tidligere har at 
+\begin{align}
+	 k &= \frac{\sqrt{2mE}}{\hbar} \\
+	 \kappa &= \frac{\sqrt{2m(V_0 - E)}}{\hbar} \\
+\end{align}
+og vi har at vi ikke har noen venstregående planbølge for $x>a$ siden vi ønsker å betrakte en
+partikkel som kommer fra venstre og treffer potensialbarrieren.
+Randbetingelsene fra kravet om kontinuitet av bølgefunksjonen er 
+\begin{align}
+	A + B &= F + G \label{eq:psi_cont_0}\\ 
+	Fe^{\kappa a} + Ge^{-\kappa a} &= Ce^{ika}\label{eq:psi_cont_a}
+\end{align}
+og kontinuitet av de deriverte av bølgefunksjonene 
+\begin{align}
+	 ikA - ikB &= -\kappa F + \kappa G \label{eq:dpsi_cont_0}\\
+	-\kappa Fe^{\kappa a} + \kappa Ge^{-\kappa a} &= ik Ce^{ika} \label{eq:dpsi_cont_a}
+\end{align}
+Vi har videre at  for å finne transmisjonskoeffisienten $T$ må vi beregne ratioen $\frac{A}{C}$.
+Vi gjøre dette ved å først eliminere $B$ fra  \ref{eq:psi_cont_0} og \ref{eq:dpsi_cont_0} slik at 
+\begin{align}
+	 2ikA = (ik - \kappa)F + (ik+\kappa)G
+\end{align}
+deretter eliminerer vi $F$ fra \ref{eq:dpsi_cont_a} og \ref{eq:dpsi_cont_a} 
+\begin{align}
+	 2\kappa G e^{\kappa a} = (\kappa + ik)Ce^{ika} \\
+	\Rightarrow G = \frac{\kappa + ik}{2\kappa}Ce^{ika}e^{-\kappa a}
+\end{align}
+og $G$ fra \ref{eq:dpsi_cont_a} og \ref{eq:dpsi_cont_a} 
+\begin{align}
+	 2\kappa F e^{-\kappa a} = (\kappa - ik)Ce^{ika} \\
+	\Rightarrow F = \frac{\kappa - ik}{2\kappa}Ce^{ika}e^{\kappa a}
+\end{align}
+Vi setter inn for $F$ og $G$ i den første av de tre provisoriske ligningene og 
+\begin{align}
+  2ikA &= (ik - \kappa)\frac{\kappa - ik}{2\kappa}Ce^{ika}e^{\kappa a} 
+	+ (ik+\kappa)\frac{\kappa + ik}{2\kappa}Ce^{ika}e^{-\kappa a}  \\
+ \Rightarrow \frac{A}{C} &= \frac{e^{ika}}{4ik\kappa}[(ik - \kappa)(\kappa - ik)e^{\kappa a} 
+	+ (ik + \kappa)(\kappa + ik)e^{-\kappa a} ] \\
+	&= \frac{e^{ika}}{4ik\kappa}[(k^2 - \kappa^2 + i2k\kappa)e^{\kappa a} 
+	+ (-k^2 + \kappa^2 + i2k\kappa)e^{-\kappa a} ] \\
+	&= \frac{e^{ika}}{2ik\kappa}[(k^2 - \kappa^2)\sinh(ka) + 2ik\kappa \cosh(ka)] \\
+\Rightarrow \frac{|A|^2}{|C|^2}&= \frac{1}{4k^2\kappa^2}
+	((k^2 - \kappa^2)\sinh(ka) + 2ik\kappa \cosh(ka))
+	((k^2 - \kappa^2)\sinh(ka) - 2ik\kappa \cosh(ka)) \\
+ &= \frac{1}{4k^2\kappa^2}[(k^2 - \kappa^2)^2\sinh^2(ka) + 4k^2\kappa^2 \cosh^2(ka)] \\
+ &= \frac{(k^2 - \kappa^2)^2}{4k^2\kappa^2}\sinh^2(ka) +  \cosh^2(ka) \\
+ &= \frac{(k^2 - \kappa^2)^2}{4k^2\kappa^2}\sinh^2(ka) +  1 + \sinh^2(ka) \\
+ &= \frac{(k^2 - \kappa^2)^2 + 4k^2\kappa^2}{4k^2\kappa^2}\sinh^2(ka) +  1  \\
+ &= 1 + \frac{(k^2 + \kappa^2)^2}{4k^2\kappa^2}\sinh^2(ka) 
+\end{align} 
+Videre har vi at 
+\begin{align}
+ T = \frac{j_{trans}}{j_{inc}} = \frac{ \frac{\hbar k }{m} |C|^2}{ \frac{\hbar k}{m} |A|^2}
+\end{align}
+som vi også hadde for potensial-trinnet.
+Dette gir da 
+\begin{align}
+	 T = \frac{1}{1 + \frac{(k^2 + \kappa^2)^2}{4k^2\kappa^2}\sinh^2(ka) }
+\end{align}
+I den mikroskopiske verden er tunnellering veldig vanlig, og vi ser at for et elektron med 
+energi $5$eV er sannsynligheten for å tunnellere igjennom en $a=0.53\times 10^{-10}$ tykke og 
+$V_0=10$eV høye barriere, $T=0.7$. Altså elektronet er vil mest sannsynlig tunnellere.
+På den andre siden er tunnellering neglisjerbart usannsynlig i den makroskpåiske verden
+
+For en ganske tykk barriere $\kappa a >> 1$ har vi 
+\begin{align}
+	 \sinh(ka) = \frac{e^{ika} + e^{-ika}}{2} \approx \frac{1}{2}e^{ika}
+\end{align}
+hvor vi også har $e^{ka}/2 >> 1$, som da gir transmisjonskoeffisienten
+\begin{align}
+	 T =  (\frac{4k\kappa}{k^2 + \kappa^2})^2 e^{-2\kappa a}
+\end{align}
+Vi ser nå at for $\kappa a >> 1$ så har vi en eksponensiell avhengiget av 
+transmisjonskoeffisienten på tykkelsen til barrieren $a$ og diskrepansen mellom $E$ og 
+$V_0$, siden det bestemmer $\kappa$.
+
+For eksempel har vi at om vi for $a=1$nm får at $e^{2\kappa a} \sim 10^{-10}$, som gjør at når vi
+tar med i betraktningen at grunnet størrelsen på avogadros tall $10^{23}$ så har vi typisk 
+godt over $10^{20}$ elektroner per kubikkcentimeter, så vil mange elektroner tunnelere. 
+Derimot om vi har $a=5$nm så får vi $e^{2\kappa a} \sim 10^{-50}$ som essensielt 
+gjør tunnellering forsvinnende lite sannsynlig.
+
+Dette benyttes i \textbf{Scanning Tunnelling Microscope} (STM). Siden vi har at en endering 
+i barrieren på $0.001$nm endrer tunnelleringskoeffisienten med $2\%$, kan vi ved STM oppnå 
+et bilde på nanoskala av forskjellige materialer.
+
 
 
 
