@@ -216,8 +216,264 @@ Vi har da at to operatorer kommuterer når kommutatoren forsvinner
 	 [ \hat{A}, \hat{B}] &= 0 \\
 	\Rightarrow \hat{A} \hat{B} &= \hat{B} \hat{A}
 \end{align}
+Vi ser nå på et eksempel på to kommuterende operatorer, nemlig Hamilton operator for harmonisk 
+oscillator og paritetsoperatoren
+\begin{align}
+ [ \hat{H}, \hat{\Pi}] \psi(x) 
+&= ( -\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2} 
++ \frac{1}{2}m\omega^2 x^2  ) \hat{\Pi} \psi(x) - \hat{\Pi} 
+( -\frac{\hbar^2}{2m} \frac{\partial^2}{\partial x^2} + \frac{1}{2}m\omega^2 x^2)\psi(x) \\
+&= ( -\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2} + \frac{1}{2}m\omega^2 x^2  )\psi(-x) - 
+( -\frac{\hbar^2}{2m} \frac{\partial^2}{\partial (-x)^2} + \frac{1}{2}m\omega^2 (-x)^2)\psi(-x) \\
+&= ( -\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2} + \frac{1}{2}m\omega^2 x^2  )\psi(-x) - 
+( -\frac{\hbar^2}{2m} \frac{\partial^2}{\partial x^2} + \frac{1}{2}m\omega^2 x^2)\psi(-x) \\
+&= 0
+\end{align}
+hvor vi ser at Hamilton og paritetsoperatoren kommuterer. Dette er generelt tilfellet for 
+operatorer som er symmetriske, altså hvor $V(x) = V(-x)$, og vi har at Hamilton operator er 
+invariant under transformasjonen $x\to -x$.
+
+Vi ser nå på implikasjoner av at to operatorer $ \hat{A} $ og $ \hat{B} $ kommuterer. 
+Vi har da eigenverdi ligningen for $ \hat{A} $ 
+\begin{align}
+	 \hat{A}\psi_a = a \psi_a
+\end{align}
+og lar $ \hat{B} $ virke på dette 
+\begin{align}
+	 \hat{B}\hat{A}\psi_a &= \hat{B}a \psi_a \\
+	\Rightarrow \hat{A} (\hat{B}\psi_a) &= a(\hat{B} \psi_a)
+\end{align}
+siden $ \hat{A} \hat{B} = \hat{B} \hat{A} $ for kommuterende operatorer. Dvs. at for 
+$ \hat{B}\psi_a$ er en eigenfunksjon for $ \hat{A} $.
+
+Det er nå to muligheter å betrakte: enten finnes det en eigenfunksjon  $\psi_a$ med eigenverdi 
+$ a $, da kaller vi den \textbf{ikke-degenerert} eigenfunksjon. Vi har da at siden 
+$ \hat{B}\psi_a $ også er en eigenfunksjon av $ \hat{A}$ med eigenverdi $ a $ så må det være 
+tilfellet at $ \hat{B}\psi_a$ og $\psi_a$ bare er forskjellige med en konstant. Vi kaller denne 
+konstanten for $b$ og har 
+\begin{align}
+	 \hat{B}\psi_a = b\psi_a
+\end{align}
+hvor vi ser at $\psi_a$ også må være en eigenfunksjon av $ \hat{B} $. Det betyr at kommuterende 
+operatorer har felles eigenfunksjoner, men ikke nødvendigvis de samme eigenverdiene.
+Dette så vi allerede for Hamilton operatoren til H.O. og paritetsoperatoren,
+hvor vi så at energi eigenfunksjonene også er eigenfunksjon til paritetsoperatoren siden 
+de er symmetrisk.
+Det som følger ifra dette er at vi kan vite verdien til både $ \hat{A} $ og $ \hat{B}$ samtidig,
+siden vi vet at om systemet er i tilstanden $ \psi_a $ så vet vi at verdien av $ \hat{A} $ er 
+$ a $ og  $ \hat{B} $ er $ b $.
+
+Videre har vi om det finnes flere eigenfunksjoner med eigenverdi $ a $ sier vi at 
+eigenfunksjonen er \textbf{degenerert}.
+Vi kan se på en fri partikkel som et eksempel. Der har vi at det finnes 2 energi 
+eigenfunksjoner med eigenverdi $E = \hbar^2 k^2 / 2m$, nemlig 
+\begin{align}
+	 \psi_{E_1}(x) &= A\cos(kx) \\
+	 \psi_{E_2}(x) &= B\sin(kx) 
+\end{align}
+vi her da en 2-veis degenerasjon.
+Det er dog ikke slik at energi eigenfunksjonene er eigenfunksjoner til 
+bevegelsesmengde-operatorene siden 
+\begin{align}
+	 \hat{p} A\cos(kx) = \frac{\hbar}{i}kA\sin(kx)\\
+	 \hat{p} B\sin(kx) = -\frac{\hbar}{i}kB\cos(kx)
+\end{align}
+Men vi kan dog lage en lineærkombinasjon av energi eigentilstander som er eigenfunksjon til 
+bevegelsesmengde-operatoren som 
+\begin{align}
+ \psi_{p_1}(x) &= \psi_{E_1} + i\frac{A}{B} \psi_{E_2} = A\cos(kx) + iA\sin(kx) = A e^{ikx} \\
+ \psi_{p_2}(x) &= \frac{B}{A}\psi_{E_1} - i \psi_{E_2} = B\cos(kx) - iB\sin(kx) = B e^{-ikx}
+\end{align}
+Her har vi nå at $ \psi_{p_1} $ og $ \psi_{p_2} $ både er eigenfunksjoner med  $E=\hbar^2k^2 /2m$ 
+og til bevegelsesmengde-operatoren med eigenverdi $\hbar k$ og $-\hbar k$.
+Dette gjelder generelt, og vi har at om $ \hat{A} $ har degenererte eigenfunksjoner er det 
+alltid mulig å finne en lineærkombinasjon av eigenfunksjonene som er simulatan eigenfunksjon 
+$ \hat{B} $ hvis $ \hat{A} $ og $ \hat{B} $ kommuterer.
 
 
+\section*{Ikke-kommuterende operatorer og uskarphetsrelasjoner}
+Vi ser nå på hva det betyr at to operatorer ikke kommuterer. Vi har at kommutatoren til to  
+operatorer er selv en operator og vi har at om to hermitiske operatorer ikke kommuterer slik at 
+\begin{align}
+	 [ \hat{A}, \hat{B}] = i \hat{C}
+\end{align}
+og $ \hat{C} $ er en hermitisk operator så har vi en uskarphetsrelasjon 
+\begin{align}
+	 \Delta A \Delta B \ge \frac{ |\langle C  \rangle| }{2} 
+\end{align}
+Vi minner oss om at vi har
+\begin{align}
+	 (\Delta A)^2 &=  \langle (\hat{A} - \langle A  \rangle)^2  \rangle
+	=\langle A^2 \rangle - \langle A  \rangle^2 \\
+	 (\Delta B)^2 &=  (\langle \hat{B} - \langle B  \rangle)^2  \rangle  =
+	\langle B^2 \rangle - \langle B  \rangle^2 
+\end{align}
+Vi definerer da følgende operatorere
+\begin{align}
+	 \hat{U} &= \hat{A} - \langle A  \rangle \\
+	 \hat{V} &= \hat{B} - \langle B  \rangle 
+\end{align}
+som gir oss 
+\begin{align}
+	 \langle \psi | \hat{U}^2\psi \rangle = (\Delta A)^2 \\
+	 \langle \psi | \hat{V}^2\psi \rangle = (\Delta B)^2
+\end{align}
+Vi har videre at 
+\begin{align}
+	 [ \hat{U}, \hat{V}] = i \hat{C}
+\end{align}
+slik at 
+\begin{align}
+	 \langle \psi | [ \hat{U}, \hat{V}] \psi \rangle = 
+	 \langle \psi | i \hat{C} \psi \rangle = i \langle C  \rangle 
+\end{align}
+Videre vet vi at for en compleks funksjon $\phi$ har vi at 
+\begin{align}
+	 \langle \phi | \phi \rangle \ge 0
+\end{align}
+Hvis vi da definerer vølgende komplekse funksjon
+\begin{align}
+	 \phi = \hat{U}\psi + i\lambda \hat{V}\psi
+\end{align}
+hvor vi ser på $\phi$ som en funksjon av $ \lambda \in \mathbb{R} $ og vi betrakter
+\begin{align}
+	 I(\lambda) = \langle \phi | \phi \rangle 
+\end{align}
+Siden $ \hat{A} $ og  $ \hat{B} $ er hermitiske er også $ \hat{U} $ og $ \hat{V} $ og vi har 
+\begin{align}
+	 I(\lambda) &=  \int_{- \infty}^{ \infty} (\hat{U}\psi + i\lambda \hat{V}\psi)^*
+	(\hat{U}\psi + i\lambda \hat{V}\psi) dx \\
+	&=  \int_{- \infty}^{ \infty} \psi^* (\hat{U}^2 + \hat{V}^2 \lambda 
+	 + i\lambda [ \hat{U}, \hat{V}] ) \psi dx \\
+	&= (\Delta U)^2 + \lambda^2(\Delta V)^2 - \lambda \langle C  \rangle  \ge 0
+\end{align}
+Vi minimiserer så $I(\lambda)$ mhp $\lambda$ som vi vet at vi gjør med å derivere 
+\begin{align}
+	 \frac{\partial I}{\partial \lambda} = 2\lambda (\Delta V)^2 - \langle C  \rangle 
+\end{align}
+slik at $I(\lambda)$ er minimal når den derivert er lik 0 altså når
+\begin{align}
+	 \lambda_{min} = \frac{ \langle C  \rangle }{2 (\Delta V)^2}
+\end{align}
+Hvis vi nå setter inn i uttrykket for $I(\lambda)$ og får
+\begin{align}
+  I(\lambda_{min})
+  &= (\Delta U)^2 
+   + \frac{ \langle C  \rangle^2 }{4 (\Delta V)^4}(\Delta V)^2 
+   - \frac{ \langle C  \rangle }{2 (\Delta V)^2} \langle C  \rangle  \\
+  &= (\Delta U)^2 
+   + \frac{ \langle C  \rangle^2 }{4 (\Delta V)^2} 
+   - \frac{ \langle C  \rangle^2 }{2 (\Delta V)^2} \\
+  &= (\Delta U)^2 
+   - \frac{ \langle C  \rangle^2 }{4 (\Delta V)^2} \ge 0 
+\end{align}
+slik at vi har 
+\begin{align}
+	  (\Delta U)^2 (\Delta V)^2 =  \frac{ \langle C  \rangle^2 }{4 } 
+\end{align}
+Hvis vi tar roten av dette har vi utledet den generelle uskarphetsrelasjonen
+\begin{align}
+	  \Delta U\Delta V =  \frac{ |\langle C  \rangle| }{2} 
+	  =  \frac{ | [ \hat{U}, \hat{V} ] | }{2} 
+\end{align}
+
+
+Vi ser nå at dette holder for 
+bevegelsesmengde-operatorene og posisjons-operatoren, hvor vi har 
+\begin{align}
+ [ \hat{x}, \hat{p}] \psi &= [ x, \frac{\hbar}{i} \frac{\partial}{\partial x} ] \psi \\
+ &=  x \frac{\hbar}{i} \frac{\partial}{\partial x} \psi 
+ - \frac{\hbar}{i} \frac{\partial}{\partial x} (x\psi) \\
+ &=  x \frac{\hbar}{i} \frac{\partial}{\partial x} \psi 
+ - \frac{\hbar}{i} \psi - x \frac{\hbar}{i} \frac{\partial}{\partial x}\psi \\
+ &= i\hbar \psi 
+\end{align}
+hvor $\psi$ er en arbitrær bølgefunksjon, og vi merker oss at bevegelsesmengde-operatorene 
+deriverer alt som kommer til høyre for den, altså også posisjons-operatoren. Dette må vi generelt 
+passe på når vi jobber med operatorer.
+Vi får da videre 
+\begin{align}
+	 \Delta x \Delta p &\ge \frac{|[ \hat{x}, \hat{p}] | }{2} \\
+ &= \frac{| i\hbar | }{2} = \frac{\hbar}{2} \\
+\end{align}
+Som vi allerede har sagt at er Heisenbergs uskarphetsrelasjon.
+
+
+\section*{Tidsutvikling}
+Vi skal nå se litt nærmere på tidsutviklingen til et kvantemekasnisk system. Vi vet 
+at tidsutviklingen er bestemt av S.L. 
+\begin{align}
+	 \hat{H}\Psi = i\hbar \frac{\partial \Psi}{\partial t} 
+\end{align}
+Vi ser da på hvordan forventningsverdier utvikler seg i tid 
+\begin{align}
+	 \frac{\partial \langle A  \rangle }{\partial t} = \frac{\partial }{\partial t} 
+	\int_{- \infty}^{ \infty} \Psi^* \hat{A} \Psi dx
+\end{align}
+Fra S.L. har vi at 
+\begin{align}
+	\frac{\partial \Psi}{\partial t} &= \frac{1}{i\hbar} \hat{H}\Psi \\ 
+	\frac{\partial \Psi^*}{\partial t} &= -\frac{1}{i\hbar} (\hat{H}\Psi)^*
+\end{align}
+og vi vet at Hamilton operatoren er hermitisk, dvs $ \langle \hat{H}\Psi|\Psi \rangle  
+= \langle\Psi| \hat{H}\Psi \rangle $. Vi finner da at 
+\begin{align}
+	 \frac{\partial \langle A  \rangle }{\partial t} &=
+	\int_{- \infty}^{ \infty}  
+	\frac{\partial \Psi^*}{\partial t} \hat{A} \Psi 
+	+ \Psi^* \frac{\partial \hat{A}}{\partial t}  \Psi 
+	+ \Psi^*\hat{A} \frac{\partial \Psi}{\partial t}  dx \\
+	&= \int_{- \infty}^{ \infty}  
+	-\frac{1}{i\hbar} (\hat{H}\Psi)^* \hat{A} \Psi 
+	+ \Psi^* \frac{\partial \hat{A}}{\partial t}  \Psi 
+	+ \Psi^*\hat{A} \frac{1}{i\hbar} \hat{H}\Psi  dx\\
+	&= \int_{- \infty}^{ \infty}  
+	-\frac{1}{i\hbar}( \Psi^* \hat{H}\hat{A} \Psi 
+	- \Psi^*\hat{A}  \hat{H}\Psi  )
+	+ \Psi^* \frac{\partial \hat{A}}{\partial t}  \Psi dx \\
+	&= \frac{i}{\hbar} \int_{- \infty}^{ \infty}  
+	 \Psi^* [\hat{H}, \hat{A} ] \Psi   dx
+	+ \int_{- \infty}^{ \infty}  \Psi^* \frac{\partial \hat{A}}{\partial t}  \Psi dx
+\end{align}
+Hvor vi ser at generelt så bestemmer kommutatoren med Hamilton operatoren hvordan 
+forventningsverdien til en observabel utvikler seg i tid. Videre har vi at om operatoren selv 
+er tidsuavhengig, som veldig ofte er tilfellet, så får vi 
+\begin{align}
+	 \frac{\partial \langle A  \rangle }{\partial t} 
+	= \frac{i}{\hbar} \int_{- \infty}^{ \infty}  
+	 \Psi^* [\hat{H}, \hat{A} ] \Psi   dx
+\end{align}
+altså endringen i tid til forventningsverdien er forventningsverdien til kommutatoren med 
+Hamilton operatoren. Vi har da videre at om en operator kommuterer med Hamilton operatoren 
+så er det en konservert størrelse.
+
+
+\subsection*{Energi-tid uskarphetsrelasjonen}
+
+En uskarphetsrelasjoner med energi of tid er konseptuelt litt merkelig, siden tid ikke er en 
+observabel i ikke-relativistisk kvantemekanikk. Vi ser på den generelle uskarphetsrelasjonen 
+mellom Hamilton operatoren og en arbitrær operator $ \hat{A}$ som 
+\begin{align}
+	 \Delta H \Delta A  = \frac{| \langle C  \rangle |}{2}
+\end{align}
+hvor $ \hat{C} = -i [ \hat{A}, \hat{H}]$. Vi har da at 
+\begin{align}
+  | \langle C  \rangle | = |i\int_{- \infty}^{ \infty} \Psi^* [ \hat{A}, \hat{H}] \Psi dx
+			 = |\hbar \frac{\partial \langle A  \rangle }{\partial t} |
+\end{align}
+Dette gir oss da 
+\begin{align}
+	 \Delta H \frac{\Delta A}{|\frac{\partial \langle A  \rangle }{\partial t} |} 
+	\ge \frac{\hbar}{2} 
+\end{align}
+Vi definerer nå 
+\begin{align}
+	 \Delta t =  \frac{\Delta A}{|\frac{\partial \langle A  \rangle }{\partial t} |} 
+\end{align}
+slik at vi får 
+\begin{align}
+	 \Delta H \Delta t \ge \frac{\hbar}{2}
+\end{align}
 
 
 
