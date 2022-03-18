@@ -449,7 +449,7 @@ Slik at vi får ligningen
 \end{align}
 Dette ser vi har løsninger 
 \begin{align}
-	 u(r) = e^{\pm \frac{\sqrt{-2mE}}{\hbar}rr} \hspace{1cm} (r\to\ \infty)
+	 u(r) = e^{\pm \frac{\sqrt{-2mE}}{\hbar}r} \hspace{1cm} (r\to\ \infty)
 \end{align}
 hvor vi antar at vi er interessert i bundne partikler med $ E < 0 $. Vi forkaster de løsningene 
 som divergerer for $ r\to \infty $, slik at vi bare har leddet med negativt fortegn i 
@@ -462,7 +462,7 @@ $ r \ll 0 $, og vi får da
 \end{align}
 Vi får da følgende løsninger
 \begin{align}
-	 u(r) &= r^-l \hspace{1.1cm} (r\to 0) \\
+	 u(r) &= r^{-l} \hspace{1.1cm} (r\to 0) \\
 	 u(r) &= r^{l+1} \hspace{1cm} (r\to 0) 
 \end{align}
 Hvor vi skal se bort i fra den første løsningen $ r^{-l} $ siden dette vil føre til 
@@ -490,7 +490,7 @@ Vi innfører nå et variabelbytte
 \end{align}
 Vi får da 
 \begin{align}
-	 R(r) = \rho^{l+1} F(r) e^{ - \frac{\rho}{2}}
+	 u(\rho) = \rho^{l+1} F(\rho) e^{ - \frac{\rho}{2}}
 \end{align}
 hvor vi har inkorporert en konstant i $ F(r) $, 
 og radial delen av T.U.S.L blir 
@@ -541,7 +541,7 @@ Vi kan nå kalle alle summasjonsvariablene det samme, e.g. $ k $ og trekke de in
 \end{align}
 Som gir oss 
 \begin{align}
-	 \frac{c_{k+1}}{c_k} = \frac{k + l + 1 -\lambda}{(k(k+1)+  ( 2l + 2) (k-1) )}
+	 \frac{c_{k+1}}{c_k} = \frac{k + l + 1 -\lambda}{k(k+1)+  ( 2l + 2) (k-1) }
 \end{align}
 Ligningen er oppfylt for en rekke-utvikling løsning så lenge koeffisientene oppfyler dette.
 Vi ser på hva som skjær for de høyere ordens leddene $ k \to \infty $ hvor vi har 
@@ -572,7 +572,245 @@ Vi har
 	\Rightarrow n^2 &= -\frac{Z^2 e^4}{(4\pi \epsilon_0)^2 \hbar^2} \frac{m}{2E} \\
 	\Rightarrow E &= -\frac{mZ^2 e^4}{2(4\pi \epsilon_0)^2 \hbar^2n^2}  \\
 \end{align}
-som nå gir oss energinivåene for et elektron bundet i et Hydrogen-atom.
+som nå gir oss energinivåene for et elektron bundet i et Hydrogen-atom som 
+\begin{align}
+	E_n &= -\frac{mZ^2 e^4}{2(4\pi \epsilon_0)^2 \hbar^2} \frac{1}{n^2} \\
+	&= -\frac{mc Z^2 \alpha^2}{2 } \frac{1}{n^2} 
+\end{align}
+og vi har finstruktur-konstanten som
+\begin{align}
+	 \alpha = \frac{e^2}{4\pi\epsilon_0\hbar c} \approx \frac{1}{137}
+\end{align}
+dette er en viktig størrelse i fysikken og beskriver koblingen mellom elementærpartikler med 
+ladning i elektriske felter.
+Vi kan også skrive $ E_n $ git ved grunntilstandsenergien til et enkelt Hydorgen-atom som 
+har $ Z=1 $ 
+\begin{align}
+	 E_n =  \frac{E_0 Z^2}{n^2} = - 13.6eV \frac{Z^2}{n^2}
+\end{align}
+
+\subsection*{Bølgefunksjonen}
+
+For ordens skyld tar vi med oss hvordan den fullstendige bølgefunksjonen til slike en-partikkel
+atomer ser ut.
+Vi får at løsningene våre er
+\begin{align}
+	F(\rho) = L^{2l + 1}_{n-l-1}(\rho)	 
+\end{align}
+hvor vi har de assosierte Laguerre-polynomene 
+\begin{align}
+	 L^q_{q-p}(x) = (-1)^p ( \frac{\partial}{\partial x} )^p L_q(x)
+\end{align}
+og det q'ende Laguerre-polynomene er 
+\begin{align}
+	 L_q(x) = e^x ( \frac{\partial}{\partial x} )^q (e^{-x} x^q)
+\end{align}
+Det vil si at den radielle delen av bølgefunksjonen er gitt som 
+\begin{align}
+	 R(r) = \frac{1}{r}e^{ - \frac{r}{n\alpha}} \big( \frac{2r}{n \alpha}\big)^{l+1}
+	L^{2l + 1}_{n-l-1}( \frac{2r}{n\alpha})	 
+\end{align}
+Slik at vi har den fullstendige bølgefunksjonen etter normalisering til Hydrogen-atomet som 
+\begin{align}
+	 \psi_{nlm}(r,\theta,\phi) = 
+	\sqrt{\big(\frac{2}{n\alpha}\big)^3 \frac{(n-l-1)!}{2n[(n+l)!]^3}} e^{- \frac{r}{n\alpha}}
+	\; \big( \frac{2r}{n\alpha} \big)^l   \;
+	L^{2l + 1}_{n-l-1}\big( \frac{2r}{n\alpha}\big) \; Y^{m_l}_{l} (\theta, \phi)	 
+\end{align}
+
+\subsection*{Kvantetall}
+Vi har nå 3 kvantetall som bestemmer egenskapene til dette systemet nemlig 
+\begin{description}
+\item[Hovedkvantetall $ n $ ] eller prinsipalkvantetallet. Bestemmer energien til elektronet 
+		i Hydorgen-atom hvor vi har $ E_n \sim n^{-2} $ . Vi har at hovedkvantetallet tar heltallsverdier, slik at 
+		\begin{align}
+			 n = 1,2,3,4,\ldots
+		\end{align}
+\item[Orbital kvantetall $ l $ ] eller det asimutale kvantetallet. Bestemmer banespinnet til 
+		en partikkel hvor vi har $|L| = \sqrt{l(l+1)}\hbar$. Vi har at 
+		\begin{align}
+			 l = 0, 1, 2, \ldots n-1
+		\end{align}
+\item[Magnetisk kvantetall $ m_l $ ] Angir projeksjonen av banespinnet i en bestemmt retning og 
+	vi har at for eksempel så er $L_z = m_l\hbar$.
+	Vi har at $m_l$ kan ta følgende verdier
+	\begin{align}
+		 m_l = -l, -l+1, \ldots, -1,0,1,\ldots, l-1, l
+	\end{align}
+\end{description}
+Disse kvantetallene forteller beskriver tilstanden til Hydrogen-atomet og andre atomære 
+tilstander, dvs for $ Z \neq 1 $, og vi bruker dem til å argumentere rundt fler-elektron atomer.
+
+Vi merker oss at energinivåene bare avhenger av kvantetallet $ n $ men ikke av $ l $ og $ m_l $.
+At energien ikke avhenger av $ m_l $ er lett å forstå, vi har et sentral-symmetrisk potensial 
+og det spiller derfor ingen rolle hvilken akse vi kaller z-aksen. Energien avhenger derfor ikke 
+på projeksjonen av banespinn på denne aksen.
+
+Men at energien ikke avhenger av $ l $ er mer overraskende, men den radielle delen 
+av bølgefunksjonen avhenger derimot av $ l $. Så den har noe å si for hvor (i hvilken avstand
+fra kjernen) vi forventer å finne partikkelen.
+
+Dette fører til en degenerasjon av spektrumet, siden veldig mange forskjellige tilstander 
+med forskjellige verdier av $ n $, $ l $ og $ m_l $ gir de samme energiene.
+Vi vet at $ l $ kan være alle heltall opp til $ n-1 $ og for hver $ l $ så er det $ (2l+1) $ 
+tillatte verdier av $ m_l $ det vil si at degenerasjonen for et gitt energinivå $ E_n $ er
+\begin{align}
+	 d(n) &= \sum_{l=0}^{n-1} (2l+1)  \\
+	  &= 2\sum_{l=0}^{n-1} l + \sum_{l=0}^{n-1}1  \\ 
+	  &= 2 \Big( \frac{(n-1)((n-1) +1)}{2}\Big) +  \sum_{l=1}^{n}1   \\
+	  &=  (n-1)n +  n \\
+	  &= n^2
+\end{align}
+
+
+\subsection*{Spektral overganger}
+En av hovedgrunnene til å studere energinivåene til Hydrogen-atomet er å kunne se på
+overgangene mellom energinivåer som danner grunnlaget for mange spektroskopiske teknikker.
+Vi har at et elektron kan gå fra en energitilstand med energi $ E_{n_i} $ til $ E_{n_f} $ ved 
+å sende ut et foton med energi 
+\begin{align}
+	 h\nu = E_{n_i} - E_{n_f}
+\end{align}
+Vi har da bølgelengdene til disse overgangene som 
+\begin{align}
+	 \frac{1}{\lambda} = R \big( \frac{1}{n_f^2} - \frac{1}{n_i^2}\big)
+\end{align}
+hvor 
+\begin{align}
+	 R = \frac{m}{4\pi c \hbar^3} \Big( \frac{e^2}{4\pi \epsilon_0}\Big)^3
+\end{align}
+Vi deler nå inne i flere typer overganger som er kjent i literaturen
+og som er historisk veldig viktig og som skjer med utsendt stråling med forskjellige 
+bølgelengder.
+
+\begin{description}
+\item[Balmer-serien] Vi har spektral linjene som kommer når et elektron gjennomgår 
+	en overgang fra en tilstand med $ n_i >2 $ til $ n_f = 2$. De utsendte fotonen
+	fra de fire laveste $ n_i $ gir at  denne transisjonen er i den synlige delen av det 
+	elektromagnetiske spektrumet.
+\item[Lyman-serien] overganger som har $ n_f = 1 $ har høyere energi og de utsendte fotonene 
+	er i den ultraviolette delen av det elektromagnetiske spektret.
+\item[Paschen-serien] overganger som ender i med $ n_f = 3 $ sender ut fotoner som infrarød 
+	stråling.
+\end{description}
+
+
+
+\section*{Zeeman effekten}
+Vi skal nå betrakte den såkalte Zeeman-effekten.
+Vi betrakter enpartikkel med ladning $ q $ og masse $ m $ som beveger seg i en sirkuler bane med 
+radius $ r $ om med hastighet $ v $. Partiklen beveger seg da i sirkel med en periode 
+$ T = (2\pi r) / v $ og genererer en strømførende løkke med areal $ A = \pi r^2 $ som har strøm 
+$ I = q / T = qv  / 2\pi r $. Fra klassisk elektrodynamikk vet vi at en slik strøm-løkke vil 
+generere et magnetisk dipole moment $ \mu $ med absoluttverdi 
+\begin{align}
+	 |\mathbf{\mu}| &=  IA = \frac{qrv}{2} \\
+	  &= \frac{qmrv}{2m} \\
+	  &= \frac{q}{2m} | \mathbf{L}|
+\end{align}
+Vi definerer derfor for et kvantemekanisk system dipol-momentet operatoren til å være
+\begin{align}
+	\mathbf{\hat{\mu}}  &= \frac{q}{2m} \mathbf{\hat{L}}
+\end{align}
+hvor vi har at fortegnet til $ q $, altså om vi har negativ eller positiv ladning, bestemmer om 
+dipol-momentet er parallell eller antiparallel til banespinnet.
+Vi nevner her at kvantemekanikk ikke kan utledes fra klassisk fysikk og argumentet som ledet fram 
+til dette uttrykket er strengt heuristisk. Partikler beveger seg ikke i sirkler og befinner seg 
+ikke ved gitte punkter i rommet. Men det finnes ikke noen bedre enkel måte å motivere dette 
+uttrykket.
+
+Om dette magnetiske momentet settes i et ekstern magnetisk felt $ \mathbf{B} $ så vil 
+vi ha en interaksjonsenergi
+\begin{align}
+	 - \mathbf{ \hat{\mu}} \cdot \mathbf{ \hat{B}} 
+	= - \frac{q}{2m} \mathbf{ \hat{L}} \cdot \mathbf{ B} 
+\end{align}
+Vi får da at Hamilton operatoren får et ekstra ledd når vi har Hydrogen-atomet i et
+eksternt magnetfelt
+\begin{align}
+	 H_{Zeeman} =  H_{Hydrogen} - \mathbf{ \hat{\mu}} \cdot \mathbf{B} 
+\end{align}
+Hvis vi antar at $ \mathbf{B} = B i_{z} $ og at vi ser på elektroner (i.e. at $ q=-e $ ) da får 
+vi at
+\begin{align}
+	 H_{Zeeman} =  H_{Hydrogen}  +  \frac{eB}{2m} \hat{L}_z 
+\end{align}
+Siden vi vet at bølgefunksjonen til Hydrogen-atom er eigenfunksjoner til $ \hat{L}_z $ 
+så får vi at energien til elektronet i et Hydrogen-atom som befinner seg i et eksternt 
+magnetfelt er 
+\begin{align}
+	 E_{n, m_l} = E_n + \frac{eB}{2m} m_l \hbar 
+	 = E_n + \mu_B B m_l 
+\end{align}
+hvor vi har Bohr magnetonen 
+\begin{align}
+	 \mu_B = \frac{e \hbar}{2m}
+\end{align}
+
+Vi har her altså at energien også avhenger av det magnetiske kvantetallet $ m_l $, og hvert 
+energinivå med en gitt $ n $ splittes opp i flere energinivåer med forskjellige $ m_l $. 
+Vi får altså mindre degenerasjon, vi sier at vi har brytt degenerasjonen. 
+Dette kommer av at symmetrien brytes, siden vi har lagt til 
+et ledd i Hamilton-operatoren som har en foretrukket retning. Siden vi ikke lenger har 
+en sentralsymmetrisk ligning så spiller det en rolle hva projeksjonen av banespinnet på z-aksen 
+er, siden energien avhenger av om dipol-momentet er rettet parallelt eller antiparallelt med 
+magnetfeltet.
+
+
+\section*{Egenspinn}
+
+I klassisk mekanikk så deler man ofte inn rigide legemers banespinn i to deler,
+banespinn $ \mathbf{L} = \mathbf{r}\times \mathbf{p} $  
+som forteller hvordan massesentrumet beveger seg rundt en akse og spinnet $ \mathbf{S} = I\omega $
+som er bevegelsen til legemet rundt massesenteret, altså hvordan det roterer.
+Vi vet e.g. at jorden har banespinn $ \mathbf{L} $  assosiert med sin bevegelse rundt solen mens
+spinnet $ \mathbf{S} $ assosiert med sin rotasjon rundt sin egen akse. 
+
+Vi vet dog at $ \mathbf{S} $ ikke er noe mer enn summen av banespinnet $ \mathbf{L} $ for alle 
+små deler av objektet rundt sitt massesentrum.
+
+I kvantemekanikken har vi også at partikler har en slags spinn i tillegg til banespinnet.
+Vi kaller dette spinnet egenspinn. Dette har dog ingenting med rotasjon i rommet, og kan derfor 
+ikke beskrives av romlige variabler $ r $ , $ \theta $ og $ \phi $. Dette kan vi se at er umulig 
+ifra at vi vet at elementærpartikler ikke har noe utrstrekning i rommet, siden de 
+er strukturløse punktpartikler. Egenspinnet til en partikkel er en iboende egenskap til partikkelen
+som den har i tillegg til det romlige, vanlige banespinnet. 
+
+Egenspinnet er en observabel og vi representerer det med en hermitisk operator 
+$ \mathbf{ \hat{S}} $. Teorien rundt egenspinn er helt ekvivalent til banespinnet og vi har 
+\begin{align}
+	  [\hat{S}_x, \hat{S}_y] = i\hbar \hat{S}_z \\
+	  [\hat{S}_y, \hat{S}_z] = i\hbar \hat{S}_x \\
+	  [\hat{S}_z, \hat{S}_x] = i\hbar \hat{S}_y
+\end{align}
+og
+\begin{align}
+	  [\hat{S}_x, \mathbf{\hat{S}}^2] 
+	= [\hat{S}_y, \mathbf{\hat{S}}^2] =  [\hat{S}_z, \mathbf{\hat{S}}^2] = 0
+\end{align}
+Eigentilstandene til $ \mathbf{ \hat{S}}^2 $ og $ \hat{S}_z $ kaller vi $|\psi_{s, m_s} \rangle$
+og oppfyller 
+\begin{align}
+	\mathbf{ \hat{S}}^2 | \psi_{s, m_s} \rangle  &= \hbar^2 s(s+1) | \psi_{s,m_s} \rangle  \\
+	\hat{S}_z | \psi_{s, m_s} \rangle  &= \hbar m_s | \psi_{s,m_s} \rangle  
+\end{align}
+Men siden vi nå har at $ | \psi_{s,m_s} \rangle  $ ikke er kuleflatefunksjoner siden 
+vi vet at de ikke kan være en funksjone av romlige koordinater som $\theta$ og $ \phi $ 
+så har vi ingen 
+grunn til å ikke ta med løsninger med halvtalls-verdier av $ s $ og $ m_s $ slik at vi har 
+\begin{align}
+	 s &= 0, \frac{1}{2}, 1, \frac{3}{2}, 2, \frac{5}{2}, \ldots \\
+	 m_s &= -s, -s+1, \ldots, -1, 0, 1, \ldots, s-1, s
+\end{align}
+Det viser seg at alle elementærpartikler har en spesifikk of uforranderlig verdi av $ s $, som vi 
+kaller spinnet til partiklen. Vi har at elektroner has spinn-$ 1 / 2 $, fotoner has spinn $ 1 $
+pi-mesoner har spinn $ 3 / 2 $ og gravitoner har spinn $ 2 $. 
+Vi skal nå se nærmere på spin- $ 1 / 2 $ partikler.
+
+\subsection*{Spinn-$ \frac{1}{2}$}
+
+
+
 
  \end{document}
 
