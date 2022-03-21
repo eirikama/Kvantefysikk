@@ -805,9 +805,84 @@ grunn til å ikke ta med løsninger med halvtalls-verdier av $ s $ og $ m_s $ sl
 Det viser seg at alle elementærpartikler har en spesifikk of uforranderlig verdi av $ s $, som vi 
 kaller spinnet til partiklen. Vi har at elektroner has spinn-$ 1 / 2 $, fotoner has spinn $ 1 $
 pi-mesoner har spinn $ 3 / 2 $ og gravitoner har spinn $ 2 $. 
-Vi skal nå se nærmere på spin- $ 1 / 2 $ partikler.
+Vi skal nå se nærmere på spinn-$ 1 / 2 $ partikler.
 
 \subsection*{Spinn-$ \frac{1}{2}$}
+Mange essesielle partikler som elektroner, positroner, kvarker etc. er spinn- $ \frac{1}{2} $
+partikler og vi skal derfor se nærmere på slike systemer.
+For $ s = \frac{1}{2}$ partikler har vi bare to muligheter for $ m_s = \pm \frac{1}{2} $. Dvs. vi 
+har et to-tilstands system, siden vi alltid har $ s=\frac{1}{2} $ har bare to muligheter 
+for $ m_s $. Vi har altså et diskret system med diskret muligheter for for kvantetilstandene våre.
+I dette tilfellet er det mer nærliggende å representere kvantetilstandene våre som matriser enn 
+som bølgefunksjoner.
+Vi har eigentilstandene som to-dimensojnale vektorer
+\begin{align}
+	 | \psi_{s, \frac{1}{2}} \rangle &= \chi^+ = \begin{bmatrix} 1 \\ 0 \end{bmatrix} \\
+	 | \psi_{s, -\frac{1}{2}} \rangle &= \chi^+ = \begin{bmatrix} 0 \\ 1 \end{bmatrix}
+\end{align}
+Vi har altså et to dimensjonalt Hilbert rom som disse to spinorene er en basis for.
+Operatorene er nå $ 2\times 2 $-matriser 
+\begin{align}
+	 \hat{S}_z = \frac{\hbar}{2} \begin{bmatrix} 1  & 0 \\ 0 & -1 \end{bmatrix}
+\end{align}
+Vi ser enkelt at $ \chi^{\pm} $ er eigentilstander til $ \hat{S}_z $ representert på denne 
+måten 
+\begin{align}
+	 \hat{S}_z  \chi^+ &= \frac{\hbar}{2} \begin{bmatrix} 1  & 0 \\ 0 & -1 \end{bmatrix}
+	\begin{bmatrix} 1  \\ 0 \end{bmatrix}
+	 = \frac{\hbar}{2}\begin{bmatrix} 1  \\ 0 \end{bmatrix}
+	 = \frac{1}{2}\hbar \chi^+ \\
+	 \hat{S}_z  \chi^- &= \frac{\hbar}{2} \begin{bmatrix} 1  & 0 \\ 0 & -1 \end{bmatrix}
+	\begin{bmatrix} 0  \\ 1 \end{bmatrix}
+	 = -\frac{\hbar}{2}\begin{bmatrix} 0  \\ 1 \end{bmatrix}
+	 = -\frac{1}{2}\hbar \chi^- 
+\end{align}
+Den kanonsike representasjonen av $ \hat{S}_x $ og $ \hat{S}_y $ er 
+\begin{align}
+	 \hat{S}_x &= \frac{\hbar}{2} \begin{bmatrix} 0  & 1 \\ 1 & 0 \end{bmatrix}\\
+	 \hat{S}_y &= \frac{\hbar}{2} \begin{bmatrix} 0  & -i \\ i & 0 \end{bmatrix}
+\end{align}
+Vi utrykker spinn-operatoren ved hjelp av såkelate Pauli matriser 
+\begin{align}
+	 \hat{\sigma}_x &= \begin{bmatrix} 0  & 1 \\ 1 & 0 \end{bmatrix}\\
+	\hat{\sigma}_y &= \begin{bmatrix} 0  & -i \\ i & 0 \end{bmatrix}\\
+	 \hat{\sigma}_z &= \begin{bmatrix} 1  & 0 \\ 0 & -1 \end{bmatrix}
+\end{align}
+Slik at vi har $ \hat{S}_x = \frac{\hbar}{2} \hat{\sigma}_x $,
+$ \hat{S}_y = \frac{\hbar}{2} \hat{\sigma}_y $ og $ \hat{S}_z = \frac{\hbar}{2} \hat{\sigma}_z $.
+Det er trivielt å vise at spinn-projeksjons operatorene på matriseform oppfyler kommutasjons-
+relasjonene. Vi har e.g. 
+\begin{align}
+	 [ \hat{S}_x, \hat{S}_y] &= \frac{\hbar^2}{4}
+\begin{bmatrix} 0  & 1 \\ 1 & 0 \end{bmatrix}\begin{bmatrix} 0  & -i \\ i & 0 \end{bmatrix} 
+ - \frac{\hbar^2}{4} \begin{bmatrix} 0  & -i \\ i & 0 \end{bmatrix}
+ \begin{bmatrix} 0  & 1 \\ 1 & 0 \end{bmatrix}\\
+	&= \frac{\hbar^2}{4} \begin{bmatrix} i  & 0 \\ 0 & -i \end{bmatrix} 
+ - \frac{\hbar^2}{4} \begin{bmatrix} -i  & 0 \\ 0 & i \end{bmatrix} \\
+	&= \frac{\hbar^2}{4} \begin{bmatrix} 2i  & 0 \\ 0 & -2i \end{bmatrix} \\
+	&= i\hbar\frac{\hbar}{2} \begin{bmatrix} 1  & 0 \\ 0 & -1 \end{bmatrix} \\
+	&= i\hbar \hat{S}_z
+\end{align}
+og tilsvarende kan vi vise at alle komponentene til egenspinn-operatoren kommuterer. Vi har også  
+at 
+\begin{align}
+	 \mathbf{ \hat{S}}^2 &= \hat{S}_x^2 + \hat{S}_y^2 + \hat{S}_z^2 \\
+    &=\frac{\hbar^2}{4}  \begin{bmatrix} 0  & 1 \\ 1 & 0 \end{bmatrix}
+	\begin{bmatrix} 0  & 1 \\ 1 & 0 \end{bmatrix} 
+    +  \frac{\hbar^2}{4}\begin{bmatrix} 0  & -i \\ i & 0 \end{bmatrix}
+	\begin{bmatrix} 0  & -i \\ i & 0 \end{bmatrix} 
+    +\frac{\hbar^2}{4}  \begin{bmatrix} 1  & 0 \\ 0 & -1 \end{bmatrix}
+	\begin{bmatrix} 1  & 0 \\ 0 & -1 \end{bmatrix} \\
+    &=\frac{\hbar^2}{4}  \begin{bmatrix} 1  & 0 \\ 0 & 1 \end{bmatrix}
+    +  \frac{\hbar^2}{4}\begin{bmatrix} 1  & 0 \\ 0 & 1 \end{bmatrix}
+    +\frac{\hbar^2}{4}  \begin{bmatrix} 1  & 0 \\ 0 & 1 \end{bmatrix} \\
+    &= \frac{3\hbar^2}{4}  \begin{bmatrix} 1  & 0 \\ 0 & 1 \end{bmatrix} \\
+    &= \frac{3\hbar^2}{4}  \mathbb{I}
+\end{align}  
+
+og altså $  $ 
+
+
 
 
 
